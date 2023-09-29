@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
+import Routers from './routers/Routers.js';
 
 function App() {
 
@@ -14,9 +15,16 @@ function App() {
   }, [])
 
   return (
-    <div>
-      {data ? data.users.map(user=> <div  key={user} >{user}</div>) : "Loading..." }
-    </div>
+    <>
+      <div>
+        {data ? data.users.map(user=> <div  key={user} >{user}</div>) : "Loading..." }
+      </div>
+      <div>
+        <Routers/>
+      </div>
+    </>
+    
+
   )
 }
 
