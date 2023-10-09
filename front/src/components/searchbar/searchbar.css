@@ -1,0 +1,23 @@
+.searchDiv{
+    width: 45%;
+    display: flex;
+    position: fixed;
+    left: 20%;
+    top:0;
+}
+
+.searchBar{
+    width: 90%;
+    border-radius: 25px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    border: solid 1px rgba(0, 0, 0, 0.514);
+    font-size: 1em;
+    outline: none;
+    color: inherit;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border: none;
+    text-align: left;
+    margin-top: 40px;
+}
