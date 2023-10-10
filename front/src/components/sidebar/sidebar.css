@@ -1,0 +1,62 @@
+.sidebarClosed{
+    display: none;
+}
+
+.sidebarOpen{
+    width: 250px;
+    position: absolute;
+    background-color: #F2BED1;
+    height: 100vh;
+    z-index: 1;
+}
+
+.logoSidebar{
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: 90px;
+}
+
+.menu{
+    display: inline-block;
+    position: fixed;
+    font-size: 1.8rem;
+    margin-top: 55px;
+    margin-left: 60px;
+    z-index: 2;
+}
+
+.menu:hover{
+    cursor: pointer;
+}
+
+.routes{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    font-size: 1.8rem;
+    margin-left: 60px;
+}
+
+#noDecoration{
+    text-decoration: none;
+    margin: 10px;
+    color: black;
+}
+
+
+
+.routesIn{
+    display: flex;
+    flex-direction: column;
+}
+
+.routesDown{
+    position: fixed;
+    font-size: 1.2rem;
+    bottom: 30%;
+}
+
+.where{
+    position: fixed;
+    bottom:10%;
+}

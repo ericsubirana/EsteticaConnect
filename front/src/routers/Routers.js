@@ -7,6 +7,7 @@ import Calendar from '../pages/Calendar.js';
 import Serveis from '../pages/Serveis.js';
 import Productes from '../pages/Productes.js';
 import Profile from '../pages/Profile.js';
+import Horaris from '../pages/Horaris.js';
 
 function Routers() {
   return (
@@ -20,6 +21,7 @@ function Routers() {
             <Route path='/serveis' element={<Serveis/>} />
             <Route path='/productes' element={<Productes/>} />
             <Route path='/profile' element={<Profile/>} />
+            <Route path='/horaris' element={<Horaris/>} />
         </Routes>
     </BrowserRouter>
   )

@@ -1,19 +1,22 @@
 .loginlogout{
     position: fixed;
     margin-left: 75%;
-    margin-top: 40px;
+    margin-top: 55px;
 }
 
 .login{
     font-size: 20px;
     margin-right: 80px;
     display: inline-block;
+    text-decoration: none;
+    margin-bottom: 15px;
 }
 
 .register{
     font-size: 20px;
     margin-right: 20px;
     display: inline-block;
+    text-decoration: none;
 }
 
 .login:hover{
