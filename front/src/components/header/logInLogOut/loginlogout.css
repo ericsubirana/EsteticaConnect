@@ -10,6 +10,7 @@
     display: inline-block;
     text-decoration: none;
     margin-bottom: 15px;
+    color: black;
 }
 
 .register{
@@ -17,6 +18,7 @@
     margin-right: 20px;
     display: inline-block;
     text-decoration: none;
+    color: black;
 }
 
 .login:hover{
