@@ -1,5 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {AuthProvider} from '../context/AuthContext.js';
+
 import Home from '../pages/Home.js';
 import Login from '../pages/Login.js';
 import Register from '../pages/Register.js';
@@ -11,7 +13,8 @@ import Horaris from '../pages/Horaris.js';
 
 function Routers() {
   return (
-    <BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
         <Routes>
             <Route path="*" element={<Home/>} />
             <Route path="/home" element={<Home/>} />
@@ -23,7 +26,8 @@ function Routers() {
             <Route path='/profile' element={<Profile/>} />
             <Route path='/horaris' element={<Horaris/>} />
         </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 

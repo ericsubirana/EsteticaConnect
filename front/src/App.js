@@ -5,16 +5,6 @@ import "./App.css";
 
 function App() {
 
-  // const [data, setData] = useState(null);
-  // useEffect(() => {
-  //   const fuunc = async () => {
-  //     const response = await axios.get('http://localhost:5000/api');
-  //     setData(response.data);
-  //     console.log(response.data);
-  //   };
-  //   fuunc();
-  // }, [])
-
   return (
     <>
       <div className='app'>
