@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom';
 import {FiMenu} from "react-icons/fi"
-import img from '../../assets/f.png';
+import img from '../../../assets/f.png';
 
 import './sidebar.css'
 

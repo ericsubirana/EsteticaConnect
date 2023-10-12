@@ -1,7 +1,7 @@
 import React from 'react'
-import Sidebar from '../sidebar/Sidebar';
-import Searchbar from '../searchbar/Searchbar';
-import LogInLogOut from '../logInLogOut/LogInLogOut';
+import Sidebar from './sidebar/Sidebar'
+import Searchbar from './searchbar/Searchbar';
+import LogInLogOut from './logInLogOut/LogInLogOut';
 
 import "./header.css";
 

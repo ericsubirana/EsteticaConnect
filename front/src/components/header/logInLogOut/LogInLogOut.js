@@ -9,8 +9,8 @@ function logInLogOut(props) {
         <div className='loginlogout'>
             {!user && (
                 <div>
-                    <Link className='login' to={"/login"}>Login</Link>
-                    <Link className='register' to={"/register"}>Register</Link>
+                    <Link className='login' to={"/login"}>LOGIN</Link>
+                    <Link className='register' to={"/register"}>SIGN UP</Link>
                 </div>
             )}
             {user && (

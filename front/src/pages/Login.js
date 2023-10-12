@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import axios from 'axios';
+import { loginReq } from '../api/auth';
+
 
 export default function Login() {
 
@@ -7,10 +8,8 @@ export default function Login() {
   const [password, setPassword] = useState('');
   
   async function login () {
-    const user = await axios.post('http://localhost:5000/api/login', {email, password});
-    if(user){
-      
-    }
+    const user = await loginReq({email,password});
+    console.log(user);
   }
 
   return (
