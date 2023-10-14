@@ -9,7 +9,10 @@ const tasksRoutes = require('./routes/tasks.routes.js');
 
 app.use(express.json()); //per poder llegir el body de les peticions
 app.use(morgan('dev')); //anar imprimint els resultats
-app.use(cors()); // Enable CORS for all routes
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+})); // Enable CORS for all routes
 app.use(cookieParser()); //per poder llegir les cookies
 
 app.use('/api', authRoutes);

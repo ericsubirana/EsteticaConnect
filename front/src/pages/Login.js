@@ -1,27 +1,47 @@
-import React, { useState } from 'react'
-import { loginReq } from '../api/auth';
+import React, { useEffect } from 'react'
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate, Link } from 'react-router-dom';
 
 
 export default function Login() {
 
-  const [email,setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  
-  async function login () {
-    const user = await loginReq({email,password});
-    console.log(user);
-  }
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {signin, isAuthenticated, errorContext, user} = useAuth();	
+
+  const navigation = useNavigate();
+
+  useEffect(() => {
+    if(isAuthenticated){
+      navigation('/home');
+    }
+  }, [isAuthenticated]);
 
   return (
     <div>
+      { errorContext.map((error, index) => (
+          <div key={index}>
+            <p>{error}</p>
+          </div>
+      )) 
+      }
+       <form onSubmit={handleSubmit (async (values) => {
+        signin(values);
+      })}>
         <label>
           Email:
-          <input type="text" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input type="text" {...register('email', { required: true })} />
+          {errors.email && <p>Email is required</p>}
         </label>
         <label>
           Password:
-          <input type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" {...register('password', { required: true })} />
+          {errors.password && <p>Password is required</p>}
         </label>
-        <button onClick={login}> Submit </button>
+        <button type='submit' > Submit </button>
+      </form>
+      <p>Don't have an account? <Link to='/register'>Sign Up</Link></p>
+      {console.log(user)}
     </div>
-  )}
+  )
+}

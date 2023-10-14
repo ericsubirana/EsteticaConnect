@@ -1,9 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import "./loginlogout.css"
+import { logoutReq } from '../../../api/auth';
+import { useAuth } from '../../../context/AuthContext';
 
 function logInLogOut(props) {
-    const user = props.user;
+    const {user, logout} = props;
+
+    function logoutPage() {
+        logout()
+    }
 
     return (
         <div className='loginlogout'>
@@ -15,8 +21,8 @@ function logInLogOut(props) {
             )}
             {user && (
                 <div>
-                    <Link className='profile' to={"/profile"}>Profile</Link>
-                    <Link className='logout' to={"/logout"}>Logout</Link>
+                    <Link className='profile' to={"/profile"}>PROFILE</Link>
+                    <Link className='logout' onClick={logoutPage} to={"/home"}>LOGOUT</Link>
                 </div>
             )}
         </div>

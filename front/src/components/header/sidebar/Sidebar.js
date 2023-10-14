@@ -8,7 +8,7 @@ import './sidebar.css'
 function Sidebar(props) {
     const [open, setOpen] = useState(false);
 
-    const logged = props.logged;
+    const user = props.user;
 
     function clicked(){
       setOpen(!open);
@@ -23,10 +23,10 @@ function Sidebar(props) {
               <Link id='noDecoration' to='/home'>Home</Link>
               <Link id='noDecoration' to='/productes'>Productes</Link>
               <Link id='noDecoration' to='/serveis'>Serveis</Link>
-              {!logged && (
+              {!user && (
                 <Link id='noDecoration' to='/login'>Log In</Link>
               )}
-              {logged && (
+              {user && (
                 <div className='routesIn'>
                   <Link id='noDecoration' to='/perfil'>Perfil</Link>
                   <Link id='noDecoration' to='/carret'>Carret</Link>

@@ -21,6 +21,23 @@
     color: black;
 }
 
+.logout{
+    font-size: 20px;
+    margin-right: 80px;
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 15px;
+    color: black;
+}
+
+.profile{
+    font-size: 20px;
+    margin-right: 20px;
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
 .login:hover{
     cursor:pointer;
 }
