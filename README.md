@@ -1,9 +1,9 @@
 <h1 align="center">EstèticaExpress</h1>
 
-<p align="center">Una aplicació web dissenyada específicament per a centres d'estètica.</p>
+<p align="center">Una aplicació web dissenyada específicament per un centre d'estètica.</p>
 
 <p align="center">
-  "EstèticaExpress" és un projecte innovador que connecta usuaris amb centres d'estètica,
+  "EstèticaExpress" és un projecte innovador que connecta usuaris amb el centre d'estètica,
   facilitant la reserva de serveis i millorant la interacció amb els establiments.
 </p>
 
