@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import "./loginlogout.css"
-import { logoutReq } from '../../../api/auth';
-import { useAuth } from '../../../context/AuthContext';
 
 function logInLogOut(props) {
     const {user, logout} = props;
