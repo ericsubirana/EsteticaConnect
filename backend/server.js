@@ -9,17 +9,12 @@ const authRoutes = require('./routes/auth.routes.js');
 app.use(express.json()); //per poder llegir el body de les peticions
 app.use(morgan('dev')); //anar imprimint els resultats
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000', //frontend
     credentials: true,
 })); // Enable CORS for all routes
 app.use(cookieParser()); //per poder llegir les cookies
 
 app.use('/api', authRoutes);
-
-
-app.get("/api", (req, res) => {
-    res.json({"users":["user1", "user2"]})
-});
 
 connectDB();
 

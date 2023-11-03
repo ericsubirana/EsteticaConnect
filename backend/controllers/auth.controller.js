@@ -7,7 +7,7 @@ const {TOKEN_SECRET} = require("../config.js")
 const register = async (req, res) => {
     const {username, email, password} = req.body;
     try {
-        const userExistsAlready = await User.findOne({email});
+        const userExistsAlready = await User.findOne({email}); //user es un mongoose schema
         if(userExistsAlready){
             return res.status(400).json(["email already exists"]);
         }
