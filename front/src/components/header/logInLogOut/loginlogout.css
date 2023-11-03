@@ -1,47 +1,108 @@
 .loginlogout{
-    position: fixed;
-    margin-left: 75%;
-    margin-top: 55px;
+    position: relative;
+    margin-top: 25px;
+    text-align: right;
+    display:flex;
 }
 
-.login{
-    font-size: 20px;
-    margin-right: 80px;
-    display: inline-block;
-    text-decoration: none;
-    margin-bottom: 15px;
-    color: black;
+.rightside{
+    position: absolute;
+    right: 30px;
+}
+
+.leftside{
+    position: absolute;
+    right: 120px
 }
 
 .register{
-    font-size: 20px;
-    margin-right: 20px;
-    display: inline-block;
     text-decoration: none;
-    color: black;
+    color: #9B9292;
+    font-size: medium;
+    position: relative;
 }
 
-.logout{
-    font-size: 20px;
-    margin-right: 80px;
-    display: inline-block;
+.home{
     text-decoration: none;
-    margin-bottom: 15px;
+    color: #9B9292;
+    font-size: medium;
+    position: relative;
+    margin-right: 35px;
+}
+
+.homeNow{
+    text-decoration: none;
     color: black;
+    font-size: medium;
+    position: relative;
+    margin-right: 35px;
+}
+
+.productes{
+    text-decoration: none;
+    color: #9B9292;
+    font-size: medium;
+    position: relative;
+    margin-right: 35px;
+}
+
+.serveis{
+    text-decoration: none;
+    color: #9B9292;
+    font-size: medium;
+    position: relative;
+    margin-right: 35px;
+}
+
+.horaris{
+    text-decoration: none;
+    color: #9B9292;
+    font-size: medium;
+    position: relative;
+    margin-right: 35px;
+}
+
+.line{
+    width: 2px;
+    height: 40px;
+    background-color: #c5bcbc;
+    margin-top: -5px;
+    position: absolute;
+    right: 120px;
+    margin-top: -10px;
+}
+
+.carret{
+    text-decoration: none;
+    color: #9B9292;
+    font-size: medium;
+    position: relative;
+    margin-right: 20px;
 }
 
 .profile{
-    font-size: 20px;
-    margin-right: 20px;
-    display: inline-block;
     text-decoration: none;
-    color: black;
+    color: #9B9292;
+    font-size: medium;
+    position: relative;
+    margin-right: 30px;
 }
 
-.login:hover{
-    cursor:pointer;
+.logout{
+    text-decoration: none;
+    color: #9B9292;
+    font-size: medium;
+    position: relative;
 }
 
 .register:hover{
+    cursor:pointer;
+}
+
+.profile:hover{
+    cursor:pointer;
+}
+
+.logout:hover{
     cursor:pointer;
 }

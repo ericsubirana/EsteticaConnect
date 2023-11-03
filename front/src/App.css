@@ -1,3 +1,6 @@
 .app{
-    font-family: 'Ubuntu Condensed', sans-serif;
+    font-family: 'Inter', sans-serif;
+}
+body{
+    margin: 0px;
 }

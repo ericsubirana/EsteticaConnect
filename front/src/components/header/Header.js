@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Sidebar from './sidebar/Sidebar'
 import Searchbar from './searchbar/Searchbar';
 import LogInLogOut from './logInLogOut/LogInLogOut';
 import { useAuth } from '../../context/AuthContext';
 
 import "./header.css";
+import img from '../../assets/f.png';
 
-function Header() {
+function Header(props) {
 
-  const {user, logout} = useAuth();
-
+  const { user, logout } = useAuth();
+  //<Sidebar user={user} />
+  //<Searchbar />
+  const page = props.page;
   return (
     <div className='header'>
-        <Sidebar user={user} />
-        <Searchbar />
-        <LogInLogOut user={user} logout={logout}/>
+      <div className='name'>
+        <img src={img} alt='logo' className='logo' />
+        <p className='title'>CE FINA</p>
+      </div>
+      <LogInLogOut user={user} logout={logout} page={page} />
     </div>
   )
 }
