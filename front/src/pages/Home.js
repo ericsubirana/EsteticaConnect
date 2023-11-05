@@ -2,7 +2,9 @@ import React from 'react'
 import Header from '../components/header/Header'
 
 import "./home.css";
-import Carrousel from '../components/carrousel/Carrousel';
+import Carrousel from '../components/homeComponents/carrousel/Carrousel';
+import Cabines from '../components/homeComponents/cabines/Cabines';
+import Footer from '../components/footer/Footer'
 
 function Home() {
   return (
@@ -18,6 +20,8 @@ function Home() {
         </div>
       </div>
       <Carrousel />
+      <Cabines />
+      <Footer />
     </>
   )
 }
