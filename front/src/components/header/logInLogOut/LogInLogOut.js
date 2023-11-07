@@ -21,7 +21,7 @@ function logInLogOut(props) {
                     </div>
                     <div className="line"></div>
                     <div className='rightside'>
-                        <Link className='register' to={"/register"}>SIGN UP</Link>
+                        <Link className='registerbutton' to={"/register"}>SIGN UP</Link>
                     </div>
                 </>
             )}

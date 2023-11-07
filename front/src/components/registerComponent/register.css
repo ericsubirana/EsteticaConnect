@@ -1,0 +1,87 @@
+.registerFormImage{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.imageRegister{
+    justify-content: center;
+    margin-top: 80px;
+    position: relative;
+    margin-left: 8%;
+   
+}
+
+.register{
+    margin-top: 100px;
+
+}
+.register p{
+    margin-top: 50px;
+}
+
+.register input{
+    border: none;
+    height: 35px;
+    border-bottom: 2px solid #fad7fa;
+}
+
+.register input:focus{
+    outline: none;
+    background-color: #fad7fa;
+    border-radius: 8px;
+}
+
+.firstline{
+    display: flex;
+    flex-direction: row;
+}
+
+.userName{
+    margin-right: 15px;
+}
+
+.userMail input{
+    width: 346px;
+}
+
+.button-52 {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-top: 50px;
+}
+
+.button-52:after {
+  content: "";
+  background-color: #fb8cfb;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  border-radius: 8px;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.button-52:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+@media (min-width: 768px) {
+  .button-52 {
+    padding: 13px 50px 13px;
+  }
+}
