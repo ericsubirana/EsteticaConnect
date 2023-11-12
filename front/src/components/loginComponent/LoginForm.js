@@ -2,9 +2,11 @@ import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import { AiOutlineArrowRight } from 'react-icons/ai';
 
 import logo from '../../assets/f.png'
-import loginPhoto from '../../assets/loginPhoto.jpg'
+import loginPhoto from '../../assets/loginPhoto.png'
+
 import './login.css'
 
 export default function LoginForm() {
@@ -26,6 +28,7 @@ export default function LoginForm() {
 
   return (
     <div className='login'>
+      <div className='sqaure'></div>
       <div>
         {errorContext.map((error, index) => (
           <div key={index}>
@@ -33,32 +36,40 @@ export default function LoginForm() {
           </div>
         ))
         }
-        <div className='square'></div>
-        <img src={logo} alt="logo" height={80} onClick={home} />
+
+        <img src={logo} alt="logo" className='logoLogin' height={80} onClick={home} />
         <h4>Benvingut/da de nou!</h4>
         <h1>Inici de Sessió</h1>
         <form onSubmit={handleSubmit(async (values) => {
           signin(values);
         })}>
-          <label>
-            <h3>CORREU</h3>
+          <label className='userMail'>
+            <div className='together'>
+              <h3>CORREU</h3>
+              {errors.email && <p>Email is required</p>}
+            </div>
             <input type="text" {...register('email', { required: true })} />
-            {errors.email && <p>Email is required</p>}
-          </label>
-          <label>
-            <h3>CONTRASENYA</h3>
-            <input type="password" {...register('password', { required: true })} />
-            {errors.password && <p>Password is required</p>}
-          </label>
-          <p>Has oblidat la contrasenya?</p>
-          <p>Encara no estàs registrat? <Link to="/register">Registra't!</Link> </p>
 
-          <button type='submit' > Submit </button>
+          </label>
+          <label className='userPassword'>
+            <div className='together'>
+              <h3>CONTRASENYA</h3>
+              {errors.password && <p>Password is required</p>}
+            </div>
+            <input type="password" {...register('password', { required: true })} />
+
+          </label>
+          <div className='buttonAndPAss'>
+            <Link className='link'>Has oblidat la contrasenya?</Link>
+            <button type='submit' className='button-53' > <AiOutlineArrowRight className='link2' /> </button>
+          </div>
+          <p>Encara no estàs registrat? <Link to="/register">Registra't!</Link> </p>
         </form>
       </div>
       <div>
-        <img src={loginPhoto} alt="" />
+        <img className="flowers" src={loginPhoto} height={720} />
       </div>
+
     </div>
   )
 }

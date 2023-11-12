@@ -4,11 +4,154 @@
     justify-content: center;
     align-items: center;
     
+    height: 100vh;
+    position: relative;
+    background-image: url(../../assets/loginBack.webp);
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
 }
 
-.square{
-    width: 920px;
-    height: 720px;
-    border: 3px solid black;
+
+.flowers{
+    position: relative;
+    margin-left: 80px;
+    margin-top: -50px;
+}
+
+.login p{
+    position: relative;
+    margin-top: 50px;
+}
+
+.login input{
+    position: relative;
+    border: none;
+    height: 35px;
+    border-bottom: 2px solid #fad7fa;
+    background-color: transparent;
+}
+
+.login input:focus{
+    position: relative;
+    outline: none;
+    background-color: #fad7fa;
+    border-radius: 8px;
+}
+
+.login h1{
+    position: relative;
+    font-size: 3rem;
+}
+
+.login h4{
+    position: relative;
+}
+
+.userMail input{
+    position: relative;
+    width: 346px;
+}
+
+.userMail{
+    position: relative;
+}
+
+.userPassword input{
+    width: 346px;
+    position: relative;
+}
+
+.userPassword{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.buttonAndPAss {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    position: relative;
+}
+
+.link{
+    position: relative;
+    order:2;
+}
+
+.link2{
+    position: relative;
+    z-index: 5;
+}
+
+.logoLogin{
+    position: relative;
+}
+
+.logoLogin:hover{
+    cursor: pointer;
+}
+
+.button-53 {
+    order: 1;
+    font-size: 16px;
+    font-weight: 200;
+    outline: 0;
+    border: 1px solid rgb(226, 169, 228);
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    z-index: 5;
+
+}
+
+.button-53:after {
+    content: "";
+    background-color:  #fad7fa;
+    width: 100%;
+    z-index: 2;
     position: absolute;
+    border-radius: 8px;
+    height: 100%;
+    top: 7px;
+    left: 7px;
+    transition: 0.2s;
+    content: "";
+}
+
+.button-53:hover:after {
+    top: 0px;
+    left: 0px;
+}
+
+@media (min-width: 768px) {
+    .button-53 {
+        padding: 13px 20px 13px;
+    }
+}
+
+.sqaure{
+    border-radius: 20px;
+    position: absolute;
+    width: 1050px;
+    height: 670px;
+    background-color: rgba(255, 255, 255, 0.493); /* Adjust the last value (0.5) for transparency */
+    backdrop-filter: blur(8px); /* Optional: Add a blur effect */
+}
+
+.together{
+    display: flex;
+    flex-direction: row;
+}
+
+.together p{
+    margin: 0;
+    position: absolute;
+    left: 50%; 
+    margin-top: 20px;
 }
