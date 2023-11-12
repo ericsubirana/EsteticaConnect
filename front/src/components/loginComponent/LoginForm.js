@@ -28,8 +28,8 @@ export default function LoginForm() {
 
   return (
     <div className='login'>
-      <div className='sqaure'></div>
-      <div>
+      <div className='sqaure2'></div>
+      <div className='formLogin'>
         {errorContext.map((error, index) => (
           <div key={index}>
             <p>{error}</p>
@@ -61,7 +61,8 @@ export default function LoginForm() {
           </label>
           <div className='buttonAndPAss'>
             <Link className='link'>Has oblidat la contrasenya?</Link>
-            <button type='submit' className='button-53' > <AiOutlineArrowRight className='link2' /> </button>
+            <button type='submit' className='button-53' > Log In </button>
+            {/*<AiOutlineArrowRight className='link2' />*/}
           </div>
           <p>Encara no estàs registrat? <Link to="/register">Registra't!</Link> </p>
         </form>

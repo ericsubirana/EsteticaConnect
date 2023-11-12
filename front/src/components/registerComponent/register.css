@@ -1,14 +1,15 @@
 .registerFormImage{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    position: relative;
-    background-image: url(../../assets/loginBack.webp);
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    background-position: center; 
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+  position: relative;
+  background-image: url(../../assets/loginBack.webp);
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
 }
 
 .imageRegister{
@@ -26,86 +27,95 @@
 }
 
 .alreadyHasAccount{
-  margin-top: 50px;
+margin-top: 50px;
 }
 
 .register h1{
-  font-size: 3rem;
+font-size: 3rem;
 }
 
 .register:hover{
-  cursor:auto;
+cursor:auto;
 }
 
 .imgForm{
-  cursor: pointer;
+cursor: pointer;
 }
 
 .register input{
-  border: none;
-  height: 35px;
-  border-bottom: 2px solid #fad7fa;
-  background-color: transparent;
+border: none;
+height: 35px;
+border-bottom: 2px solid #fad7fa;
+background-color: transparent;
 }
 
 .register input:focus{
-  outline: none;
-  background-color: #fad7fa;
-  border-radius: 8px;
+outline: none;
+background-color: #fad7fa;
+border-radius: 8px;
 }
 
 .firstline{
-  display: flex;
-  flex-direction: row;
+display: flex;
+flex-direction: row;
 }
 
 .userName{
-    margin-right: 15px;
+  margin-right: 15px;
 }
 
 .userMail{
-  margin-top: 50px;
+margin-top: 50px;
 }
 
 .userMail input{
-    width: 346px;
+  width: 346px;
 }
 
 .button-52 {
-  font-size: 16px;
-  font-weight: 200;
-  outline: 0;
-  border: 1px solid rgb(226, 169, 228);
-  border-radius: 8px;
-  cursor: pointer;
-  position: relative;
-  background-color: rgba(0, 0, 0, 0);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  margin-top: 30px;
+font-size: 16px;
+font-weight: 200;
+outline: 0;
+border: 1px solid rgb(226, 169, 228);
+border-radius: 8px;
+cursor: pointer;
+position: relative;
+background-color: rgba(0, 0, 0, 0);
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+margin-top: 30px;
 }
 
 .button-52:after {
-  content: "";
-  background-color:  #fad7fa;
-  width: 100%;
-  z-index: -1;
-  position: absolute;
-  border-radius: 8px;
-  height: 100%;
-  top: 7px;
-  left: 7px;
-  transition: 0.2s;
+content: "";
+background-color:  #fad7fa;
+width: 100%;
+z-index: -1;
+position: absolute;
+border-radius: 8px;
+height: 100%;
+top: 7px;
+left: 7px;
+transition: 0.2s;
 }
 
 .button-52:hover:after {
-  top: 0px;
-  left: 0px;
+top: 0px;
+left: 0px;
 }
 
 @media (min-width: 768px) {
-  .button-52 {
-    padding: 13px 20px 13px;
-  }
+.button-52 {
+  padding: 13px 20px 13px;
+}
+}
+
+.sqaure{
+  border-radius: 20px;
+  position: absolute;
+  width: 1050px;
+  height: 670px;
+  background-color: rgba(255, 255, 255, 0.493); /* Adjust the last value (0.5) for transparency */
+  backdrop-filter: blur(8px); /* Optional: Add a blur effect */
 }

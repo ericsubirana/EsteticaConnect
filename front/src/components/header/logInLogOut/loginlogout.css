@@ -46,6 +46,14 @@
     margin-right: 35px;
 }
 
+.productesNow{
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+    position: relative;
+    margin-right: 35px;
+}
+
 .serveis{
     text-decoration: none;
     color: #9B9292;

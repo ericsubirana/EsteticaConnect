@@ -10,12 +10,14 @@ function logInLogOut(props) {
     }
 
     return (
-        <div className='loginlogout'>
+        
+        <div className = 'loginlogout'>
+            {console.log(page)}
             {!user && (
                 <>
                     <div className='leftside'>
                         <Link className={page === 'home' ? 'homeNow' : 'home'} to={"/home"}>Home</Link>
-                        <Link className='productes' to={"/productes"}>Productes</Link>
+                        <Link className={page === 'products' ? 'productesNow' : 'productes'} to={"/productes"}>Productes</Link>
                         <Link className='serveis' to={"/serveis"}>Serveis</Link>
                         <Link className='horaris' to={"/horaris"}>Horaris</Link>
                     </div>
@@ -29,7 +31,7 @@ function logInLogOut(props) {
                 <>
                     <div className='leftside'>
                         <Link className={page === 'home' ? 'homeNow' : 'home'} to={"/home"}>Home</Link>
-                        <Link className='productes' to={"/productes"}>Productes</Link>
+                        <Link className={page === 'products' ? 'productesNow' : 'productes'} to={"/productes"}>Productes</Link>
                         <Link className='serveis' to={"/serveis"}>Serveis</Link>
                         <Link className='horaris' to={"/horaris"}>Horaris</Link>
                         <Link className='profile' to={"/profile"}>Perfil</Link>

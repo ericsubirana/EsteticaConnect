@@ -1,0 +1,93 @@
+.titleProducts{
+    background-image: url('../../assets/productsBack.png');
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    height: 450px;
+}
+
+.titleProductsText{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    margin-top: 300px;
+    width: 55%;
+    justify-content: center;
+    color: white;
+}
+
+.inputC{
+    position: relative;
+    border: none;
+    height: 35px;
+    width: 70%;
+    border-bottom: 2px solid #fad7fa;
+    background-color: transparent;
+}
+
+.inputHalf{
+    margin-top: 10px;
+    margin-left: 40px;
+    flex: 1;
+}
+
+.inputC:focus{
+    position: relative;
+    outline: none;
+    background-color: #fad7fa;
+    border-radius: 8px;
+}
+
+.lineProducts{
+    height: 2px;
+    width: 50px;
+    background-color: white;
+    margin-top: 65px;
+    margin-left: 40px;
+    margin-right: 40px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.titleProductsText h1{
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.titleProductsText h3{
+    font-size: 1.5rem;
+    margin-top: 50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 1930px) {
+    .titleProductsText {
+        width: 65%;
+    }
+}
+
+@media (max-width: 1350px) {
+    .titleProductsText {
+        width: 85%;
+    }
+}
+
+.prodcutsC{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+}
+
+.prodcutsC h2{
+    margin-right: 70px;
+}
+
+.prodcutsC h2:hover{
+    cursor: pointer;
+}
+
+.coAndca{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    flex: 1;
+}
