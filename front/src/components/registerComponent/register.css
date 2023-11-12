@@ -2,43 +2,69 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    background-image: url(../../assets/loginBack.webp);
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
 }
 
 .imageRegister{
-    justify-content: center;
-    margin-top: 80px;
-    position: relative;
-    margin-left: 8%;
-   
+  position: fixed;
+  width: 1050px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .register{
-    margin-top: 100px;
-
+  position: fixed;
+  width: 890px;
+  text-align: left;
+  z-index: 8;
 }
-.register p{
-    margin-top: 50px;
+
+.alreadyHasAccount{
+  margin-top: 50px;
+}
+
+.register h1{
+  font-size: 3rem;
+}
+
+.register:hover{
+  cursor:auto;
+}
+
+.imgForm{
+  cursor: pointer;
 }
 
 .register input{
-    border: none;
-    height: 35px;
-    border-bottom: 2px solid #fad7fa;
+  border: none;
+  height: 35px;
+  border-bottom: 2px solid #fad7fa;
+  background-color: transparent;
 }
 
 .register input:focus{
-    outline: none;
-    background-color: #fad7fa;
-    border-radius: 8px;
+  outline: none;
+  background-color: #fad7fa;
+  border-radius: 8px;
 }
 
 .firstline{
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .userName{
     margin-right: 15px;
+}
+
+.userMail{
+  margin-top: 50px;
 }
 
 .userMail input{
@@ -57,7 +83,7 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .button-52:after {
