@@ -38,10 +38,10 @@ function RandomProducts() {
 
   useEffect(() =>{
     const takeRandomProducts = async () => {
-      //const productes = axios.get('/productesRandom');
-      const productes = 'm';
-      if(productes){
-        setRandomProductes(productes)
+      const response = await axios.get('/api/randomProducts');
+      const products = response.data;
+      if(products){
+        setRandomProductes(products)
       }
     }
     takeRandomProducts();
@@ -66,6 +66,24 @@ function RandomProducts() {
           <input type="text" placeholder='BUSCAR PRODUCTE' className='inputC' />
         </div>
       </div>
+      <div>
+        {randomProductes && (
+          <div>
+            {console.log(randomProductes)}
+            {randomProductes.map((randomProductes) => (
+              <div key={randomProductes._id}>
+                  <img src={randomProductes['img-src']} alt = "" />
+              </div>
+            ))}
+          </div>
+        )}
+        {!randomProductes && (
+          <div>
+            Loading.....
+          </div>
+        )}
+      </div>
+
     </div>
   )
 }
