@@ -1,17 +1,33 @@
 .footer{
     position: relative;
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    margin-top: 1%;
-    height: 10%;
 }
 
-.footer p{
+.widthFooter{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    margin-top: 1%;
+    height: 10%;
+    width: 75%;
+}
+
+.widthFooter p{
     margin: 0;
     font-weight: 300;
     display: flex;
     justify-content: center;
+}
+
+.widthFooter h1{
+    text-align: center;
+}
+
+.contact{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
 }
 
 .contactEmail{
