@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
+import {motion} from 'framer-motion'
 
 import './randomproducts.css'
 import axios from 'axios';
@@ -14,33 +15,33 @@ function RandomProducts() {
   const [randomProductes, setRandomProductes] = useState('');
 
   const clicked = (m) => {
-    if(m === "col"){
-      if(!clickCol){
+    if (m === "col") {
+      if (!clickCol) {
         setIconCol(<IoIosArrowUp />);
         setClickCol(true);
       }
-      else{
+      else {
         setIconCol(<IoIosArrowDown />);
         setClickCol(false);
       }
     }
-    else{
-      if(!clickCat){
+    else {
+      if (!clickCat) {
         setIconCat(<IoIosArrowUp />);
         setClickCat(true);
       }
-      else{
+      else {
         setIconCat(<IoIosArrowDown />);
         setClickCat(false);
       }
     }
   }
 
-  useEffect(() =>{
+  useEffect(() => {
     const takeRandomProducts = async () => {
       const response = await axios.get('/api/randomProducts');
       const products = response.data;
-      if(products){
+      if (products) {
         setRandomProductes(products)
       }
     }
@@ -57,22 +58,27 @@ function RandomProducts() {
           <h3>Coneix els productes que oferim</h3>
         </div>
       </div>
-      <div className='prodcutsC'>
-        <div className='coAndca'>
-          <h2 onClick={() => clicked("col")}>COL.LECCIONS {iconCol} </h2>
-          <h2 onClick={() => clicked("cat")}>CATEGORIES {iconCat} </h2>
-        </div>
-        <div className='inputHalf'>
-          <input type="text" placeholder='BUSCAR PRODUCTE' className='inputC' />
+      <div className='productMid'>
+        <div className='prodcutsC'>
+          <div className='coAndca'>
+            <h2 onClick={() => clicked("col")}>COL.LECCIONS {iconCol} </h2>
+            <h2 onClick={() => clicked("cat")}>CATEGORIES {iconCat} </h2>
+          </div>
+          <div className='inputHalf'>
+            <input type="text" placeholder='BUSCAR PRODUCTE' className='inputC' />
+          </div>
         </div>
       </div>
-      <div>
+      <div className='totalWidth'>
         {randomProductes && (
-          <div>
-            {console.log(randomProductes)}
+          <div className='sixProductes'>
             {randomProductes.map((randomProductes) => (
-              <div key={randomProductes._id}>
-                  <img src={randomProductes['img-src']} alt = "" />
+              <div key={randomProductes._id} className='producte'>
+                <motion.div whileHover={{scale: 1.1}} transition={{layout: {duration: 1, type: "spring"}}} style={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
+                  <img src={randomProductes['img-src']} alt="" height={200} width={200} />
+                  <h3>{randomProductes.title}</h3>
+                </motion.div>
+                
               </div>
             ))}
           </div>

@@ -16,11 +16,16 @@
     color: white;
 }
 
+.productMid{
+    display: flex;
+    justify-content: center;
+}
+
 .inputC{
     position: relative;
     border: none;
     height: 35px;
-    width: 70%;
+    width: 90%;
     border-bottom: 2px solid #fad7fa;
     background-color: transparent;
 }
@@ -75,10 +80,12 @@
     margin-top: 100px;
     display: flex;
     flex-direction: row;
+    width: 75%;
 }
 
 .prodcutsC h2{
     margin-right: 70px;
+    display: flex;
 }
 
 .prodcutsC h2:hover{
@@ -88,6 +95,44 @@
 .coAndca{
     display: flex;
     flex-direction: row;
-    justify-content: right;
     flex: 1;
+}
+
+.totalWidth{
+    margin-top: 90px;
+    margin-bottom: 120px;
+    display: flex;
+    justify-content: center;
+}
+
+.sixProductes{
+    display: flex;
+    position: relative;
+    width: 75%;
+    flex-wrap: wrap;
+}
+
+.producte img{
+    object-fit: contain;
+}
+
+.producte:hover{
+    cursor: pointer;
+}
+
+.producte h3{
+    text-align: center;
+    font-weight: 200;
+    font-size: medium;
+}
+
+.producte{
+    display: flex;
+    flex-basis: 33.33%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    /*border: 1px solid black;*/
+    margin-bottom: 120px;
 }
