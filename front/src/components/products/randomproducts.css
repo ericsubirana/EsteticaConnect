@@ -98,6 +98,20 @@
     flex: 1;
 }
 
+.colections{
+    display: flex;
+    flex-direction: column;
+}
+
+.colections h2{
+    display: flex;
+    flex-direction: row;
+}
+
+.colectionsOpened{
+    position: absolute;
+}
+
 .totalWidth{
     margin-top: 90px;
     margin-bottom: 120px;

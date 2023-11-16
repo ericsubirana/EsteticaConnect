@@ -56,7 +56,7 @@ function RegisterForm() {
                         </div>
                     </div>
                     <div className='userMail'>
-                        <div>
+                        <div className='mailError'>
                             <h3>CORREU</h3>
                             {errors.email && <p>Email is required</p>}
                         </div>

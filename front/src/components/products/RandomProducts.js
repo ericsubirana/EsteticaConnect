@@ -61,7 +61,26 @@ function RandomProducts() {
       <div className='productMid'>
         <div className='prodcutsC'>
           <div className='coAndca'>
-            <h2 onClick={() => clicked("col")}>COL.LECCIONS {iconCol} </h2>
+            <div className='colections'>
+              <h2 onClick={() => clicked("col")}>COL.LECCIONS {iconCol} </h2>
+              {clickCol && (
+                <div className='colectionsOpened'>
+                  Shine Stop
+                  Antioxidant
+                  Pure Oxygen
+                  Sensations
+                  Q10 RESCUE
+                  Hydra Lifting
+                  RGnerin
+                  INFINITY
+                  Urban Protect
+                  Age Defense
+                  Lightening
+                  Sheet Mask Collection
+                  Mask Kits Collection
+                </div>
+              )}
+            </div>
             <h2 onClick={() => clicked("cat")}>CATEGORIES {iconCat} </h2>
           </div>
           <div className='inputHalf'>
