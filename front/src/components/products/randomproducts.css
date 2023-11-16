@@ -103,13 +103,83 @@
     flex-direction: column;
 }
 
+.categories{
+    display: flex;
+    flex-direction: column;
+}
+
 .colections h2{
     display: flex;
     flex-direction: row;
 }
 
+.margins{
+    position: absolute;
+    width: 220px;
+    height: 300px;
+    background-color: white;
+    border: 1px black solid;
+    border-radius: 15px;
+    margin-top: 60px;
+    z-index: 3;
+}
+
 .colectionsOpened{
     position: absolute;
+    width: 210px;
+    height: 300px;
+    outline: none;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.colectionsOpened::-webkit-scrollbar {
+    display: block;
+    width: 2px;           
+}
+  
+.colectionsOpened::-webkit-scrollbar-track {
+    background: transparent;    
+}
+
+.colectionsOpened::-webkit-scrollbar-thumb {
+    background-color: grey;    
+    border-radius: 20px;     
+}
+
+.colectionsOpened::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+    margin-bottom: 15px; 
+}
+
+.colectionsOpened::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+    margin-top: 15px;
+}
+
+.colectionsOpened p{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+   
+}
+
+.lineColections{
+    display: flex;
+    width: 80%;
+    height: 1px;
+    background-color: black;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.singleCollection{
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.margin{
+    margin-bottom: 20px;
 }
 
 .totalWidth{

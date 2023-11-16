@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
-import {motion} from 'framer-motion'
+import { motion } from 'framer-motion'
 
 import './randomproducts.css'
 import axios from 'axios';
@@ -13,6 +13,16 @@ function RandomProducts() {
   const [iconCat, setIconCat] = useState(<IoIosArrowDown />);
 
   const [randomProductes, setRandomProductes] = useState('');
+
+  const CollectionsList = ['Shine Stop', 'Antioxidant', 'Pure Oxygen', 'Sensations',
+    'Q10 RESCUE', 'Hydra Lifting', 'RGnerin', 'INFINITY', 'Urban Protect',
+    'Age Defense', 'Lightening', 'Sheet Mask Collection', 'Mask Kits Collection'];
+  
+    const CategoryList = ['Cuidado Solar', 'Limpiadores 3 en 1', 'Hidratantes', 
+                          'Nutritivas', 'Serum', 'Ampollas Flash', 'Contorno de ojos', 
+                          'Superconcentrados', 'Cremas con color', 'Bálsamo reparador', 
+                          'Ácidos Cosméticos', 'Nutricosmética'];
+    
 
   const clicked = (m) => {
     if (m === "col") {
@@ -64,24 +74,35 @@ function RandomProducts() {
             <div className='colections'>
               <h2 onClick={() => clicked("col")}>COL.LECCIONS {iconCol} </h2>
               {clickCol && (
-                <div className='colectionsOpened'>
-                  Shine Stop
-                  Antioxidant
-                  Pure Oxygen
-                  Sensations
-                  Q10 RESCUE
-                  Hydra Lifting
-                  RGnerin
-                  INFINITY
-                  Urban Protect
-                  Age Defense
-                  Lightening
-                  Sheet Mask Collection
-                  Mask Kits Collection
+                <div className='margins'>
+                  <div className='colectionsOpened'>
+                    {CollectionsList.map((collection, index) => (
+                      <div key={collection}>
+                        <div className='singleCollection'> {collection} </div>
+                        {index !== CollectionsList.length - 1 && <div className='lineColections'></div>}
+                        {index === CollectionsList.length - 1 && <div className='margin'> </div>}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
-            <h2 onClick={() => clicked("cat")}>CATEGORIES {iconCat} </h2>
+            <div className='categories'>
+              <h2 onClick={() => clicked("cat")}>CATEGORIES {iconCat} </h2>
+              {clickCat && (
+                <div className='margins'>
+                  <div className='colectionsOpened'>
+                    {CategoryList.map((category, index) => (
+                      <div key={category}>
+                        <div className='singleCollection'> {category} </div>
+                        {index !== CategoryList.length - 1 && <div className='lineColections'></div>}
+                        {index === CategoryList.length - 1 && <div className='margin'> </div>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
           <div className='inputHalf'>
             <input type="text" placeholder='BUSCAR PRODUCTE' className='inputC' />
@@ -93,11 +114,11 @@ function RandomProducts() {
           <div className='sixProductes'>
             {randomProductes.map((randomProductes) => (
               <div key={randomProductes._id} className='producte'>
-                <motion.div whileHover={{scale: 1.1}} transition={{layout: {duration: 1, type: "spring"}}} style={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
+                <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: "spring" } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                   <img src={randomProductes['img-src']} alt="" height={200} width={200} />
                   <h3>{randomProductes.title}</h3>
                 </motion.div>
-                
+
               </div>
             ))}
           </div>
