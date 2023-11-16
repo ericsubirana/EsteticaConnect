@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 import './randomproducts.css'
 import axios from 'axios';
@@ -14,14 +15,16 @@ function RandomProducts() {
 
   const [randomProductes, setRandomProductes] = useState('');
 
-  const CollectionsList = ['Shine Stop', 'Antioxidant', 'Pure Oxygen', 'Sensations',
-    'Q10 RESCUE', 'Hydra Lifting', 'RGnerin', 'INFINITY', 'Urban Protect',
-    'Age Defense', 'Lightening', 'Sheet Mask Collection', 'Mask Kits Collection'];
+  const CollectionsList = ['Shine Shop', 'Antioxidant', 'Pure Oxygen', 'Sensations',
+    'Q10 Rescue', 'Hydra Lifting', 'RGnerin', 'Infinity', 'Urban Protect',
+    'Age Defense', 'Lightening', 'Sheel Mask Collection', 'Mask Kits Collection'];
   
     const CategoryList = ['Cuidado Solar', 'Limpiadores 3 en 1', 'Hidratantes', 
                           'Nutritivas', 'Serum', 'Ampollas Flash', 'Contorno de ojos', 
                           'Superconcentrados', 'Cremas con color', 'Bálsamo reparador', 
                           'Ácidos Cosméticos', 'Nutricosmética'];
+
+    const navigation = useNavigate();
     
 
   const clicked = (m) => {
@@ -45,6 +48,10 @@ function RandomProducts() {
         setClickCat(false);
       }
     }
+  }
+
+  const moveToCollection = async (col) =>  {
+    navigation(`/collection/${col.collection}`);
   }
 
   useEffect(() => {
@@ -78,7 +85,7 @@ function RandomProducts() {
                   <div className='colectionsOpened'>
                     {CollectionsList.map((collection, index) => (
                       <div key={collection}>
-                        <div className='singleCollection'> {collection} </div>
+                        <div className='singleCollection' onClick={() => moveToCollection({collection})}> {collection} </div>
                         {index !== CollectionsList.length - 1 && <div className='lineColections'></div>}
                         {index === CollectionsList.length - 1 && <div className='margin'> </div>}
                       </div>

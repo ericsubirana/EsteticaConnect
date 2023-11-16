@@ -1,0 +1,24 @@
+.collectionComponent{
+    width: 100%;
+    height: 80vh;
+}
+
+.collection{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 20px; /* Puedes ajustar esto según sea necesario */
+    box-sizing: border-box;
+}
+
+.product {
+    margin: 10px; /* Agrega el margen a cada producto según sea necesario */
+}
+
+.imgCollection{
+    background-image: url('../../../assets/collectionBack4.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    height: 300px;
+}

@@ -1,5 +1,5 @@
 .titleProducts{
-    background-image: url('../../assets/productsBack.png');
+    background-image: url('../../../assets/productsBack.png');
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center; 
@@ -176,6 +176,10 @@
 .singleCollection{
     margin-left: 15px;
     margin-top: 15px;
+}
+
+.singleCollection:hover{
+    cursor: pointer;
 }
 
 .margin{

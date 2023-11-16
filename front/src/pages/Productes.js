@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Header from '../components/header/Header.js'
-import RandomProducts from '../components/products/RandomProducts.js'
+import RandomProducts from '../components/products/randomProducts/RandomProducts.js'
 import Footer from '../components/footer/Footer.js'
 
 
