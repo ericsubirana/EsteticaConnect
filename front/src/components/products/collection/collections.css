@@ -1,14 +1,71 @@
 .collectionComponent{
     width: 100%;
-    height: 80vh;
+    height: auto;
 }
 
-.collection{
+.witdhOfCollction{
+    display: flex;
+    justify-content: center;
+}
+
+.titleAndCollection{
+    margin-top: 50px;
+    width: 80%;
+}
+
+.titleAndCollection h1{
+    display: flex;
+    justify-content: left;
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 230px;
+}
+
+.collectionProductWrap {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
     padding: 20px; /* Puedes ajustar esto según sea necesario */
     box-sizing: border-box;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 60px;
+
+}
+
+.collectionProductWrap img{
+
+    object-fit: contain;
+}
+
+.collectionProduct{
+    display: flex;
+    flex-basis: 33.33%;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+}
+
+.collectionProduct:hover{
+    cursor: pointer;
+}
+
+.collectionProduct img{
+    position: relative;
+}
+
+.collectionProduct h3{
+    text-align: center;
+    font-weight: 200;
+    font-size: medium;
+    margin-top: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 20px;
+    height: 40px;
 }
 
 .product {
@@ -16,9 +73,11 @@
 }
 
 .imgCollection{
-    background-image: url('../../../assets/collectionBack4.jpg');
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center; 
-    height: 300px;
+    height: 400px;
+    position: absolute; 
+    width: 100%; 
+    z-index: -4;
 }

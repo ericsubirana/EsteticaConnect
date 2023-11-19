@@ -5,33 +5,35 @@ import Footer from '../components/footer/Footer';
 import Collections from '../components/products/collection/CollectionComponent';
 import axios from 'axios';
 
-function Collection() {
+function Category() {
 
-    const {collection} = useParams();
+    const {category} = useParams();
 
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        const takeProductsFromCollection = async (collection) => {
+        const takeProductsFromCollection = async (category) => {
             try {
-                const response = await axios.post('/api/collection', { collection }); //fer crida a la carpeta api
+                const response = await axios.post('/api/category', { category }); //fer crida a la carpeta api
                 const fetchedProducts = response.data;
+                console.log(fetchedProducts)
                 setProducts(fetchedProducts);
               } catch (error) {
                 console.error('Error fetching products:', error);
               }
         }
-        takeProductsFromCollection(collection);
-    }, [collection])
+        takeProductsFromCollection(category);
+    }, [category])
 
     
     return (
         <div>
             <Header page="products"/>
-            <Collections products={products} whereWeComeFrom='collection'/>
+            <Collections products={products} whereWeComeFrom='category'/>
             <Footer/>
         </div>
     )
 }
 
-export default Collection
+export default Category
+
