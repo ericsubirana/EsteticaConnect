@@ -16,7 +16,6 @@ function Category() {
             try {
                 const response = await axios.post('/api/category', { category }); //fer crida a la carpeta api
                 const fetchedProducts = response.data;
-                console.log(fetchedProducts)
                 setProducts(fetchedProducts);
               } catch (error) {
                 console.error('Error fetching products:', error);
@@ -29,7 +28,7 @@ function Category() {
     return (
         <div>
             <Header page="products"/>
-            <Collections products={products} whereWeComeFrom='category'/>
+            <Collections products={products} whereWeComeFrom='category' title={category}/>
             <Footer/>
         </div>
     )

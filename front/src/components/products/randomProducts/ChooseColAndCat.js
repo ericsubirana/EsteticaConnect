@@ -1,103 +1,128 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
+import axios from 'axios'
+import { debounce } from 'lodash';
 
 import './choosecolandcat.css'
 
 
 function ChooseColAndCat() {
 
-    const [clickCol, setClickCol] = useState(false);
-    const [clickCat, setClickCat] = useState(false);
-    const [iconCol, setIconCol] = useState(<IoIosArrowDown />);
-    const [iconCat, setIconCat] = useState(<IoIosArrowDown />);
+  const [clickCol, setClickCol] = useState(false);
+  const [clickCat, setClickCat] = useState(false);
+  const [iconCol, setIconCol] = useState(<IoIosArrowDown />);
+  const [iconCat, setIconCat] = useState(<IoIosArrowDown />);
 
-    const CollectionsList = ['Shine Stop', 'Antioxidant', 'Pure Oxygen', 'Sensations',
-        'Q10 Rescue', 'Hydra Lifting', 'RGnerin', 'Infinity', 'Urban Project',
-        'Age Defense', 'Lightening', 'Sheel Mask Collection', 'Mask Kits Collection'];
+  const [response, setResponse] = useState('');
 
-    const CategoryList = ['Cuidado Solar', 'Limpiadores 3 en 1', 'Hidratantes',
-        'Nutritivas', 'Serum', 'Ampollas Flash', 'Contorno de ojos',
-        'Superconcentrados', 'Cremas con color', 'Bálsamo reparador',
-        'Ácidos Cosméticos', 'Nutricosmética'];
+  const CollectionsList = ['Shine Stop', 'Antioxidant', 'Pure Oxygen', 'Sensations',
+    'Q10 Rescue', 'Hydra Lifting', 'RGnerin', 'Infinity', 'Urban Project',
+    'Age Defense', 'Lightening', 'Sheel Mask Collection', 'Mask Kits Collection'];
 
-    const navigation = useNavigate();
+  const CategoryList = ['Cuidado Solar', 'Limpiadores 3 en 1', 'Hidratantes',
+    'Nutritivas', 'Serum', 'Ampollas Flash', 'Contorno de ojos',
+    'Superconcentrados', 'Cremas con color', 'Bálsamo reparador',
+    'Ácidos Cosméticos', 'Nutricosmética'];
+
+  const navigation = useNavigate();
 
 
-    const clicked = (m) => {
-        if (m === "col") {
-            if (!clickCol) {
-                setIconCol(<IoIosArrowUp />);
-                setClickCol(true);
-            }
-            else {
-                setIconCol(<IoIosArrowDown />);
-                setClickCol(false);
-            }
-        }
-        else {
-            if (!clickCat) {
-                setIconCat(<IoIosArrowUp />);
-                setClickCat(true);
-            }
-            else {
-                setIconCat(<IoIosArrowDown />);
-                setClickCat(false);
-            }
-        }
+  const clicked = (m) => {
+    if (m === "col") {
+      if (!clickCol) {
+        setIconCol(<IoIosArrowUp />);
+        setClickCol(true);
+      }
+      else {
+        setIconCol(<IoIosArrowDown />);
+        setClickCol(false);
+      }
     }
-
-    const moveToCollection = async (col) => {
-        navigation(`/collection/${col.collection}`);
+    else {
+      if (!clickCat) {
+        setIconCat(<IoIosArrowUp />);
+        setClickCat(true);
+      }
+      else {
+        setIconCat(<IoIosArrowDown />);
+        setClickCat(false);
+      }
     }
+  }
 
-    const moveToCategory = async (col) => {
-      navigation(`/category/${col.category}`);
+  const moveToCollection = async (col) => {
+    navigation(`/collection/${col.collection}`);
+  }
+
+  const moveToCategory = async (col) => {
+    navigation(`/category/${col.category}`);
+  }
+
+  const handleChange = async (productName) => {
+    if (productName === '') {
+      setResponse('');
+    } else {
+      try {
+        const res = await axios.post('/api/searchProducts', {
+          name: productName,
+        });
+        setResponse(res);
+      }
+      catch (error) {
+        console.error(error);
+      }
     }
+  }
 
-    return (
-        <div className='productMid'>
-        <div className='prodcutsC'>
-          <div className='coAndca'>
-            <div className='colections'>
-              <h2 onClick={() => clicked("col")}>COL.LECCIONS {iconCol} </h2>
-              {clickCol && (
-                <div className='margins'>
-                  <div className='colectionsOpened'>
-                    {CollectionsList.map((collection, index) => (
-                      <div key={collection}>
-                        <div className='singleCollection' onClick={() => moveToCollection({ collection })}> {collection} </div>
-                        {index !== CollectionsList.length - 1 && <div className='lineColections'></div>}
-                        {index === CollectionsList.length - 1 && <div className='margin'> </div>}
-                      </div>
-                    ))}
-                  </div>
+  const debouncedSearch = debounce((e) => {
+    handleChange(e.target.value)
+  }, 800);
+
+  return (
+    <div className='productMid'>
+      <div className='prodcutsC'>
+        <div className='coAndca'>
+          <div className='colections'>
+            <h2 onClick={() => clicked("col")}>COL.LECCIONS {iconCol} </h2>
+            {clickCol && (
+              <div className='margins'>
+                <div className='colectionsOpened'>
+                  {CollectionsList.map((collection, index) => (
+                    <div key={collection}>
+                      <div className='singleCollection' onClick={() => moveToCollection({ collection })}> {collection} </div>
+                      {index !== CollectionsList.length - 1 && <div className='lineColections'></div>}
+                      {index === CollectionsList.length - 1 && <div className='margin'> </div>}
+                    </div>
+                  ))}
                 </div>
-              )}
-            </div>
-            <div className='categories'>
-              <h2 onClick={() => clicked("cat")}>CATEGORIES {iconCat} </h2>
-              {clickCat && (
-                <div className='margins'>
-                  <div className='colectionsOpened'>
-                    {CategoryList.map((category, index) => (
-                      <div key={category}>
-                        <div className='singleCollection' onClick={() => moveToCategory({ category })}> {category} </div>
-                        {index !== CategoryList.length - 1 && <div className='lineColections'></div>}
-                        {index === CategoryList.length - 1 && <div className='margin'> </div>}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
-          <div className='inputHalf'>
-            <input type="text" placeholder='BUSCAR PRODUCTE' className='inputC' />
+          <div className='categories'>
+            <h2 onClick={() => clicked("cat")}>CATEGORIES {iconCat} </h2>
+            {clickCat && (
+              <div className='margins'>
+                <div className='colectionsOpened'>
+                  {CategoryList.map((category, index) => (
+                    <div key={category}>
+                      <div className='singleCollection' onClick={() => moveToCategory({ category })}> {category} </div>
+                      {index !== CategoryList.length - 1 && <div className='lineColections'></div>}
+                      {index === CategoryList.length - 1 && <div className='margin'> </div>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
+        <div className='inputHalf'>
+          <input type="text" placeholder='BUSCAR PRODUCTE' className='inputC' onChange={(e) => debouncedSearch(e)} />
+        </div>
       </div>
-    )
+    </div>
+  )
 }
-
+//if anything is being searched productes random == null
+//else fem peticio api per agaafar productes random
 export default ChooseColAndCat

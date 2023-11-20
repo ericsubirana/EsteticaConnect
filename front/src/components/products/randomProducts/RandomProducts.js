@@ -5,7 +5,7 @@ import './randomproducts.css'
 import axios from 'axios';
 import ChooseColAndCat from './ChooseColAndCat'
 
-function RandomProducts() {
+function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busqueda
 
   const [randomProductes, setRandomProductes] = useState('');
 

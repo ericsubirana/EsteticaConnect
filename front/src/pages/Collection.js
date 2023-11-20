@@ -28,7 +28,7 @@ function Collection() {
     return (
         <div>
             <Header page="products"/>
-            <Collections products={products} whereWeComeFrom='collection'/>
+            <Collections products={products} whereWeComeFrom='collection' title={collection}/>
             <Footer/>
         </div>
     )

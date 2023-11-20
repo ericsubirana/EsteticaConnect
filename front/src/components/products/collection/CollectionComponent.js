@@ -15,23 +15,18 @@ import ChooseColAndCat from '../randomProducts/ChooseColAndCat';
 
 function CollectionComponent(props) {
 
-    const { products, whereWeComeFrom } = props;
+    const { products, whereWeComeFrom, title } = props;
     const [backgroundImage, setBackgroundImage] = useState(`url(${pink})`);
 
     useEffect(() => {
         const changeBackground = () => {
 
             var currentCollection = null;
-            console.log(products)
 
             if(whereWeComeFrom === 'collection')
                 currentCollection = products.length > 0 ? products[0].collection.toLowerCase() : null;
-            else
-                currentCollection = products.length > 0 ? products[0][0].category.toLowerCase() : null; //poso un 1 ja que les cremes solars te una categoria amb 2 elements
-
-
+           
             let background;
-            console.log(currentCollection);
 
             switch (currentCollection) {
                 case 'antioxidant':
@@ -81,10 +76,10 @@ function CollectionComponent(props) {
                         <div className='titleAndCollection'>
                             <div>
                                 {whereWeComeFrom === 'collection' && (
-                                    <h1>{products[0].collection.toUpperCase()}</h1>
+                                    <h1>{title.toUpperCase()}</h1>
                                 )}
                                 {whereWeComeFrom === 'category' && (
-                                    <h1>{products[0][0].category.toUpperCase()}</h1>
+                                    <h1>{title.toUpperCase()}</h1>
                                 )}
                             </div>
                             <ChooseColAndCat />
