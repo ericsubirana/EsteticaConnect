@@ -8,6 +8,7 @@ import ChooseColAndCat from './ChooseColAndCat'
 function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busqueda
 
   const [randomProductes, setRandomProductes] = useState('');
+  const [searchResults, setSearchResults] = useState(''); // aquesta varaible s'ompla quan fem búsqueda
 
 
   useEffect(() => {
@@ -21,6 +22,9 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
     takeRandomProducts();
   }, [])
 
+  const handleSearchResults = (results) => {
+    setSearchResults(results);
+  };
 
   return (
     <div>
@@ -37,27 +41,48 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
 
       <div className='centerProductes'>
         <div className='widthProductes'>
-          <ChooseColAndCat />
+          <ChooseColAndCat onSearchResults={handleSearchResults} />
           <div className='totalWidth'>
-            {randomProductes && (
-              <div className='sixProductes'>
-                {randomProductes.map((randomProductes) => (
-                  <div key={randomProductes._id} className='producte'>
-                    <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: "spring" } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                      <img src={randomProductes['img-src']} alt="" height={200} width={200} />
-                      <h3>{randomProductes.title}</h3>
-                    </motion.div>
-
-                  </div>
-                ))}
-              </div>
-            )}
-            {!randomProductes && (
+            {searchResults ? (
+              // Display search results
+              searchResults === 'NO PRODUCTS FOUND' ? (
+                // Handle case when no products are found
+                <div>No products found</div>
+              ) : (
+                // Display the search results if there are products
+                <div className='sixProductes'>
+                  {searchResults.map((result) => (
+                    <div key={result._id} className='producte'>
+                      <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: 'spring' } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        <img src={result['img-src']} alt='' height={200} width={200} />
+                        <h3>{result.title}</h3>
+                      </motion.div>
+                    </div>
+                  ))}
+                </div>
+              )
+            ) : (
+              // Display random products
               <div>
-                Loading.....
+                {randomProductes ? (
+                  <div className='sixProductes'>
+                    {randomProductes.map((randomProduct) => (
+                      <div key={randomProduct._id} className='producte'>
+                        <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: 'spring' } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                          <img src={randomProduct['img-src']} alt='' height={200} width={200} />
+                          <h3>{randomProduct.title}</h3>
+                        </motion.div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  // Display loading message if random products are not available
+                  <div>Loading.....</div>
+                )}
               </div>
             )}
           </div>
+
         </div>
       </div>
 

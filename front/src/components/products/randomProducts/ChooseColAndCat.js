@@ -7,14 +7,12 @@ import { debounce } from 'lodash';
 import './choosecolandcat.css'
 
 
-function ChooseColAndCat() {
+function ChooseColAndCat(props) {
 
   const [clickCol, setClickCol] = useState(false);
   const [clickCat, setClickCat] = useState(false);
   const [iconCol, setIconCol] = useState(<IoIosArrowDown />);
   const [iconCat, setIconCat] = useState(<IoIosArrowDown />);
-
-  const [response, setResponse] = useState('');
 
   const CollectionsList = ['Shine Stop', 'Antioxidant', 'Pure Oxygen', 'Sensations',
     'Q10 Rescue', 'Hydra Lifting', 'RGnerin', 'Infinity', 'Urban Project',
@@ -26,7 +24,6 @@ function ChooseColAndCat() {
     'Ácidos Cosméticos', 'Nutricosmética'];
 
   const navigation = useNavigate();
-
 
   const clicked = (m) => {
     if (m === "col") {
@@ -60,14 +57,22 @@ function ChooseColAndCat() {
   }
 
   const handleChange = async (productName) => {
-    if (productName === '') {
-      setResponse('');
-    } else {
+    if (productName === '') 
+    {
+      props.onSearchResults(''); //IMPORTANTÍSSIM PER TORNAR ALS PRODUCTES ANTERIORS
+    } 
+    else 
+    {
       try {
         const res = await axios.post('/api/searchProducts', {
           name: productName,
         });
-        setResponse(res);
+        if(res.data.length === 0){
+          props.onSearchResults('NO PRODUCTS FOUND'); 
+        }
+        else{
+          props.onSearchResults(res.data);
+        }
       }
       catch (error) {
         console.error(error);

@@ -17,6 +17,7 @@ function CollectionComponent(props) {
 
     const { products, whereWeComeFrom, title } = props;
     const [backgroundImage, setBackgroundImage] = useState(`url(${pink})`);
+    const [searchResults, setSearchResults] = useState(''); // aquesta varaible s'ompla quan fem búsqueda
 
     useEffect(() => {
         const changeBackground = () => {
@@ -63,6 +64,10 @@ function CollectionComponent(props) {
         changeBackground();
     }, [products])
 
+    const handleSearchResults = (results) => {
+        setSearchResults(results);
+    };
+
     return (
         <div className='collectionComponent'>
             <div className='imgCollection' style={{ backgroundImage }} />
@@ -82,7 +87,8 @@ function CollectionComponent(props) {
                                     <h1>{title.toUpperCase()}</h1>
                                 )}
                             </div>
-                            <ChooseColAndCat />
+                            <ChooseColAndCat onSearchResults={handleSearchResults} />
+                            {console.log(searchResults)}
                             <div className='collectionProductWrap'>
                                 {products.map((product, index) => (
                                     <motion.div className='collectionProduct' key={index} whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: "spring" } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
