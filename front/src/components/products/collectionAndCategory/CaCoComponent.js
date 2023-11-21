@@ -11,7 +11,7 @@ import grey from '../../../assets/collectionBackGrey.png'
 import orange from '../../../assets/collectionBackOrange.jpg'
 import purple from '../../../assets/collectionBackPurple.png'
 
-import ChooseColAndCat from '../randomProducts/ChooseColAndCat';
+import ChooseColAndCat from '../ChooseColAndCat/ChooseColAndCat';
 
 function CollectionComponent(props) {
 
@@ -24,9 +24,9 @@ function CollectionComponent(props) {
 
             var currentCollection = null;
 
-            if(whereWeComeFrom === 'collection')
+            if (whereWeComeFrom === 'collection')
                 currentCollection = products.length > 0 ? products[0].collection.toLowerCase() : null;
-           
+
             let background;
 
             switch (currentCollection) {
@@ -73,7 +73,26 @@ function CollectionComponent(props) {
             <div className='imgCollection' style={{ backgroundImage }} />
             {!products ? (
                 <div>
-                    ....Loading
+                    {searchResults ? (
+                        searchResults === 'NO PRODUCTS FOUND' ? (
+                            <div>No products found</div>
+                        ) : (
+                            <div className='sixProductes'>
+                                {searchResults.map((result) => (
+                                    <div key={result._id} className='producte'>
+                                        <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: 'spring' } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                            <img src={result['img-src']} alt='' height={200} width={200} />
+                                            <h3>{result.title}</h3>
+                                        </motion.div>
+                                    </div>
+                                ))}
+                            </div>
+                        )
+                    ) : (
+                        <div className='collectionProductWrap'>
+                            ....Loading
+                        </div>
+                    )}
                 </div>
             ) : (
                 <div className='witdhOfCollction'>
@@ -88,16 +107,31 @@ function CollectionComponent(props) {
                                 )}
                             </div>
                             <ChooseColAndCat onSearchResults={handleSearchResults} />
-                            {console.log(searchResults)}
-                            <div className='collectionProductWrap'>
-                                {products.map((product, index) => (
-                                    <motion.div className='collectionProduct' key={index} whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: "spring" } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                        <img src={product['img-src']} alt="" height={280} width={280} />
-                                        <h3>{product.title}</h3>
-                                    </motion.div>
-                                ))}
-                            </div>
-
+                            {searchResults ? (
+                                searchResults === 'NO PRODUCTS FOUND' ? (
+                                    <div>No products found</div>
+                                ) : (
+                                    <div className='sixProductes'>
+                                        {searchResults.map((result) => (
+                                            <div key={result._id} className='producte'>
+                                                <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: 'spring' } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                                    <img src={result['img-src']} alt='' height={200} width={200} />
+                                                    <h3>{result.title}</h3>
+                                                </motion.div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )
+                            ) : (
+                                <div className='collectionProductWrap'>
+                                    {products.map((product, index) => (
+                                        <motion.div className='collectionProduct' key={index} whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: "spring" } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                            <img src={product['img-src']} alt="" height={280} width={280} />
+                                            <h3>{product.title}</h3>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     ) : (
                         <div>

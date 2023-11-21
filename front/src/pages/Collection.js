@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
-import Collections from '../components/products/collection/CollectionComponent';
+import Collections from '../components/products/collectionAndCategory/CaCoComponent';
 import axios from 'axios';
 
 function Collection() {

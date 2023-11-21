@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 
 import './randomproducts.css'
 import axios from 'axios';
-import ChooseColAndCat from './ChooseColAndCat'
+import ChooseColAndCat from '../ChooseColAndCat/ChooseColAndCat'
 
 function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busqueda
 
@@ -44,12 +44,9 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
           <ChooseColAndCat onSearchResults={handleSearchResults} />
           <div className='totalWidth'>
             {searchResults ? (
-              // Display search results
               searchResults === 'NO PRODUCTS FOUND' ? (
-                // Handle case when no products are found
                 <div>No products found</div>
               ) : (
-                // Display the search results if there are products
                 <div className='sixProductes'>
                   {searchResults.map((result) => (
                     <div key={result._id} className='producte'>
@@ -62,7 +59,6 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
                 </div>
               )
             ) : (
-              // Display random products
               <div>
                 {randomProductes ? (
                   <div className='sixProductes'>
@@ -76,7 +72,6 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
                     ))}
                   </div>
                 ) : (
-                  // Display loading message if random products are not available
                   <div>Loading.....</div>
                 )}
               </div>

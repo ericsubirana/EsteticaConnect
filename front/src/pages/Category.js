@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
-import Collections from '../components/products/collection/CollectionComponent';
+import Categories from '../components/products/collectionAndCategory/CaCoComponent';
 import axios from 'axios';
 
 function Category() {
@@ -28,7 +28,7 @@ function Category() {
     return (
         <div>
             <Header page="products"/>
-            <Collections products={products} whereWeComeFrom='category' title={category}/>
+            <Categories products={products} whereWeComeFrom='category' title={category}/>
             <Footer/>
         </div>
     )
