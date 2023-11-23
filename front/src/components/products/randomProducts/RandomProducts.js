@@ -28,7 +28,9 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
   };
 
   const popUp = (result) => {
-    setSelectedResult(result);
+    if (selectedResult !== result) {
+      setSelectedResult(result);
+    }
   }
 
   return (
@@ -59,8 +61,11 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
                         <img src={result['img-src']} alt='' height={200} width={200} />
                         <h3>{result.title}</h3>
                       </motion.div>
-                      <PopUpProduct trigger={selectedResult === result} setTrigger={() => popUp(null)}>
-                        <h1>Popup content for result: {result.title}</h1>
+                      <PopUpProduct trigger={selectedResult === result} setTrigger={() => setSelectedResult(null)}>
+                        <h1>{result.title}</h1>
+                        <img src={result['img-src']} alt='' height={350} width={350} />
+                        <p>{result.description}</p>
+                        {console.log(result)}
                       </PopUpProduct>
 
                     </div>
