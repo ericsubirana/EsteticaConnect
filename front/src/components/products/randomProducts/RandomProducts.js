@@ -4,12 +4,13 @@ import { motion } from 'framer-motion'
 import './randomproducts.css'
 import axios from 'axios';
 import ChooseColAndCat from '../ChooseColAndCat/ChooseColAndCat'
+import PopUpProduct from '../displayProduct/PopUpProduct'
 
 function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busqueda
 
   const [randomProductes, setRandomProductes] = useState('');
   const [searchResults, setSearchResults] = useState(''); // aquesta varaible s'ompla quan fem búsqueda
-
+  const [selectedResult, setSelectedResult] = useState(null);
 
   useEffect(() => {
     const takeRandomProducts = async () => {
@@ -25,6 +26,10 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
   const handleSearchResults = (results) => {
     setSearchResults(results);
   };
+
+  const popUp = (result) => {
+    setSelectedResult(result);
+  }
 
   return (
     <div>
@@ -49,11 +54,15 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
               ) : (
                 <div className='sixProductes'>
                   {searchResults.map((result) => (
-                    <div key={result._id} className='producte'>
+                    <div key={result._id} className='producte' onClick={() => popUp(result)}>
                       <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: 'spring' } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <img src={result['img-src']} alt='' height={200} width={200} />
                         <h3>{result.title}</h3>
                       </motion.div>
+                      <PopUpProduct trigger={selectedResult === result} setTrigger={() => popUp(null)}>
+                        <h1>Popup content for result: {result.title}</h1>
+                      </PopUpProduct>
+
                     </div>
                   ))}
                 </div>

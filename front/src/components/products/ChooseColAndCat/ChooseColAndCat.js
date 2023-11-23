@@ -128,6 +128,5 @@ function ChooseColAndCat(props) {
     </div>
   )
 }
-//if anything is being searched productes random == null
-//else fem peticio api per agaafar productes random
+
 export default ChooseColAndCat
