@@ -16,6 +16,11 @@
 .titleAndCollection h1{
     display: flex;
     justify-content: left;
+}
+
+.titleAndCollection-h1{
+    display: flex;
+    justify-content: left;
     font-size: 3rem;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
