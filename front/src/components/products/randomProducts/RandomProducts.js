@@ -52,7 +52,7 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
           <div className='totalWidth'>
             {searchResults ? (
               searchResults === 'NO PRODUCTS FOUND' ? (
-                <div>No products found</div>
+                <div className='no-products-text'>No se encontró ningún producto</div>
               ) : (
                 <div className='sixProductes'>
                   {searchResults.map((result) => (

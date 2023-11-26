@@ -6,11 +6,29 @@ import { useNavigate, Link } from 'react-router-dom';
 import logo from '../../assets/f.png'
 import registerPhoto from '../../assets/registerPhoto.png'
 import './register.css'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 
 function RegisterForm() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { signup, user, isAuthenticated, errorContext } = useAuth();
     const navigation = useNavigate();
+
+    useEffect(() => {
+        let timeoutId;
+
+        errorContext.forEach((error, index) => {
+            timeoutId = setTimeout(() => {
+                notify(error);
+            }, 0);
+        });
+
+        return () => clearTimeout(timeoutId);
+    }, [errorContext]);
+
+    const notify = (error) => {
+        toast.error(error);
+    }
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -25,13 +43,8 @@ function RegisterForm() {
     return (
         <div className='registerFormImage'>
             <div className='sqaure'></div>
+            <ToastContainer position='top-center' />
             <div className='register'>
-                {errorContext.map((error, index) => (
-                    <div key={index}>
-                        <p>{error}</p>
-                    </div>
-                ))
-                }
                 <img className="imgForm" src={logo} alt="logo" height={80} onClick={home} />
                 <h1>Registra't!</h1>
                 <form onSubmit={handleSubmit(async (values) => {

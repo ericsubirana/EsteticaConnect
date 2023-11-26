@@ -83,7 +83,7 @@ function CollectionComponent(props) {
                 <div>
                     {searchResults ? (
                         searchResults === 'NO PRODUCTS FOUND' ? (
-                            <div>No products found</div>
+                            <div className='no-products-text' >No se encontró ningún producto</div>
                         ) : (
                             <div className='sixProductes' >
                                 {searchResults.map((result) => (
@@ -118,7 +118,7 @@ function CollectionComponent(props) {
                             <ChooseColAndCat onSearchResults={handleSearchResults} />
                             {searchResults ? (
                                 searchResults === 'NO PRODUCTS FOUND' ? (
-                                    <div>No products found</div>
+                                    <div className='no-products-text'>No se encontró ningún producto</div>
                                 ) : (
                                     <div className='sixProductes'>
                                         {searchResults.map((result) => (
