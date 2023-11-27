@@ -1,0 +1,160 @@
+.cartcomponent{
+    background-color:#FFF2FF;
+    height: 80vh;
+}
+
+.begin-cart-component{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.my-cart{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 70%;
+    margin-left: 40px;
+}
+
+.resume{
+    display: flex;
+    flex-direction: column;
+    flex: 30%;
+}
+
+.cartWhiteBack{
+    background-color: white;
+    width: 95%;
+    height: 25vh;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 0.2rem 0.4rem 0 rgba(50, 50, 51, 0.3)
+}
+
+.resumeWhiteBack{
+    background-color: white;
+    width: 90%;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+}
+
+.titleCart{
+    display: flex;
+    width: 90%;
+    text-align: left; 
+    margin-top: 150px;
+}
+
+.title-resume{
+    display: flex;
+    width: 90%;
+    text-align: left; 
+    margin-top: 150px;
+}
+
+.empty-cart{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.empty-cart img{
+    margin-top: 8px;
+}
+
+.empty-cart button{
+    margin-top: 10px;
+    color: #9B9292;
+    font-size: 1rem;
+}
+
+.button-4 {
+  appearance: none;
+  background-color: #ffffff;
+  border: 2px solid rgb(250, 227, 250);
+  border-radius: 5px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+  box-sizing: border-box;
+  color: #24292E;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 10px 16px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+.button-4:hover {
+  background-color: rgb(255, 248, 255);
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+.button-4:disabled {
+  background-color: #FAFBFC;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959DA5;
+  cursor: default;
+}
+
+.button-4:active {
+  background-color: #EDEFF2;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
+
+.button-4:focus {
+  outline: 1px transparent;
+}
+
+.button-4:before {
+  display: none;
+}
+
+.button-4:-webkit-details-marker {
+  display: none;
+}
+
+.resume-cart{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.sendingProducts{
+  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.totalCart{
+  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.subtotal{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.nothing{
+  display: flex;
+  width: 100%;
+  justify-content: right;
+  margin-right: 10px;
+}

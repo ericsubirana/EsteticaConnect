@@ -14,7 +14,8 @@ function Header(props) {
   //<Searchbar />
   const page = props.page;
   return (
-    <div className={page === 'products' ? 'headerProducts' : 'header'}>
+    <div className={page !== 'home' ? 'headerNoHome' : 'header'}>
+      {console.log(page !== 'home')}
       <div className='name'>
         <img src={img} alt='logo' className='logo' />
         <p className='title'>CE FINA</p>

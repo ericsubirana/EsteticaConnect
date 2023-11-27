@@ -35,7 +35,7 @@ function logInLogOut(props) {
                         <Link className='serveis' to={"/serveis"}>Serveis</Link>
                         <Link className='horaris' to={"/horaris"}>Horaris</Link>
                         <Link className='profile' to={"/profile"}>Perfil</Link>
-                        <Link className='carret' to={"/cart"}>Carret</Link>
+                        <Link className={page === 'cart' ? 'carretNow' : 'carret'} to={"/cart"}>Carret</Link>
                     </div>
                     <div className="line"></div>
                     <div className='rightside'>
