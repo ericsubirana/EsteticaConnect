@@ -19,7 +19,6 @@ function logInLogOut(props) {
                         <Link className={page === 'home' ? 'homeNow' : 'home'} to={"/home"}>Home</Link>
                         <Link className={page === 'products' ? 'productesNow' : 'productes'} to={"/productes"}>Productes</Link>
                         <Link className='serveis' to={"/serveis"}>Serveis</Link>
-                        <Link className='horaris' to={"/horaris"}>Horaris</Link>
                     </div>
                     <div className="line"></div>
                     <div className='rightside'>
@@ -33,7 +32,6 @@ function logInLogOut(props) {
                         <Link className={page === 'home' ? 'homeNow' : 'home'} to={"/home"}>Home</Link>
                         <Link className={page === 'products' ? 'productesNow' : 'productes'} to={"/productes"}>Productes</Link>
                         <Link className='serveis' to={"/serveis"}>Serveis</Link>
-                        <Link className='horaris' to={"/horaris"}>Horaris</Link>
                         <Link className='profile' to={"/profile"}>Perfil</Link>
                         <Link className={page === 'cart' ? 'carretNow' : 'carret'} to={"/cart"}>Carret</Link>
                     </div>

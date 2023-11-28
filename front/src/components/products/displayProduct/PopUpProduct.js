@@ -38,6 +38,7 @@ function PopUpProduct(props) {
           </div>
           <img src={result['img-src']} alt='' height={300} width={300} />
         </div>
+        {/* FALTA EN CAS Q USUARI ESTIGUI LOGUEJAT POSAR ICONA CARRET E INCREMENTADOR O DECREMENTADOR*/}
         <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
       </div>
     </div>

@@ -10,7 +10,6 @@ import Calendar from '../pages/Calendar.js';
 import Serveis from '../pages/Serveis.js';
 import Productes from '../pages/Productes.js';
 import Profile from '../pages/Profile.js';
-import Horaris from '../pages/Horaris.js';
 import Cart from '../pages/Cart.js';
 import Collection from '../pages/Collection.js';
 import Category from '../pages/Category.js';
@@ -26,7 +25,6 @@ function Routers() {
             <Route path='/register' element={<Register/>} />
             <Route path='/serveis' element={<Serveis/>} />
             <Route path='/productes' element={<Productes/>} />
-            <Route path='/horaris' element={<Horaris/>} />
 
             <Route path='/collection/:collection' element={<Collection/>} /> {/* fer que estigui obligat a tenir un prametre */}
             <Route path='/category/:category' element={<Category/>} />

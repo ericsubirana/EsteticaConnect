@@ -10,6 +10,8 @@ function CartComponent() {
 
   const [products, setProducts] = useState(null);
   const [price, setPrice] = useState(null);
+  const [totalPrice, settotalPrice] = useState(null);
+
 
   const goToProducts = () => {
     navigation('/productes');
@@ -53,12 +55,23 @@ function CartComponent() {
                 )}
               </div>
               <div className='sendingProducts'>
-                <p>Envío</p>
-                <p>Se calculará en el siguiente paso</p>
+                <p className='send'>Envío</p>
+                <p className='calculateSend'>Se calculará en el siguiente paso</p>
               </div>
               <div className='totalCart'>
-                <p>Total</p>
-                <p>IVA incl.</p>
+                <p className='total'>Total</p>
+                <p className='iva'>IVA incl.</p>
+                {products && (
+                  <div>
+                    <p>( {products.length} articulos )</p>
+                    <p> {totalPrice} </p>
+                  </div>
+                )}
+                {!products && (
+                  <div className='nothingTotal'>
+                    -
+                  </div>
+                )}
               </div>
               <button>Comenzar pedido</button>
             </div>

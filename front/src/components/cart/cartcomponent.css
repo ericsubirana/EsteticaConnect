@@ -1,6 +1,7 @@
 .cartcomponent{
     background-color:#FFF2FF;
     height: 80vh;
+    font-weight: lighter;
 }
 
 .begin-cart-component{
@@ -25,7 +26,7 @@
 .cartWhiteBack{
     background-color: white;
     width: 95%;
-    height: 25vh;
+    height: 350px;
     display: flex;
     justify-content: center;
     box-shadow: 0 0.2rem 0.4rem 0 rgba(50, 50, 51, 0.3)
@@ -34,9 +35,9 @@
 .resumeWhiteBack{
     background-color: white;
     width: 90%;
-    height: 15vh;
+    height: 250px;
     display: flex;
-    justify-content: center;
+    justify-content: left;
 }
 
 .titleCart{
@@ -129,32 +130,68 @@
 .resume-cart{
   display: flex;
   flex-direction: column;
-  justify-content: center;
   font-size: 14px;
+  padding-top: 20px;
+  width: 100%;
 }
 
 .sendingProducts{
-  margin-left: 10px;
+  margin-left: 10%;
   display: flex;
   flex-direction: row;
+  margin-right: 10%;
+  border-bottom: 1px solid #EDEFF2;
+}
+
+.calculateSend{
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  font-weight:lighter;
+  color: #4E5D6B;
 }
 
 .totalCart{
-  margin-left: 10px;
+  margin-left: 10%;
   display: flex;
   flex-direction: row;
+  margin-right: 10%;
+  border-bottom: 1px solid #EDEFF2;
 }
+
 
 .subtotal{
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  border-bottom: 1px solid #EDEFF2;
 }
 
 .nothing{
   display: flex;
   width: 100%;
   justify-content: right;
-  margin-right: 10px;
+}
+
+.nothingTotal{
+  display: flex;
+  width: 100%;
+  justify-content: right;
+  align-items: center;
+  font-weight: bold;
+}
+
+.total{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.iva{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 2%;
+  width: 120px;
 }
