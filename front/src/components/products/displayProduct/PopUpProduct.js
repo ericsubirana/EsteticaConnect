@@ -1,22 +1,27 @@
 import React, { useRef, useEffect } from 'react';
 import './popupproduct.css';
+import { useAuth } from '../../../context/AuthContext.js'
+import {addProductToCart as apiAddProductToCart } from '../../../api/products.js'
+
+import { PiShoppingCart } from "react-icons/pi";
 import { IoClose } from 'react-icons/io5';
 
 function PopUpProduct(props) {
+
+  const { isAuthenticated, user } = useAuth();
   const result = props.result;
   const descriptionRef = useRef(null);
 
   useEffect(() => {
     const func = () => {
-      
+
       if (descriptionRef.current) {
         const description = descriptionRef.current;
         const hasOverflow = description.clientHeight > 250;
-        console.log(hasOverflow, description.clientHeight)
         if (hasOverflow) {
           description.style.height = '250px';
           description.style.overflowY = 'scroll';
-          
+
         } else {
           description.style.overflowY = 'hidden';
         }
@@ -24,6 +29,11 @@ function PopUpProduct(props) {
     }
     func();
   });
+
+  const addProductToCart = async () => {
+    const response = await apiAddProductToCart(user, result);
+    console.log(response)
+  }
 
   return props.trigger ? (
     <div className='popup'>
@@ -38,7 +48,12 @@ function PopUpProduct(props) {
           </div>
           <img src={result['img-src']} alt='' height={300} width={300} />
         </div>
-        {/* FALTA EN CAS Q USUARI ESTIGUI LOGUEJAT POSAR ICONA CARRET E INCREMENTADOR O DECREMENTADOR*/}
+        {isAuthenticated && result.price &&(
+          <button className='addCart' onClick={() => addProductToCart(result)}>
+              <p>Añadir al carrito</p>
+              <PiShoppingCart size={30}/>
+          </button>
+        )}
         <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
       </div>
     </div>

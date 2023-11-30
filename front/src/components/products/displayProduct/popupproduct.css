@@ -83,3 +83,25 @@
     background: transparent;
     margin-top: 15px;
 }
+
+.addCart{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid pink;
+    width: 100%;
+    background-color: white;
+}
+
+.addCart:hover{
+    cursor: pointer;
+    background-color: #f3d0eb;
+}
+
+.addCart p{
+    margin-right: 20px;
+    font-size: medium;
+    font-family: 'Inter';
+}

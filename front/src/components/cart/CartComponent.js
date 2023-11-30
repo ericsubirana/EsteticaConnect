@@ -73,7 +73,14 @@ function CartComponent() {
                   </div>
                 )}
               </div>
-              <button>Comenzar pedido</button>
+              <div className='buttonSummary'>
+                {products && (
+                    <button className='button-5'>Comenzar pedido</button>
+                )}
+                {!products && (
+                    <button className='button-6'>Comenzar pedido</button>
+                )}
+              </div>
             </div>
 
           </div>

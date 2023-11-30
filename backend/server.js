@@ -5,7 +5,9 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const {connectDB} = require('./db.js');
 const authRoutes = require('./routes/auth.routes.js');
-const authProductes = require('./routes/products.routes.js')
+const productsRoutes = require('./routes/products.routes.js');
+const cartProducts = require('./routes/cart.routes.js');
+
 
 app.use(express.json()); //per poder llegir el body de les peticions
 app.use(morgan('dev')); //anar imprimint els resultats
@@ -16,7 +18,9 @@ app.use(cors({
 app.use(cookieParser()); //per poder llegir les cookies
 
 app.use('/api', authRoutes);
-app.use('/api', authProductes);
+app.use('/api', productsRoutes);
+app.use('/api', cartProducts);
+
 
 connectDB();
 
