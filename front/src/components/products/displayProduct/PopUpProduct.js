@@ -1,25 +1,27 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect,  useState } from 'react';
 import './popupproduct.css';
 import { useAuth } from '../../../context/AuthContext.js'
 import {addProductToCart as apiAddProductToCart } from '../../../api/products.js'
+import { ToastContainer, toast } from 'react-toastify';
+import { hasProduct } from '../../../api/cart.js';
 
 import { PiShoppingCart } from "react-icons/pi";
 import { IoClose } from 'react-icons/io5';
 
-function PopUpProduct(props) {
-
+function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el producte no surti afegir producte sino la quantitat que ja te al carret
+                                //L'ELEMNT CLAU PER FER EL QUE ESTA COMENTAT HA SIGUT LA VARIABLE TRIGGER
   const { isAuthenticated, user } = useAuth();
   const result = props.result;
   const descriptionRef = useRef(null);
+  const [quantitat, setQuantitat] = useState(0);
 
   useEffect(() => {
     const func = () => {
-
       if (descriptionRef.current) {
         const description = descriptionRef.current;
-        const hasOverflow = description.clientHeight > 250;
+        const hasOverflow = description.clientHeight > 220;
         if (hasOverflow) {
-          description.style.height = '250px';
+          description.style.height = '220px';
           description.style.overflowY = 'scroll';
 
         } else {
@@ -27,12 +29,35 @@ function PopUpProduct(props) {
         }
       }
     }
+
     func();
   });
 
+  useEffect(() => {
+    const hasAlreadyProduct = async () => {
+      const response = await hasProduct(user, result);
+      setQuantitat(response.data.quantity);
+    }
+
+    if (props.trigger) {
+      hasAlreadyProduct();
+    }
+  
+  },[props.trigger]);
+
+  const updateQuantity = async () => {
+    const response = await hasProduct(user, result);
+    setQuantitat(response.data.quantity);
+  }
+
   const addProductToCart = async () => {
     const response = await apiAddProductToCart(user, result);
-    console.log(response)
+    if(response.data = 'Product added successfully'){
+      toast.success('Product added successfully');
+    }
+    else{
+      toast.error('An error ocurred while trying to add Product');
+    }
   }
 
   return props.trigger ? (
@@ -49,13 +74,15 @@ function PopUpProduct(props) {
           <img src={result['img-src']} alt='' height={300} width={300} />
         </div>
         {isAuthenticated && result.price &&(
-          <button className='addCart' onClick={() => addProductToCart(result)}>
+          <button className='addCart' onClick={async () => {await addProductToCart(); await updateQuantity()}}>
               <p>Añadir al carrito</p>
               <PiShoppingCart size={30}/>
+              {quantitat}
           </button>
         )}
         <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
       </div>
+      <ToastContainer position="top-center" />
     </div>
   ) : null;
 }
