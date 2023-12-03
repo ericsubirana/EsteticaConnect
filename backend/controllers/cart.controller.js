@@ -64,7 +64,7 @@ const adddProduct = async (req, res) => {
         if (error instanceof mongoose.Error.ValidationError) {
             console.error('Detalles de validación:', error.errors);
         }
-    
+
         res.status(400).send('Error al procesar la solicitud');
     }
 }
@@ -76,12 +76,12 @@ const hasProduct = async (req, res) => {
         const cartItem = await Cart.findOne(
             { user_id: user.id, 'products.product.title': product.title },
             { 'products.$': 1 }
-          );
-        if(cartItem){
-            res.status(200).json({quantity: cartItem.products[0].product.quantity});
+        );
+        if (cartItem) {
+            res.status(200).json({ quantity: cartItem.products[0].product.quantity });
         }
-        else{
-            res.status(200).json({quantity: 0});
+        else {
+            res.status(200).json({ quantity: 0 });
         }
     } catch (error) {
         console.error('Error al procesar la solicitud:', error);
@@ -90,9 +90,73 @@ const hasProduct = async (req, res) => {
         if (error instanceof mongoose.Error.ValidationError) {
             console.error('Detalles de validación:', error.errors);
         }
-    
+
         res.status(400).send('Error al procesar la solicitud');
     }
 }
 
-module.exports = { adddProduct, hasProduct }
+const removeProduct = async (req, res) => { //si fem un remove es perque el producte ja ha d'exisitr
+
+    const user = req.body.user;
+    const product = req.body.product;
+    const userCartExistsAlready = await Cart.findOne({ user_id: user.id });
+    const cartItem = await Cart.findOne(
+        { user_id: user.id, 'products.product.title': product.title },
+        { 'products.$': 1 }
+    );
+
+    if (userCartExistsAlready) {
+        if (cartItem) {
+            const updatedQuantity = cartItem.products[0].product.quantity - 1;
+            if (updatedQuantity > 0) {
+                await Cart.updateOne(
+                    {
+                        user_id: user.id,
+                        'products.product.title': product.title,
+                    },
+                    {
+                        $inc: { 'products.$.product.quantity': -1 },
+                    });
+            }
+            else{
+                await Cart.updateOne(
+                    { user_id: user.id },
+                    {
+                        $pull: {
+                            products: { 'product.title': product.title }
+                        }
+                    }
+                );
+            }
+        }
+    }
+
+    console.log(cartItem.products[0].product.quantity)
+    res.status(200).json({ quantity: cartItem.products[0].product.quantity });
+}
+
+const getProducts = async (req, res) => {
+    try {
+        const user = req.body;
+        const userCartExists = await Cart.findOne({ user_id: user.id });
+        if (userCartExists) {
+            const products = userCartExists.products;
+            console.log(products)
+            res.status(200).json({ userCartExists: { products } });
+        }
+        else {
+            res.status(200).send('No products in Cart');
+        }
+    } catch (error) {
+        console.error('Error al procesar la solicitud:', error);
+
+        // Si el error es una instancia de ValidationError de Mongoose, imprime los detalles de la validación.
+        if (error instanceof mongoose.Error.ValidationError) {
+            console.error('Detalles de validación:', error.errors);
+        }
+
+        res.status(400).send('Error al procesar la solicitud');
+    }
+}
+
+module.exports = { adddProduct, hasProduct, removeProduct, getProducts }

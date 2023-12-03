@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { Link } from 'react-router-dom';
 import "./loginlogout.css"
 
-function logInLogOut(props) {
+function LogInLogOut(props) {
+
     const { user, logout, page } = props;
 
     function logoutPage() {
@@ -10,9 +11,7 @@ function logInLogOut(props) {
     }
 
     return (
-        
         <div className = 'loginlogout'>
-            {console.log(page)}
             {!user && (
                 <>
                     <div className='leftside'>
@@ -22,28 +21,28 @@ function logInLogOut(props) {
                     </div>
                     <div className="line"></div>
                     <div className='rightside'>
+                        <Link className='loginbutton' to={"/login"}>LOG IN</Link>
                         <Link className='registerbutton' to={"/register"}>SIGN UP</Link>
                     </div>
                 </>
             )}
             {user && (
                 <>
-                    <div className='leftside'>
+                    <div className='leftsideLoggedIn'>
                         <Link className={page === 'home' ? 'homeNow' : 'home'} to={"/home"}>Home</Link>
                         <Link className={page === 'products' ? 'productesNow' : 'productes'} to={"/productes"}>Productes</Link>
                         <Link className='serveis' to={"/serveis"}>Serveis</Link>
                         <Link className='profile' to={"/profile"}>Perfil</Link>
                         <Link className={page === 'cart' ? 'carretNow' : 'carret'} to={"/cart"}>Carret</Link>
                     </div>
-                    <div className="line"></div>
+                    <div className="lineLoggedIn"></div>
                     <div className='rightside'>
                         <Link className='logout' onClick={logoutPage} to={"/home"}>LOG OUT</Link>   
                     </div>
-                </> //LOGOUT!!!!!!!!!
-
+                </> 
             )}
         </div>
     )
 }
 
-export default logInLogOut
+export default LogInLogOut

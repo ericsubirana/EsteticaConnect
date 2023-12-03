@@ -6,8 +6,6 @@ function ProtectedRoute() {
 
     const {user, isAuthenticated, loading} = useAuth();
 
-    console.log(user, isAuthenticated, loading);    
-
     if(loading) return <h1>Loading...</h1>
 
     if(!loading && !isAuthenticated) {

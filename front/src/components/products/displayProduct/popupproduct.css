@@ -105,3 +105,42 @@
     font-size: medium;
     font-family: 'Inter';
 }
+
+.arrows{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 15px;
+
+}
+
+.up{
+    margin-bottom: 5px;
+}
+
+.arrows:hover{
+    cursor: pointer;
+}
+
+.moveToCenter{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.addOrRemove{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid black;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 5px;
+}
+
+.quantityArrows{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

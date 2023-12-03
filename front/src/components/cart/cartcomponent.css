@@ -1,7 +1,7 @@
 .cartcomponent{
-    background-color:#FFF2FF;
-    height: 80vh;
-    font-weight: lighter;
+  background-color:#FFF2FF;
+  height: 80vh;
+  font-weight: lighter;
 }
 
 .begin-cart-component{
@@ -21,6 +21,7 @@
     display: flex;
     flex-direction: column;
     flex: 30%;
+    position: sticky;
 }
 
 .cartWhiteBack{
@@ -131,7 +132,7 @@
   display: flex;
   flex-direction: column;
   font-size: 14px;
-  padding-top: 20px;
+  padding-top: 15px;
   width: 100%;
 }
 
@@ -157,6 +158,7 @@
   flex-direction: row;
   margin-right: 10%;
   border-bottom: 1px solid #EDEFF2;
+  align-items: center;
 }
 
 
@@ -267,4 +269,97 @@
   text-decoration: none;
   transition-duration: 0.1s;
   cursor:not-allowed;
+}
+
+.imageCart{
+  object-fit: contain;
+}
+
+.productInCart{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 100%;
+  border-bottom: 1px solid #9da0a367;
+}
+
+.infoProductCart{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  font-size: 14px;
+}
+
+.priceAndCart{
+  display: flex;
+  flex-direction: row;
+  margin-top: 25px;
+}
+
+.listCart{
+  width: 95%;
+  box-shadow: 0 0.2rem 0.4rem 0 rgba(50, 50, 51, 0.3);
+  box-sizing: border-box;
+}
+
+.backgraundProduct{
+  height: 242px;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+}
+
+.addOrRemoveCart{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.plusminus{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.plusminus p{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.subtotalArticles{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: right;
+}
+
+.spaceBetweeen{
+  margin-right: 10px;
+}
+
+.totalPriceTotal{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+
+@media (max-width: 1270px) {
+  .begin-cart-component {
+    flex-direction: column;
+  }
+  .resume{
+    margin-left: 40px;
+  }
+  .resumeWhiteBack{
+    width: 95%;
+  }
+  .title-resume{
+    margin-top: 50px;
+  }
 }

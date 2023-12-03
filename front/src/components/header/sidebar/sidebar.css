@@ -1,27 +1,62 @@
-.sidebarClosed{
-    display: none;
+.sidebarright{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 
-.sidebarOpen{
-    width: 250px;
-    position: absolute;
-    background-color: #F2BED1;
-    height: 100vh;
-    z-index: 1;
+.Cabecera-nav{
+    width: 30%;
+    margin-top: 70px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    height: 0vh;
+    opacity: 0;
+    overflow: hidden;
+    transition: all .5s ease;
+    background-color: white;
 }
 
-.logoSidebar{
-    max-width: 100%;
-    max-height: 100%;
-    margin-top: 90px;
+.Cabecera-nav.isActive{
+    display: flex;
+    height: 25vh;
+    opacity: 1;
+}
+
+.Cabecera-ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.Cabecera-ul li{
+    width: 70%;
+    display: flex;
+    justify-content: space-between; 
+    margin-left: 30px;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    border-bottom: 1px solid #9b92928c;
+}
+
+
+.Cabecera-ul a{
+    text-decoration: none;
+    color: #9B9292;
+    font-size: medium;
+    position: relative;
 }
 
 .menu{
     display: inline-block;
-    position: fixed;
+    position: absolute;
     font-size: 1.8rem;
-    margin-top: 55px;
-    margin-left: 60px;
+    margin-top: 20px;
+    right: 60px;
     z-index: 2;
 }
 
@@ -29,34 +64,6 @@
     cursor: pointer;
 }
 
-.routes{
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    font-size: 1.8rem;
-    margin-left: 60px;
-}
-
-#noDecoration{
-    text-decoration: none;
-    margin: 10px;
-    color: black;
-}
-
-
-
-.routesIn{
-    display: flex;
-    flex-direction: column;
-}
-
-.routesDown{
-    position: fixed;
-    font-size: 1.2rem;
-    bottom: 30%;
-}
-
-.where{
-    position: fixed;
-    bottom:10%;
+.lia{
+    color: #9B9292;
 }

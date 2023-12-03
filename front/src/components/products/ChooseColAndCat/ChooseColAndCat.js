@@ -30,6 +30,7 @@ function ChooseColAndCat(props) {
       if (!clickCol) {
         setIconCol(<IoIosArrowUp />);
         setClickCol(true);
+        setClickCat(false);
       }
       else {
         setIconCol(<IoIosArrowDown />);
@@ -40,6 +41,7 @@ function ChooseColAndCat(props) {
       if (!clickCat) {
         setIconCat(<IoIosArrowUp />);
         setClickCat(true);
+        setClickCol(false);
       }
       else {
         setIconCat(<IoIosArrowDown />);
