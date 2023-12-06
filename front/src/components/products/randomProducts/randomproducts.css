@@ -106,3 +106,44 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+@media(max-width:790px){
+
+    .titleProducts{
+        background-image: url('../../../assets/productsBack.png');
+        background-size: cover; 
+        background-repeat: no-repeat; 
+        background-position: center; 
+        height: 350px;
+    }
+    .titleProductsText {
+        margin-top: 130px;
+        display: flex;
+        flex-direction: column;
+    }
+    .titleProductsText h3{
+        margin-top: 0px;
+    }
+
+    .lineProducts{
+        display: none;
+    }
+}
+
+@media(max-width: 820px){
+    .totalWidth{
+        display: flex;
+        justify-content: center;
+    }
+    
+    .sixProductes{
+        justify-content: center;
+        display: flex;
+        position: relative;
+        flex-wrap: wrap;
+        margin-top: 50px;
+    }
+    .producte {
+        margin-bottom: 50px;
+    }
+}

@@ -9,8 +9,6 @@ import img from '../../assets/f.png';
 function Header(props) {
 
   const { user, logout } = useAuth();
-  //<Sidebar user={user} />
-  //<Searchbar />
   const page = props.page;
   return (
     <div className={page !== 'home' ? 'headerNoHome' : 'header'}>
@@ -22,7 +20,7 @@ function Header(props) {
         <LogInLogOut user={user} logout={logout} page={page} />
       </div>
       <div className='sidebarShow'>
-        <Sidebar/>
+        <Sidebar page={page}/>
       </div>
     </div>
   )

@@ -131,7 +131,7 @@
     left: 0px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 10px) {
     .button-53 {
         padding: 13px 20px 13px;
     }
@@ -157,4 +157,25 @@
     position: absolute;
     left: 50%; 
     margin-top: 20px;
+}
+
+@media (max-width: 1080px) {
+    .sqaure2{
+        width: 970px;
+    }
+}
+
+@media (max-width: 990px) {
+    .flowers{
+        display: none;
+    }
+    .sqaure2{
+        width: 500px;
+    }
+}
+
+@media (max-width: 500px) {
+    .sqaure2{
+        width: auto;
+    }
 }

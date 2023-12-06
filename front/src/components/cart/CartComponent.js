@@ -143,7 +143,7 @@ function CartComponent() {
                               <CiSquarePlus size={30} onClick={async () => { await addProductToCart(item.product)}} />
                             </div>
                           </div>
-                          <p>{parseFloat((item.product.price.replace('€', '')) * item.product.quantity).toFixed(2)}€</p>
+                          <p className='subPrice'>{parseFloat((item.product.price.replace('€', '')) * item.product.quantity).toFixed(2)}€</p>
                         </div>
                       </div>
                     </div>

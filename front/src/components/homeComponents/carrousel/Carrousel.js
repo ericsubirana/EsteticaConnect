@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from "react-slick";
 
 import "./carrousel.css";
@@ -13,6 +13,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 function Carrousel() {
+
+  const [slidesToShow, setSlidesToShow] = useState(3);
+
   const info = [
     {
       image: img6,
@@ -45,9 +48,28 @@ function Carrousel() {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: slidesToShow,
     slidesToScroll: 1
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1000) {
+        if(window.innerWidth < 700)
+          setSlidesToShow(1);
+        else
+          setSlidesToShow(2);
+      } else {
+        setSlidesToShow(3);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [window.innerWidth]);
 
   return (
     <div className='carrousel'>

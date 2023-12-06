@@ -17,6 +17,9 @@
 
 .cabines h1 {
     text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+
 }
 
 .cabines img{
@@ -41,7 +44,7 @@
 }
 
 .even > * {
-    flex: 0.7; /* Divide el ancho de los elementos por la mitad */
+    flex: 0.7; 
 }
 
 .odd {
@@ -51,7 +54,7 @@
 }
 
 .odd > * {
-    flex: 1; /* Divide el ancho de los elementos por la mitad */
+    flex: 1; 
 }
 
 .imageCabina.swap{
@@ -74,4 +77,41 @@
     flex-direction: column;
     justify-content: center;
     margin-left: 5%;
+}
+
+@media(max-width:804px){
+    .even{
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .odd{
+        flex-direction: column;
+        background-color: white;
+        margin-bottom: 20px;
+    }
+
+    .centerCabines {
+        margin-bottom: 140px;
+    }
+
+    .imageCabina.swap{
+        order:0
+    }
+    
+    .textCabina.swap{
+        order:1
+    }
+
+    .titleCabina {
+        text-align: left;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        margin-top: 20px;
+    }
+    .cabines p {
+        width: 75%;
+        margin-top: -5px;
+        margin-bottom: 25px;
+    }
 }

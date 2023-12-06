@@ -45,7 +45,7 @@ function RegisterForm() {
             <div className='sqaure'></div>
             <ToastContainer position='top-center' />
             <div className='register'>
-                <img className="imgForm" src={logo} alt="logo" height={80} onClick={home} />
+                <img className="imgForm" src={logo} alt="logoLogin" height={80} onClick={home} />
                 <h1>Registra't!</h1>
                 <form onSubmit={handleSubmit(async (values) => {
                     signup(values);

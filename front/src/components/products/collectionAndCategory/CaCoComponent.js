@@ -115,7 +115,9 @@ function CollectionComponent(props) {
                                     <h1 className='titleAndCollection-h1'>{title.toUpperCase()}</h1>
                                 )}
                             </div>
-                            <ChooseColAndCat onSearchResults={handleSearchResults} />
+                            <div className='moveForCoandCA'>
+                                <ChooseColAndCat onSearchResults={handleSearchResults} />
+                            </div>
                             {searchResults ? (
                                 searchResults === 'NO PRODUCTS FOUND' ? (
                                     <div className='no-products-text'>No se encontró ningún producto</div>

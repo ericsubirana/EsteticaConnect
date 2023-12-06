@@ -20,10 +20,6 @@
     justify-content: center;
 }
 
-.widthFooter h1{
-    text-align: center;
-}
-
 .contact{
     display: flex;
     flex-direction: column;
@@ -68,6 +64,10 @@
     margin-top: 50px;
 }
 
+.followUs h1{
+    font-weight: 300;
+}
+
 .icon {
     margin-right: 20px;
 }
@@ -83,8 +83,109 @@
     margin-top: 25px;
 }
 
+.responsivefoot{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .fl{
     margin-left: 25px;
     margin-bottom: 25px;
     margin-top: 10px;
+}
+
+@media(max-width:1040px){
+    .widthFooter{
+        margin-top: 45px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .coandfo{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 80%;
+    }
+
+    .followUs{
+        margin-top: 0px;
+    }
+
+    .responsivefoot{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 80%;
+    }
+
+    .imageFooter{
+        display: flex;
+        flex-direction: column;
+        margin-left: -35px;
+        margin-right: 0px;
+        margin-top: 20px;
+    }
+}
+
+
+@media(max-width:830px){
+    .widthFooter{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media(max-width:830px){
+    .widthFooter{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+@media(max-width:610px){
+    
+    .coandfo{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin-bottom: 30px;
+        align-items: center;
+    }
+
+    .contact{
+        margin-bottom: 30px;
+        align-items: self-start;
+    }
+
+    .followUs{
+        margin-top: 0px;
+    }
+
+    .responsivefoot{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        align-items: center;
+    }
+
+    .ubication{
+        order: 0;
+    }
+    
+    .imageFooter{
+        order: 1;
+       width: 280px;
+    }
 }

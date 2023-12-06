@@ -5,7 +5,7 @@
 }
 
 .Cabecera-nav{
-    width: 30%;
+    width: 200px;
     margin-top: 70px;
     display: flex;
     flex-flow: column nowrap;
@@ -15,11 +15,13 @@
     overflow: hidden;
     transition: all .5s ease;
     background-color: white;
+
+   
 }
 
 .Cabecera-nav.isActive{
     display: flex;
-    height: 25vh;
+    height: 280px;
     opacity: 1;
 }
 
@@ -43,7 +45,7 @@
     border-bottom: 1px solid #9b92928c;
 }
 
-
+/*color: #9B9292;*/
 .Cabecera-ul a{
     text-decoration: none;
     color: #9B9292;

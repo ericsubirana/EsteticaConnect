@@ -93,3 +93,16 @@
     margin-top: 220px;
     margin-bottom: 220px;
 }
+
+@media(max-width: 570px){
+    .moveForCoandCA{
+        margin-top: 320px;
+    }
+    .titleAndCollection-h1{
+        position: absolute;
+        margin-top: 165px;
+    }
+    .imgCollection{
+        height: 350px;
+    }
+}

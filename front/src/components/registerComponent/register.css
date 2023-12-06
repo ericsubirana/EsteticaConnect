@@ -39,7 +39,8 @@ cursor:auto;
 }
 
 .imgForm{
-cursor: pointer;
+  cursor: pointer;
+  width: 80px;
 }
 
 .register input{
@@ -114,7 +115,7 @@ top: 0px;
 left: 0px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 10px) {
 .button-52 {
   padding: 13px 20px 13px;
 }
@@ -127,4 +128,45 @@ left: 0px;
   height: 670px;
   background-color: rgba(255, 255, 255, 0.493); /* Adjust the last value (0.5) for transparency */
   backdrop-filter: blur(8px); /* Optional: Add a blur effect */
+}
+
+
+@media (max-width: 1080px) {
+  .register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .imageRegister{
+    margin-right: 70px;
+  }
+
+  .sqaure{
+      width: 970px;
+  }
+}
+
+@media (max-width: 990px) {
+  .imageRegister{
+      display: none;
+  }
+  .register {
+    position: fixed;
+    width: auto;
+    text-align: left;
+    z-index: 8;
+}
+  .sqaure{
+      width: 500px;
+  }
+}
+
+@media (max-width: 500px) {
+  .sqaure{
+      width: auto;
+  }
+  .register{
+    margin-left: 20px;
+  }
 }
