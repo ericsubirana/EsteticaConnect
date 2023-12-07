@@ -6,7 +6,6 @@ import ProtectedRoute from '../ProtectedRoute.js';
 import Home from '../pages/Home.js';
 import Login from '../pages/Login.js';
 import Register from '../pages/Register.js';
-import Calendar from '../pages/Calendar.js';
 import Serveis from '../pages/Serveis.js';
 import Productes from '../pages/Productes.js';
 import Profile from '../pages/Profile.js';
@@ -33,8 +32,6 @@ function Routers() {
               <Route path='/profile' element={<Profile/>} />
               <Route path='/cart' element={<Cart/>} />
             </Route>
-
-            <Route path='/calendar' element={<Calendar/>} />  
         </Routes>
       </BrowserRouter>
     </AuthProvider>
