@@ -1,0 +1,142 @@
+.otp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #F9FAFB;
+}
+
+.otp-background {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 2.25rem;
+    padding-top: 2.5rem;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 32rem;
+    background-color: #ffffff;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.otp-margins {
+    display: flex;
+    margin-top: 4rem;
+    flex-direction: column;
+    width: 100%;
+    max-width: 28rem;
+}
+
+.otp-flex {
+    display: flex;
+    margin-top: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.otp-text {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+}
+
+.otp-p {
+    display: flex;
+    flex-direction: row;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    color: #9CA3AF;
+}
+
+.otp-form {
+    display: flex;
+    margin-top: 4rem;
+    flex-direction: column;
+}
+
+.form-back {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 20rem;
+}
+
+.otp-input {
+    width: 4rem;
+    height: 4rem;
+}
+
+.otp-inputs {
+    display: flex;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-color: #E5E7EB;
+    outline-style: none;
+    --ring-color: #1D4ED8;
+    width: 100%;
+    height: 100%;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.verify-otp {
+    display: flex;
+    margin-top: 1.25rem;
+    flex-direction: column;
+
+}
+
+.verifyAccount {
+    display: flex;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.75rem;
+    border-width: 1px;
+    border-style: none;
+    outline-style: none;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: center;
+    color: #ffffff;
+    background-color: #1D4ED8;
+    cursor: pointer;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+}
+
+.resendCode {
+    display: flex;
+    margin-left: 0.25rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    text-align: center;
+    color: #6B7280;
+
+}
+
+.resendOPT {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+}

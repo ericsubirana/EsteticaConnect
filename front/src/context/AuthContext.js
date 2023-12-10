@@ -19,6 +19,8 @@ export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [errorContext, setErrorContext] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [email, setEmail] = useState();
+    const [otp, setOTP] = useState();
 
     const signup = async (values) => {
         try {
@@ -100,7 +102,11 @@ export const AuthProvider = ({ children }) => {
             errorContext,
             signin,
             loading,
-            logout
+            logout,
+            email,
+            setEmail,
+            otp,
+            setOTP
         }}>
             {children}
         </AuthContext.Provider>

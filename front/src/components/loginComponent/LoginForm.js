@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { forgotPassowrd } from '../../api/auth.js'
 
 import logo from '../../assets/f.png'
 import loginPhoto from '../../assets/loginPhoto.png'
@@ -14,9 +15,20 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function LoginForm() {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { signin, isAuthenticated, errorContext, user } = useAuth();
-
+  const { signin, isAuthenticated, errorContext, setEmail, email, setOTP } = useAuth();
   const navigation = useNavigate();
+  
+  function nagigateToOtp() {
+    if (email) {
+      const OTP = Math.floor(Math.random() * 9000 + 1000);
+      setOTP(OTP);
+      forgotPassowrd({OTP, recipient_email: email})
+        .then(() => navigation("/otp"))
+        .catch(console.log);
+      return;
+    }
+    return alert("Please enter your email");
+  }
 
   const notify = (error) => {
     toast.error(error);
@@ -62,7 +74,7 @@ export default function LoginForm() {
               <h3>CORREU</h3>
               {errors.email && <p>Email is required</p>}
             </div>
-            <input type="text" {...register('email', { required: true })} />
+            <input type="text" {...register('email', { required: true })} onChange={(e) => setEmail(e.target.value)} />
           </label>
           <label className='userPassword'>
             <div className='together'>
@@ -73,9 +85,8 @@ export default function LoginForm() {
 
           </label>
           <div className='buttonAndPAss'>
-            <Link className='link'>Has oblidat la contrasenya?</Link>
+            <Link className='link' onClick={() => nagigateToOtp()} >Has oblidat la contrasenya?</Link>
             <button type='submit' className='button-53' > Log In </button>
-            {/*<AiOutlineArrowRight className='link2' />*/}
           </div>
           <p>Encara no estàs registrat? <Link to="/register">Registra't!</Link> </p>
         </form>

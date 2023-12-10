@@ -12,6 +12,8 @@ import Profile from '../pages/Profile.js';
 import Cart from '../pages/Cart.js';
 import Collection from '../pages/Collection.js';
 import Category from '../pages/Category.js';
+import OTPInput from '../components/forgotPassword/OTPInput.js';
+import ChangePassword from '../components/forgotPassword/ChangePassword.js';
 
 function Routers() {
   return (
@@ -21,6 +23,11 @@ function Routers() {
             <Route path="*" element={<Home/>} />
             <Route path="/home" element={<Home/>} />
             <Route path='/login' element={<Login/>} />
+
+            <Route path='/otp' element={<OTPInput/>} />
+            <Route path='/changePassword' element={<ChangePassword/>} />
+
+
             <Route path='/register' element={<Register/>} />
             <Route path='/serveis' element={<Serveis/>} />
             <Route path='/productes' element={<Productes/>} />
