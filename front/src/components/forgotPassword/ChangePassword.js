@@ -9,7 +9,7 @@ import './changePassword.css'
 
 function ChangePassword() {
 
-  const {signin, email} = useAuth();
+  const {email, user, setChangePassword} = useAuth();
   const [password, setPassowrd] = useState();
   const [repeatPassword, setRepeatPassowrd] = useState();
 
@@ -18,8 +18,9 @@ function ChangePassword() {
   const changeForgottenPassword = async () => {
     if(password.length > 5){
       if(password === repeatPassword){
-        const changePass = await changePassword({ password });
-        navigation("/login");
+        const changePass = await changePassword({ password, email });
+        setChangePassword(password)
+        navigation('/login');
       }
       else{
         toast.error('Passowrds do not match');

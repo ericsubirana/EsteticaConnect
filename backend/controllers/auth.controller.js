@@ -163,9 +163,28 @@ function sendEmail({ recipient_email, OTP }) {
     });
 }
 
-const changePassword = async (req, res) =>{
-    const { password } = req.body;
-    console.log(password);
+const changePassword = async (req, res) => {
+    const { password, email } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await User.findOne({ email }); //user es un mongoose schema
+    try {
+        if (user) {
+            await User.updateOne(
+                {
+                    _id: user.id,
+                },
+                {
+                    $set: { password: hashedPassword }
+                });
+                console.log('Password updated successfully');
+        } else {
+            return res.status(400).json(["email not exists"]);
+        }
+    } catch (e) {
+        console.log(e);
+        return res.status(400).json(["error while changing password"]);
+    }
+    return res.status(200).json(["password updated"]);
 }
 
 module.exports = { register, login, logout, profile, verifyToken, forgotPassword, changePassword };

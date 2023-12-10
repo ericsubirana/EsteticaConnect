@@ -21,6 +21,8 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [email, setEmail] = useState();
     const [otp, setOTP] = useState();
+    const [changePassword, setChangePassword] = useState();
+
 
     const signup = async (values) => {
         try {
@@ -106,7 +108,9 @@ export const AuthProvider = ({ children }) => {
             email,
             setEmail,
             otp,
-            setOTP
+            setOTP,
+            changePassword, 
+            setChangePassword
         }}>
             {children}
         </AuthContext.Provider>

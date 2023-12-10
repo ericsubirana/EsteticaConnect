@@ -21,7 +21,8 @@
 
 .otp-margins {
     display: flex;
-    margin-top: 4rem;
+    margin-top: 15px;
+    margin-left: 30px;
     flex-direction: column;
     width: 100%;
     max-width: 28rem;
@@ -53,22 +54,25 @@
 
 .otp-form {
     display: flex;
-    margin-top: 4rem;
+    width: 100%;
+    margin-top: 1.5rem;
     flex-direction: column;
+    justify-content: center;
 }
 
 .form-back {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 20rem;
+    margin-bottom: 20px;
 }
 
 .otp-input {
-    width: 4rem;
+    width: 2rem;
     height: 4rem;
+    margin-right: 45px;
 }
 
 .otp-inputs {

@@ -8,7 +8,6 @@ export const verifyTokenReq = () => axios.get('/auth/verify');
 
 export const logoutReq = () => axios.get('/logout');
 
-
 export const forgotPassowrd = ({ recipient_email, OTP }) => axios.post('/forgotPassword', {recipient_email, OTP});
 
-export const changePassword = password => axios.post('/changePassword', password);
+export const changePassword = ({password, email}) => axios.post('/changePassword', {password, email});

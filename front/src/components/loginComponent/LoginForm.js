@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { forgotPassowrd } from '../../api/auth.js'
+import { useParams } from 'react-router-dom'
 
 import logo from '../../assets/f.png'
 import loginPhoto from '../../assets/loginPhoto.png'
@@ -12,12 +13,12 @@ import './login.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function LoginForm() {
+export default function LoginForm(props) {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { signin, isAuthenticated, errorContext, setEmail, email, setOTP } = useAuth();
+  const { signin, isAuthenticated, errorContext, setEmail, email, setOTP, changePassword } = useAuth();
   const navigation = useNavigate();
-  
+
   function nagigateToOtp() {
     if (email) {
       const OTP = Math.floor(Math.random() * 9000 + 1000);
@@ -33,6 +34,12 @@ export default function LoginForm() {
   const notify = (error) => {
     toast.error(error);
   }
+
+  useEffect(() => {
+    if (changePassword) {
+      toast.success('Password updated');
+    }
+  }, [changePassword]);
 
   useEffect(() => {
     let timeoutId;
