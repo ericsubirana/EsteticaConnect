@@ -110,8 +110,8 @@ function sendEmail({ recipient_email, OTP }) {
         var transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
-                user: "ericsubirana4444@gmail.com",
-                pass: "aicx xjhy tqjg ewao",
+                user: process.env.MY_EMAIL,
+                pass: process.env.MY_PASSWORD,
             },
             secure: true,
             port: 465,
