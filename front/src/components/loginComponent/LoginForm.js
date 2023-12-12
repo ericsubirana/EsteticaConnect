@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function LoginForm(props) {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const { signin, isAuthenticated, errorContext, setEmail, email, setOTP, changePassword } = useAuth();
+  const { signin, isAuthenticated, errorContext, setEmail, email, setOTP, changePassword, setChangePassword } = useAuth();
   const navigation = useNavigate();
 
   function nagigateToOtp() {
@@ -38,6 +38,7 @@ export default function LoginForm(props) {
   useEffect(() => {
     if (changePassword) {
       toast.success('Password updated');
+      setChangePassword();
     }
   }, [changePassword]);
 
