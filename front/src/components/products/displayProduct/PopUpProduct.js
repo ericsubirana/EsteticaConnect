@@ -60,20 +60,24 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
   const addProductToCart = async () => {
     const response = await apiAddProductToCart(user, result);
     if (response.data = 'Product added successfully') {
-      toast.success('Product added successfully');
+      toast.success('Product added successfully', { autoClose: 1500, closeOnClick: true });
+      toast.clearWaitingQueue();
     }
     else {
-      toast.error('An error ocurred while trying to add Product');
+      toast.error('An error ocurred while trying to add Product', { autoClose: 1500, closeOnClick: true });
+      toast.clearWaitingQueue();
     }
   }
 
   const RemoveProductToCart = async () => {
     const response = await apiRemoveProductToCart(user, result);
-    if (response.data = 'Product removed successfully') {
-      toast.success('Product removed successfully');
+    if (response.data = 'Product removed successfully', { autoClose: 1500, closeOnClick: true }) {
+      toast.success('Product removed successfully', { autoClose: 1500, closeOnClick: true });
+      toast.clearWaitingQueue();
     }
     else {
       toast.error('An error ocurred while trying to remove Product');
+      toast.clearWaitingQueue();
     }
   }
 
@@ -112,7 +116,7 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
         )}
         <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
       </div>
-      <ToastContainer position="top-center" />
+      <ToastContainer position="top-center" limit={1}/>
     </div>
   ) : null;
 }

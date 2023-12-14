@@ -38,6 +38,7 @@ export default function LoginForm(props) {
   useEffect(() => {
     if (changePassword) {
       toast.success('Password updated');
+      toast.clearWaitingQueue();
       setChangePassword();
     }
   }, [changePassword]);
@@ -70,7 +71,7 @@ export default function LoginForm(props) {
       <div className='formLogin'>
         <div className='error-showup'>
         </div>
-        <ToastContainer position="top-center" />
+        <ToastContainer position="top-center" limit={1}/>
         <img src={logo} alt="logo" className='logoLogin' height={80} onClick={home} />
         <h4>Benvingut/da de nou!</h4>
         <h1>Inici de Sessió</h1>
