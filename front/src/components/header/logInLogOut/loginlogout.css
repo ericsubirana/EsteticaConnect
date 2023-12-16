@@ -67,9 +67,17 @@
     margin-right: 35px;
 }
 
-.serveis{
+.services{
     text-decoration: none;
     color: #9B9292;
+    font-size: medium;
+    position: relative;
+    margin-right: 35px;
+}
+
+.servicesNow{
+    text-decoration: none;
+    color: #000000;
     font-size: medium;
     position: relative;
     margin-right: 35px;

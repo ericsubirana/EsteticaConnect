@@ -62,7 +62,7 @@ function CartComponent() {
       if (heightRef.current) {
         const height = heightRef.current;
         height.style.overflowY = products.length > 3 ? 'auto' : 'hidden';
-        height.style.maxHeight = '726px';
+        height.style.maxHeight = '725px';
       }
     }
     func();
@@ -83,6 +83,7 @@ function CartComponent() {
     const response = await apiAddProductToCart(user, result);
     if (response.data = 'Product added successfully') {
       toast.success('Product added successfully');
+      toast.clearWaitingQueue();
       const response = await getProducts(user);
       if (response.data === 'No products in Cart') {
         setProducts([]);
@@ -92,6 +93,7 @@ function CartComponent() {
     }
     else {
       toast.error('An error ocurred while trying to add Product');
+      toast.clearWaitingQueue();
     }
   }
 
@@ -99,6 +101,7 @@ function CartComponent() {
     const response = await apiRemoveProductToCart(user, result);
     if (response.data = 'Product removed successfully') {
       toast.success('Product removed successfully');
+      toast.clearWaitingQueue();
       const response = await getProducts(user);
       if (response.data === 'No products in Cart') {
         setProducts([]);
@@ -108,6 +111,7 @@ function CartComponent() {
     }
     else {
       toast.error('An error ocurred while trying to remove Product');
+      toast.clearWaitingQueue();
     }
   }
 
@@ -202,7 +206,7 @@ function CartComponent() {
           </div>
         </div>
       </div>
-      <ToastContainer position="top-center" />
+      <ToastContainer position="top-center" limit={1}/>
     </div>
   )
 }

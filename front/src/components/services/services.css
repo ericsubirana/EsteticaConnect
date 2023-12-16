@@ -1,0 +1,118 @@
+.servicesMain {
+    background-image: url('../../assets/ServeisBack.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 450px;
+}
+
+.service {
+    margin-bottom: 10%;
+}
+
+.servicesWidth {
+    margin-top: 150px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.serviceComponents {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.serviceComponent {
+    height: 60%;
+    width: 32%;
+    margin-bottom: 2%;
+    display: flex;
+    position: relative;
+    border-radius: 10px;
+
+}
+
+.serviceComponent:hover {
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+.serviceTitle {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+.serviceComponent h3 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    width: 70%;
+}
+
+.servImage {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.serviceImage {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    justify-content: center;
+    text-align: center;
+}
+
+
+@media (min-width: 1170px) {
+    .serviceComponent h3 {
+        font-size: 25px;
+    }
+}
+
+@media (min-width: 1900px) {
+    .serviceComponent h3 {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 850px) {
+    .serviceComponent h3 {
+        width: 100%;
+    }
+}
+
+@media (max-width: 750px) {
+    .serviceComponent {
+        height:38%;
+        width: 45%;
+        margin-bottom: 2%;
+        display: flex;
+        position: relative;
+        border-radius: 10px;
+    }
+    .service {
+        margin-bottom: 20%;
+    }
+}
+
+@media (max-width: 490px) {
+    .serviceComponent {
+        height: 85px;
+        width: 100%;
+        margin-bottom: 5%;
+        display: flex;
+        position: relative;
+        border-radius: 10px;
+    }
+}

@@ -3,7 +3,7 @@ import Slider from "react-slick";
 
 import "./carrousel.css";
 import img1 from '../../../assets/annexos.png';
-import img2 from '../../../assets/aparatologia.webp';
+import img2 from '../../../assets/aparotologia.webp';
 import img3 from '../../../assets/depilacions.png';
 import img4 from '../../../assets/manicura.jpg';
 import img5 from '../../../assets/tractamentCorporal.jpg';

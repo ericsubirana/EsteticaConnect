@@ -17,7 +17,7 @@ function LogInLogOut(props) {
                     <div className='leftside'>
                         <Link className={page === 'home' ? 'homeNow' : 'home'} to={"/home"}>Home</Link>
                         <Link className={page === 'products' ? 'productesNow' : 'productes'} to={"/productes"}>Productes</Link>
-                        <Link className='serveis' to={"/serveis"}>Serveis</Link>
+                        <Link className={page === 'services' ? 'servicesNow' : 'services'} to={"/serveis"}>Serveis</Link>
                     </div>
                     <div className="line"></div>
                     <div className='rightside'>
