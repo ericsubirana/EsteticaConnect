@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { getServices } from '../../api/services.js'
+import { useNavigate } from 'react-router-dom'
 
 import './services.css'
 import img1 from '../../assets/tractamentCorporal.jpg'
@@ -14,49 +14,53 @@ function Services() {
     const Components = [
         {
             title: 'TRATAMIENTOS CORPORALES',
-            nom: 'Tractaments Corporals',
+            nom: 'Tratamientos Corporales',
             img: img1
         },
         {
             title: 'DEPILACIONES',
-            nom: 'Depilacions',
+            nom: 'Depilaciones',
             img: img2
         },
         {
             title: 'TRATAMIENTOS FACIALES',
-            nom: 'Tractaments Facials',
+            nom: 'Tratamientos Faciales',
             img: img3
         },
         {
             title: 'MANICURAS & PEDICURAS',
-            nom: 'Manicures Pedicures',
+            nom: 'Manicuras y Pedicuras',
             img: img4
         },
         {
             title: 'SERVICIOS ANEXOS',
-            nom: 'Annexos',
+            nom: 'Anexos',
             img: img5
         },
         {
             title: 'APARATOLOGÍA',
-            nom: 'Aparatologia',
+            nom: 'Aparatología',
             img: img6
         }
     ]
 
+    const navigation = useNavigate();
+
     const takeServices = async (title) => {
-        const result = await getServices(title);
-        console.log(result.data);
+        console.log(title);
+        navigation(`/serveis/${title}`);
     }
 
     return (
         <div className='service'>
             <div className='servicesMain'>
                 <div className='centerTitleProducts'>
-                    <div className='titleProductsText'>
-                        <h1>SERVICIOS</h1>
-                        <div className='lineProducts'></div>
-                        <h3>Concoce los servicios que ofrecemos</h3>
+                    <div className='titleServicesText'>
+                        <div className='marginTitleService'>
+                            <h1>SERVICIOS</h1>
+                            <div className='lineService'></div>
+                            <h3>Concoce los servicios que ofrecemos</h3>
+                        </div>
                     </div>
                 </div>
             </div>

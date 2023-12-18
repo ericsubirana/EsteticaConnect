@@ -14,6 +14,7 @@ import Collection from '../pages/Collection.js';
 import Category from '../pages/Category.js';
 import OTPInput from '../components/forgotPassword/OTPInput.js';
 import ChangePassword from '../components/forgotPassword/ChangePassword.js';
+import Servei from '../components/services/service/Service.js'
 
 function Routers() {
   return (
@@ -34,6 +35,8 @@ function Routers() {
 
             <Route path='/collection/:collection' element={<Collection/>} /> {/* fer que estigui obligat a tenir un prametre */}
             <Route path='/category/:category' element={<Category/>} />
+            <Route path='/serveis/:servei' element={<Servei/>} />
+
 
             <Route element={<ProtectedRoute/>}>
               <Route path='/profile' element={<Profile/>} />

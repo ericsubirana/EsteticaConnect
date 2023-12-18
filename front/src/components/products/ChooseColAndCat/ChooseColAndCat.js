@@ -50,7 +50,7 @@ function ChooseColAndCat(props) {
     }
   }
 
-  const moveToCollection = async (col) => { //en compts de fer navigation enviar les dades al randomProducts? 
+  const moveToCollection = async (col) => {  
     setClickCol(false);
     setClickCat(false);
     navigation(`/collection/${col.collection}`); 

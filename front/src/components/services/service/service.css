@@ -1,0 +1,179 @@
+.serviceMain {
+    /*background-image: url('../../../assets/TractamentsCorporalsBack.png');*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 400px;
+}
+
+.titleServiceText{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    margin-top: 200px;
+    width: 75%;
+    justify-content: left;
+    color: white;
+}
+.titleServiceText h1{
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+.titleServiceText h3{
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 1930px) {
+    .titleServiceText {
+        width: 75%;
+    }
+}
+
+@media (max-width: 1350px) {
+    .titleServiceText {
+        width: 85%;
+    }
+}
+
+@media(max-width:790px){
+    .titleServiceText {
+        margin-top: 200px;
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+.serviceMapWidth{
+    width: 100%;
+    outline: none;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-right: 1px solid #7d7d7d44;
+}
+
+.serviceMap{
+    width: 80%;
+}
+
+.serviceMapWidth::-webkit-scrollbar {
+    display: block;
+    width: 2px;           
+}
+  
+.serviceMapWidth::-webkit-scrollbar-track {
+    background: transparent;    
+}
+
+.serviceMapWidth::-webkit-scrollbar-thumb {
+    background-color: grey;    
+    border-radius: 20px;     
+}
+
+.serviceMapWidth::-webkit-scrollbar-track-piece:end {
+    background: transparent;
+}
+
+.serviceMapWidth::-webkit-scrollbar-track-piece:start {
+    background: transparent;
+}
+
+
+.titleService{
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    color: #7D7D7D;
+    margin-bottom: 25px;
+}
+
+.titleService.selected {
+    /*border-right: 2px solid black;*/
+    color: black;
+}
+
+.titleService:hover{
+    cursor: pointer;
+}
+
+.serviceShow{
+    margin-top: 100px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.widthService{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.photoService{
+    display: flex;
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+.serviceDesc{
+    width: 500px;
+    margin-bottom: 20px;
+    color: #7D7D7D;
+    font-size: 20px;
+}
+
+.infoService{
+    margin-left: 80px;
+}
+
+@media(min-width:1450px){
+    .serviceMapWidth {
+        width: 50%;
+    }
+    .widthService {
+        width: 1265px;
+    }
+}
+
+@media(max-width:1000px){
+    .widthService {
+        display: flex;
+        flex-direction: column;
+    }
+    .infoService{
+        display: flex;
+        flex-direction: column;
+    }
+    .serviceDesc{
+        order:1;
+        width: 80%;
+    }
+    .photoService{
+        order:0;
+        width: 80%;
+        height: 325px;
+        margin-bottom: 50px;
+    }
+    .serviceMapWidth{
+        margin-bottom: 70px;
+    }
+}
+
+@media(max-width:1000px){
+    .serviceMapWidth{
+        width: 90%;
+        justify-content: center;
+    }
+    .infoService{
+        margin-left: 0px;
+    }
+    .photoService {
+        width: 95%;
+        height: 250px;
+        margin-bottom: 50px;
+    }
+}
