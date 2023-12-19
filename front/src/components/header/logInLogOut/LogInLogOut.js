@@ -32,7 +32,7 @@ function LogInLogOut(props) {
                         <Link className={page === 'home' ? 'homeNow' : 'home'} to={"/home"}>Home</Link>
                         <Link className={page === 'products' ? 'productesNow' : 'productes'} to={"/productes"}>Productes</Link>
                         <Link className={page === 'services' ? 'servicesNow' : 'services'} to={"/serveis"}>Serveis</Link>
-                        <Link className='profile' to={"/profile"}>Perfil</Link>
+                        <Link className={page === 'profile' ? 'profileNow' : 'profile'} to={"/profile"}>Perfil</Link>
                         <Link className={page === 'cart' ? 'carretNow' : 'carret'} to={"/cart"}>Carret</Link>
                     </div>
                     <div className="lineLoggedIn"></div>

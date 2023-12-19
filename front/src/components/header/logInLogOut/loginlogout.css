@@ -135,6 +135,14 @@
     margin-right: 30px;
 }
 
+.profileNow{
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+    position: relative;
+    margin-right: 30px;
+}
+
 .logout{
     text-decoration: none;
     color: #9B9292;
