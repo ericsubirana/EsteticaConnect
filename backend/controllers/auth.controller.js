@@ -6,6 +6,10 @@ const { TOKEN_SECRET } = require("../config.js")
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
+//profile image
+const path = require('path');
+const fs = require('fs');
+
 
 const register = async (req, res) => {
     const { username, email, password } = req.body;
@@ -15,7 +19,7 @@ const register = async (req, res) => {
             return res.status(400).json(["email already exists"]);
         }
         const passHash = await bcrypt.hash(password, 10); //aquesta funcio encripta el password
-        const user = new User({ username, email, password: passHash });
+        const user = new User({ username, email, password: passHash, image: 'user.png'});
         const userSaved = await user.save();
         const token = await createAccessToken({ id: userSaved._id }); //creció token
         res.cookie("token", token);
@@ -23,6 +27,7 @@ const register = async (req, res) => {
             id: userSaved._id,
             email: userSaved.email,
             username: userSaved.username,
+            image: userSaved.image,
             createdAt: userSaved.createdAt,
         });
     } catch (error) {
@@ -47,6 +52,7 @@ const login = async (req, res) => {
             id: userFound._id,
             email: userFound.email,
             username: userFound.username,
+            image: userFound.image,
             createdAt: userFound.createdAt,
         });
     } catch (error) {
@@ -58,20 +64,6 @@ const logout = async (req, res) => {
     res.cookie("token", "", { expires: new Date(0) }); //esborrem la cookie
     return res.status(200).send("OK"); //no cal posar res.json perque no retornem res
 };
-
-const profile = async (req, res) => {
-    const userFound = await User.findById(req.user.payload.id);
-    if (!userFound) {
-        return res.status(400).json({ message: "user not found" });
-    }
-    res.json({
-        id: userFound._id,
-        email: userFound.email,
-        username: userFound.username,
-        createdAt: userFound.createdAt,
-        updatedAt: userFound.updatedAt,
-    });
-}
 
 const verifyToken = async (req, res) => {
     const { token } = req.cookies;
@@ -93,6 +85,7 @@ const verifyToken = async (req, res) => {
             id: userFound._id,
             email: userFound.email,
             username: userFound.username,
+            image: userFound.image,
             createdAt: userFound.createdAt,
             updatedAt: userFound.updatedAt,
         });
@@ -181,10 +174,51 @@ const changePassword = async (req, res) => {
             return res.status(400).json(["email not exists"]);
         }
     } catch (e) {
-        console.log(e);
         return res.status(400).json(["error while changing password"]);
     }
     return res.status(200).json(["password updated"]);
 }
 
-module.exports = { register, login, logout, profile, verifyToken, forgotPassword, changePassword };
+const changeImage = async (req, res) => {
+    try {
+        const { token } = req.cookies;
+        jwt.verify(token, TOKEN_SECRET, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ message: "Invalid token" });
+            }
+            const userId = decoded.payload.id;
+            const userFound = await User.findById(userId);
+            if (!userFound) {
+                return res.status(401).json({ message: "User not found" });
+            }
+            else{
+                if (userFound.image && userFound.image != 'user.png') {
+                    const imagePath = path.join(__dirname, '../public/images', userFound.image);
+                    fs.unlinkSync(imagePath);
+                }
+                await User.updateOne({_id : userId}, {image: req.file.filename})
+                const result = await User.findOne({_id : userId});
+                return res.json(result)
+            }
+        });
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const profile = async (req, res) => {
+    const userFound = await User.findById(req.user.payload.id);
+    if (!userFound) {
+        return res.status(400).json({ message: "user not found" });
+    }
+    res.json({
+        id: userFound._id,
+        email: userFound.email,
+        username: userFound.username,
+        image: userFound.image,
+        createdAt: userFound.createdAt,
+        updatedAt: userFound.updatedAt,
+    });
+}
+
+module.exports = { register, login, logout, profile, verifyToken, forgotPassword, changePassword, changeImage};

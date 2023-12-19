@@ -12,6 +12,9 @@ const registerSchema = z.object({
     password : z.string({
         required_error: 'Password is required'
     }).min(6,{message: "Password must be atleast 6 characters"}).max(255),
+    image : z.string({
+        required_error: 'image error'
+    }).optional()
 })
 
 const loginSchema = z.object({

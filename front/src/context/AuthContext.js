@@ -96,6 +96,27 @@ export const AuthProvider = ({ children }) => {
         checkLogin();
     }, []);
 
+    const changePhoto = async () => {
+        try {
+            const cookies = Cookies.get();
+            const res = await verifyTokenReq(cookies.token);
+            if (!res.data) {
+                setIsAuthenticated(false);
+                setLoading(false);
+                return;
+            }
+            
+            setIsAuthenticated(true);
+            setUser(res.data);
+            setLoading(false);
+        } catch (error) {
+            console.log(error);
+            setIsAuthenticated(false);
+            setUser(null)
+            setLoading(false);
+        }
+    }   
+
     return (
         <AuthContext.Provider value={{
             signup,
@@ -110,7 +131,8 @@ export const AuthProvider = ({ children }) => {
             otp,
             setOTP,
             changePassword, 
-            setChangePassword
+            setChangePassword,
+            changePhoto
         }}>
             {children}
         </AuthContext.Provider>

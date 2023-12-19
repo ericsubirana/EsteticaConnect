@@ -52,7 +52,7 @@ function Sidebar(props) {
               <li><Link className='Cabecera-li' to='/home'>Home</Link> <LiaHomeSolid size={20} className='lia' /> </li>
               <li><Link className='Cabecera-li' to='/productes'>Productes</Link> <PiPackageThin  size={20} className='lia' /></li>
               <li><Link className='Cabecera-li' to='/serveis'>Serveis</Link><TbMassage  size={20} className='lia' /> </li>
-              <li><Link className='Cabecera-li' to='/perfil'>Perfil</Link> <LiaUserSolid size={20} className='lia' /> </li>
+              <li><Link className='Cabecera-li' to='/profile'>Perfil</Link> <LiaUserSolid size={20} className='lia' /> </li>
               <li><Link className='Cabecera-li' to='/cart'>Carret</Link> <LiaShoppingCartSolid  size={20} className='lia' /> </li>
               <li><Link className='logout' onClick={logoutPage} to={"/home"}>LOG OUT</Link> <IoLogOutOutline  size={20} className='lia' /></li>
             </ul>

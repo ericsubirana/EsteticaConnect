@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const {connectDB} = require('./db.js');
+
+
 const authRoutes = require('./routes/auth.routes.js');
 const productsRoutes = require('./routes/products.routes.js');
 const cartRoutes = require('./routes/cart.routes.js');
@@ -21,6 +23,8 @@ app.use(cors({
     credentials: true,
 })); // Enable CORS for all routes
 app.use(cookieParser()); //per poder llegir les cookies
+
+app.use(express.static('public')) //per poder entrar en la carpeta de les imatges
 
 app.use('/api', authRoutes);
 app.use('/api', productsRoutes);

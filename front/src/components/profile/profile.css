@@ -1,0 +1,16 @@
+.profile{
+    margin-top: 250px;
+}
+
+.imgSizeProfile{
+    border-radius: 50%;
+    width: 250px;
+}
+
+.imgProfile{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgb(187, 187, 187);
+}

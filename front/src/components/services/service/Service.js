@@ -67,7 +67,7 @@ function Service() {
         if (height.current) {
             console.log(height.current.clientHeight)
             const description = height.current;
-            const hasOverflow = description.clientHeight > 449;
+            const hasOverflow = description.clientHeight > 451;
             setDescriptionHeight(hasOverflow ? 450 : 'auto');
         }
     }, [serviceClicked]);

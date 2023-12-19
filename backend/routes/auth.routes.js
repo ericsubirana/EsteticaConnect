@@ -1,8 +1,10 @@
 const express = require('express');
-const {login, register, logout, profile, verifyToken, forgotPassword, changePassword} = require('../controllers/auth.controller.js');
-const {authRequired} = require('../middlewares/validateToken.js');
-const {loginSchema, registerSchema} = require('../schemas/auth.schema.js');
-const {validateSchema} = require('../middlewares/validator.middleware.js');
+const { login, register, logout, profile, verifyToken, forgotPassword, changePassword, changeImage } = require('../controllers/auth.controller.js');
+const { authRequired } = require('../middlewares/validateToken.js');
+const { loginSchema, registerSchema } = require('../schemas/auth.schema.js');
+const { validateSchema } = require('../middlewares/validator.middleware.js');
+const multer = require('multer')
+const path = require('path')
 
 const router = express.Router()
 
@@ -20,6 +22,21 @@ router.post('/forgotPassword', forgotPassword);
 
 router.post('/changePassword', changePassword);
 
+//STORE IMAGE
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+    }
+})
+
+const uplaod = multer({
+    storage: storage
+})
+
+router.post('/changeImage', uplaod.single('file'), changeImage);
 
 
 module.exports = router;
