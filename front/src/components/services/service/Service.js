@@ -70,7 +70,7 @@ function Service() {
             const hasOverflow = description.clientHeight > 451;
             setDescriptionHeight(hasOverflow ? 450 : 'auto');
         }
-    }, [serviceClicked]);
+    }, []);
 
     const changeService = async (service) => {
         setServicedClicked(service);

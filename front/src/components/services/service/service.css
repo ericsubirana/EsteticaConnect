@@ -54,6 +54,7 @@
 
 .serviceMap{
     width: 80%;
+    max-height: 450px;
 }
 
 .serviceMapWidth::-webkit-scrollbar {

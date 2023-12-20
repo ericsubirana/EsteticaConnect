@@ -96,7 +96,7 @@ export const AuthProvider = ({ children }) => {
         checkLogin();
     }, []);
 
-    const changePhoto = async () => {
+    const updateUser = async () => {
         try {
             const cookies = Cookies.get();
             const res = await verifyTokenReq(cookies.token);
@@ -132,7 +132,7 @@ export const AuthProvider = ({ children }) => {
             setOTP,
             changePassword, 
             setChangePassword,
-            changePhoto
+            updateUser
         }}>
             {children}
         </AuthContext.Provider>

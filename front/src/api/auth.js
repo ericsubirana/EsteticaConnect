@@ -16,3 +16,8 @@ export const changeImage = file => axios.post('/changeImage', file);
 
 export const getProfile = () => axios.post('/getProfile');
 
+export const updateProfile = ({values, id}) => axios.post('/updateProfile', {values, id});
+
+
+
+

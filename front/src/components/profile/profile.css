@@ -1,5 +1,12 @@
-.profile{
+.profileUserMenu{
+    display: flex;
     margin-top: 250px;
+    width: 100%;
+    justify-content: center;
+}
+
+.profileUserMenu:hover{
+    cursor: auto;
 }
 
 .imgSizeProfile{
@@ -13,4 +20,11 @@
     object-fit: cover;
     border-radius: 50%;
     border: 1px solid rgb(187, 187, 187);
+}
+
+.slideProfile{
+    width: 80%;
+    display: flex;
+    flex-wrap: row;
+    justify-content: space-between;
 }

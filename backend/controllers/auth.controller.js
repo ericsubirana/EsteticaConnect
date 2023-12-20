@@ -28,6 +28,9 @@ const register = async (req, res) => {
             email: userSaved.email,
             username: userSaved.username,
             image: userSaved.image,
+            name: userFound.name,
+            direction: userFound.direction,
+            surname: userFound.surname,
             createdAt: userSaved.createdAt,
         });
     } catch (error) {
@@ -53,6 +56,9 @@ const login = async (req, res) => {
             email: userFound.email,
             username: userFound.username,
             image: userFound.image,
+            name: userFound.name,
+            direction: userFound.direction,
+            surname: userFound.surname,
             createdAt: userFound.createdAt,
         });
     } catch (error) {
@@ -86,6 +92,9 @@ const verifyToken = async (req, res) => {
             email: userFound.email,
             username: userFound.username,
             image: userFound.image,
+            name: userFound.name,
+            direction: userFound.direction,
+            surname: userFound.surname,
             createdAt: userFound.createdAt,
             updatedAt: userFound.updatedAt,
         });
@@ -221,4 +230,24 @@ const profile = async (req, res) => {
     });
 }
 
-module.exports = { register, login, logout, profile, verifyToken, forgotPassword, changePassword, changeImage};
+const updateprofile = async (req, res) => {
+    const {values, id} = req.body;
+    try {
+        const userFound = await User.findById(id);
+        if (!userFound) {
+            return res.status(400).json({ message: "user not found" });
+        }
+        const updateFields = {};
+        for (const key in values) {
+            if (Object.hasOwnProperty.call(values, key) && values[key] !== '') {
+                updateFields[key] = values[key];
+            }
+        }
+        await User.updateOne({ _id: id }, { $set: updateFields });
+    } catch (error) {
+        return res.status(400).json({ message: "error while updating" });
+    }
+    res.status(200).json({message: "Profile Updated"});
+}
+
+module.exports = { register, login, logout, profile, verifyToken, forgotPassword, changePassword, changeImage, updateprofile};
