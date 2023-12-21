@@ -1,7 +1,8 @@
 .cartcomponent {
   background-color: #FFF2FF;
-  height: 1050px;
+  height: auto;
   font-weight: lighter;
+  padding-bottom: 150px;
 }
 
 .begin-cart-component {

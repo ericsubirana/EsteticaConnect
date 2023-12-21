@@ -29,8 +29,8 @@ function ProfileUser() {
 
     const profileUserUpdate = async (values) => {
         try {
-            const image = await handleUpload();
-            const response = await updateProfile({ values, id: user.id }); // bd
+            await handleUpload(); //penjar imatge bd i backend
+            await updateProfile({ values, id: user.id }); // bd
             await updateUser(); //variable global front
         } catch (error) {
             console.log('Error:', error);
@@ -41,17 +41,26 @@ function ProfileUser() {
         setImage(user.image);
     }, [user.image]);
 
+
     return (
         <div className='profileUserMenu'>
             <div className='SquareBack'></div>
             <div className='slideProfile'>
-                <div>
+                <div className='imageBehindSideBar'>
                     {image && (
                         <div className='imgSizeProfile'>
                             <img className='imgProfile' src={`http://localhost:5000/images/${image}`} alt='' />
                         </div>
                     )}
-                    <input type='file' className='fileInput' onChange={e => setFile(e.target.files[0])} />
+                    <input type="file" name="file" id="file" class="inputfile" onChange={e => setFile(e.target.files[0])} />
+                    <label for="file">Seleccionar foto</label>
+                    <div className='aboluteProfile'>
+                        {file && (
+                            <span>
+                                Archivo seleccionado: {file.name}
+                            </span>
+                        )}
+                    </div>
                 </div>
                 <form className='profileForm' onSubmit={handleSubmit(async (values) => {
                     profileUserUpdate(values)

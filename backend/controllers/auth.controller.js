@@ -188,6 +188,7 @@ const changePassword = async (req, res) => {
 const changeImage = async (req, res) => {
     try {
         const { token } = req.cookies;
+        console.log(req.body)
         jwt.verify(token, TOKEN_SECRET, async (err, decoded) => {
             if (err) {
                 return res.status(401).json({ message: "Invalid token" });
