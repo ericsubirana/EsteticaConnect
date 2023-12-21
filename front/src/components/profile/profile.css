@@ -1,8 +1,25 @@
 .profileUserMenu{
     display: flex;
-    margin-top: 250px;
     width: 100%;
     justify-content: center;
+    background-color: #FFF2FF;
+    z-index: -2;
+}
+.slideProfile{
+    margin-top: 250px;
+    margin-bottom: 220px;
+}
+
+.SquareBack{
+    position: absolute;
+    width: 900px;
+    margin-top: 150px;
+    height: 500px;
+    background-color: white;
+    z-index: 1;
+    border-radius: 20px;
+    border: 1px solid rgb(175, 173, 173);
+    box-shadow: 0 0.2rem 0.4rem 0 rgba(50, 50, 51, 0.3)
 }
 
 .profileUserMenu:hover{
@@ -23,8 +40,55 @@
 }
 
 .slideProfile{
-    width: 80%;
+    width: 700px;
     display: flex;
     flex-wrap: row;
     justify-content: space-between;
+    z-index: 2;
+}
+
+.profileForm{
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonProfile{
+    margin-top: 260px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+    position: absolute;
+}
+
+.fileInput{
+
+}
+
+.profileUserMenu form input{
+    position: relative;
+    border: none;
+    height: 35px;
+    border-bottom: 2px solid #fad7fa;
+    background-color: transparent;
+}
+.profileUserMenu form input:focus{
+    position: relative;
+    outline: none;
+    background-color: #fad7fa;
+    border-radius: 8px;
+}
+
+.nameSurnameProfiile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nameSurnameProfiile h3{
+    margin-left: 5px;
+}
+
+.profileFormDivide{
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
 }

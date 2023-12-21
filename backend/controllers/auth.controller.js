@@ -19,7 +19,7 @@ const register = async (req, res) => {
             return res.status(400).json(["email already exists"]);
         }
         const passHash = await bcrypt.hash(password, 10); //aquesta funcio encripta el password
-        const user = new User({ username, email, password: passHash, image: 'user.png'});
+        const user = new User({ username, email, password: passHash, image: 'user.png', name: '', direction: '', surname: ''});
         const userSaved = await user.save();
         const token = await createAccessToken({ id: userSaved._id }); //creció token
         res.cookie("token", token);
@@ -28,9 +28,6 @@ const register = async (req, res) => {
             email: userSaved.email,
             username: userSaved.username,
             image: userSaved.image,
-            name: userFound.name,
-            direction: userFound.direction,
-            surname: userFound.surname,
             createdAt: userSaved.createdAt,
         });
     } catch (error) {

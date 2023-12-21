@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { changeImage } from '../../api/auth';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../../context/AuthContext.js';
-import {updateProfile} from '../../api/auth.js'
+import { updateProfile } from '../../api/auth.js'
 import './profile.css';
+import { FaUser, FaAt } from "react-icons/fa";
+import { SiGooglemaps } from "react-icons/si";
 
 function ProfileUser() {
     const [file, setFile] = useState();
@@ -15,7 +17,6 @@ function ProfileUser() {
         try {
             const formData = new FormData();
             if (file) {
-                console.log(file)
                 formData.append('file', file);
                 const result = await changeImage(formData);
                 setImage(result.data.image);
@@ -28,10 +29,9 @@ function ProfileUser() {
 
     const profileUserUpdate = async (values) => {
         try {
-            const response = await updateProfile({ values, id: user.id });
-            console.log(response.data)
-            await updateUser();
-            console.log('ep')
+            const image = await handleUpload();
+            const response = await updateProfile({ values, id: user.id }); // bd
+            await updateUser(); //variable global front
         } catch (error) {
             console.log('Error:', error);
         }
@@ -43,6 +43,7 @@ function ProfileUser() {
 
     return (
         <div className='profileUserMenu'>
+            <div className='SquareBack'></div>
             <div className='slideProfile'>
                 <div>
                     {image && (
@@ -50,21 +51,46 @@ function ProfileUser() {
                             <img className='imgProfile' src={`http://localhost:5000/images/${image}`} alt='' />
                         </div>
                     )}
-                    <input type='file' onChange={e => setFile(e.target.files[0])} />
-                    <button onClick={handleUpload}>Upload</button>
+                    <input type='file' className='fileInput' onChange={e => setFile(e.target.files[0])} />
                 </div>
-                <form onSubmit={handleSubmit(async (values) => {
-                    profileUserUpdate(values)})}>
-                    <h3>Username</h3>
-                    <input type="text" placeholder={user.username} {...register('username', { required: false })}   />
-                    <h3>Dirección</h3>
-                    <input type="text" placeholder={user.direction} {...register('direction', { required: false })} />
-                    <h3>Nombre</h3>
-                    <input type="text" placeholder={user.name} {...register('name', { required: false })} />
-                    <h3>Apellidos</h3>
-                    <input type="text" placeholder={user.surname} {...register('surname', { required: false })} />
-
-                    <button type='submit' className='button-53'> Guardar cambios </button>
+                <form className='profileForm' onSubmit={handleSubmit(async (values) => {
+                    profileUserUpdate(values)
+                })}>
+                    <div className='profileFormDivide'>
+                        <div>
+                            <div className='nameSurnameProfiile'>
+                                <FaUser />
+                                <h3>Username</h3>
+                            </div>
+                            <input type="text" placeholder={user.username} {...register('username', { required: false })} />
+                        </div>
+                        <div>
+                            <div className='nameSurnameProfiile'>
+                                <SiGooglemaps />
+                                <h3>Dirección</h3>
+                            </div>
+                            <input type="text" placeholder={user.direction} {...register('direction', { required: false })} />
+                        </div>
+                    </div>
+                    <div className='profileFormDivide'>
+                        <div>
+                            <div className='nameSurnameProfiile'>
+                                <FaAt />
+                                <h3>Nombre</h3>
+                            </div>
+                            <input type="text" placeholder={user.name} {...register('name', { required: false })} />
+                        </div>
+                        <div className='profileFormDivide2'>
+                            <div className='nameSurnameProfiile'>
+                                <FaAt />
+                                <h3>Apellidos</h3>
+                            </div>
+                            <input type="text" placeholder={user.surname} {...register('surname', { required: false })} />
+                        </div>
+                    </div>
+                    <div className='buttonProfile'>
+                        <button type='submit' className='button-53'> Guardar cambios </button>
+                    </div>
                 </form>
             </div>
         </div>
