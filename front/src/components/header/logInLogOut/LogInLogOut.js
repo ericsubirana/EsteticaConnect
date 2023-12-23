@@ -11,7 +11,7 @@ function LogInLogOut(props) {
     }
 
     return (
-        <div className = 'loginlogout'>
+        <div className='loginlogout'>
             {!user && (
                 <>
                     <div className='leftside'>
@@ -34,12 +34,15 @@ function LogInLogOut(props) {
                         <Link className={page === 'services' ? 'servicesNow' : 'services'} to={"/serveis"}>Serveis</Link>
                         <Link className={page === 'profile' ? 'profileNow' : 'profile'} to={"/profile"}>Perfil</Link>
                         <Link className={page === 'cart' ? 'carretNow' : 'carret'} to={"/cart"}>Carret</Link>
+                        {user.admin && (
+                            <Link className={page === 'calendar' ? 'calendarNow' : 'calendar'} to={"/calendar"}>Calendario</Link>
+                        )}
                     </div>
                     <div className="lineLoggedIn"></div>
                     <div className='rightside'>
-                        <Link className='logout' onClick={logoutPage} to={"/home"}>LOG OUT</Link>   
+                        <Link className='logout' onClick={logoutPage} to={"/home"}>LOG OUT</Link>
                     </div>
-                </> 
+                </>
             )}
         </div>
     )

@@ -4,6 +4,7 @@ import { FiMenu } from "react-icons/fi"
 import { useAuth } from '../../../context/AuthContext';
 
 import { LiaHomeSolid, LiaUserSolid, LiaShoppingCartSolid  } from "react-icons/lia";
+import { CiCalendar } from "react-icons/ci";
 import { PiPackageThin } from "react-icons/pi";
 import { TbMassage } from "react-icons/tb";
 import { IoLogOutOutline, IoPersonAddOutline  } from "react-icons/io5";
@@ -38,8 +39,8 @@ function Sidebar(props) {
           {!user && (
             <ul className='Cabecera-ul'>
               <li><Link className='Cabecera-li' to='/home'>Home</Link> < LiaHomeSolid className='lia' /> </li>
-              <li><Link className='Cabecera-li' to='/productes'>Productes</Link> <PiPackageThin  size={20} className='lia' /></li>
-              <li><Link className='Cabecera-li' to='/serveis'>Serveis</Link><TbMassage  size={20} className='lia' /></li>
+              <li><Link className='Cabecera-li' to='/productes'>Productos</Link> <PiPackageThin  size={20} className='lia' /></li>
+              <li><Link className='Cabecera-li' to='/serveis'>Servicios</Link><TbMassage  size={20} className='lia' /></li>
               <li><Link className='Cabecera-li' to='/login'>LOG IN</Link> <IoLogOutOutline size={20} className='lia' /> </li>
               <li><Link className='Cabecera-li' to='/register'>SIGN UP</Link> <IoPersonAddOutline  size={20} className='lia' /> </li>
 
@@ -50,10 +51,13 @@ function Sidebar(props) {
           {user && (
             <ul className='Cabecera-ul'>
               <li><Link className='Cabecera-li' to='/home'>Home</Link> <LiaHomeSolid size={20} className='lia' /> </li>
-              <li><Link className='Cabecera-li' to='/productes'>Productes</Link> <PiPackageThin  size={20} className='lia' /></li>
-              <li><Link className='Cabecera-li' to='/serveis'>Serveis</Link><TbMassage  size={20} className='lia' /> </li>
+              <li><Link className='Cabecera-li' to='/productes'>Productos</Link> <PiPackageThin  size={20} className='lia' /></li>
+              <li><Link className='Cabecera-li' to='/serveis'>Servicios</Link><TbMassage  size={20} className='lia' /> </li>
               <li><Link className='Cabecera-li' to='/profile'>Perfil</Link> <LiaUserSolid size={20} className='lia' /> </li>
-              <li><Link className='Cabecera-li' to='/cart'>Carret</Link> <LiaShoppingCartSolid  size={20} className='lia' /> </li>
+              <li><Link className='Cabecera-li' to='/cart'>Carrete</Link> <LiaShoppingCartSolid  size={20} className='lia' /> </li>
+              {user.admin && (
+                <li><Link className='Cabecera-li' to='/calendar'>Calendario</Link> <CiCalendar  size={20} className='lia' /> </li>
+              )}
               <li><Link className='logout' onClick={logoutPage} to={"/home"}>LOG OUT</Link> <IoLogOutOutline  size={20} className='lia' /></li>
             </ul>
           )}

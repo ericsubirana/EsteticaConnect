@@ -19,7 +19,7 @@ const register = async (req, res) => {
             return res.status(400).json(["email already exists"]);
         }
         const passHash = await bcrypt.hash(password, 10); //aquesta funcio encripta el password
-        const user = new User({ username, email, password: passHash, image: 'user.png', name: '', direction: '', surname: ''});
+        const user = new User({ username, email, password: passHash, image: 'user.png', name: '', direction: '', surname: '', admin: false});
         const userSaved = await user.save();
         const token = await createAccessToken({ id: userSaved._id }); //creció token
         res.cookie("token", token);
@@ -28,6 +28,7 @@ const register = async (req, res) => {
             email: userSaved.email,
             username: userSaved.username,
             image: userSaved.image,
+            admin: userSaved.admin,
             createdAt: userSaved.createdAt,
         });
     } catch (error) {
@@ -53,6 +54,7 @@ const login = async (req, res) => {
             email: userFound.email,
             username: userFound.username,
             image: userFound.image,
+            admin: userFound.admin,
             name: userFound.name,
             direction: userFound.direction,
             surname: userFound.surname,
@@ -91,6 +93,7 @@ const verifyToken = async (req, res) => {
             image: userFound.image,
             name: userFound.name,
             direction: userFound.direction,
+            admin: userFound.admin,
             surname: userFound.surname,
             createdAt: userFound.createdAt,
             updatedAt: userFound.updatedAt,
@@ -152,8 +155,10 @@ function sendEmail({ recipient_email, OTP }) {
   </body>
   </html>`,
         };
+
         transporter.sendMail(mail_configs, function (error, info) {
             if (error) {
+                console.log('ep3')
                 console.log(error);
                 return reject({ message: `An error has occured` });
             }
@@ -223,6 +228,7 @@ const profile = async (req, res) => {
         email: userFound.email,
         username: userFound.username,
         image: userFound.image,
+        admin: userFound.admin,
         createdAt: userFound.createdAt,
         updatedAt: userFound.updatedAt,
     });
@@ -247,5 +253,27 @@ const updateprofile = async (req, res) => {
     }
     res.status(200).json({message: "Profile Updated"});
 }
+
+/*const isAdmin = async (req, res) => {
+    try {
+        const { token } = req.cookies;
+        jwt.verify(token, TOKEN_SECRET, async (err, decoded) => {
+            if (err) {
+                return res.status(401).json({ message: "Invalid token" });
+            }
+            const userId = decoded.payload.id;
+            const userFound = await User.findById(userId);
+            if (!userFound) {
+                return res.status(401).json({ message: "User not found" });
+            }
+            else{
+                const isAdmin = userFound.admin;
+                return res.json({ isAdmin });
+            }
+        });
+    } catch (error) {
+        console.log(error)
+    }
+}*/
 
 module.exports = { register, login, logout, profile, verifyToken, forgotPassword, changePassword, changeImage, updateprofile};

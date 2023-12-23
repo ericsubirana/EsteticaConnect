@@ -1,0 +1,30 @@
+.popupCalendar  {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    margin-top: 70px;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    cursor:auto;
+}
+
+.centerPopUp{
+    background-color: white;
+    width: 750px;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    margin-top: -250px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

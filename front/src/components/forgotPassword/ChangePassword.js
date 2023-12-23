@@ -41,12 +41,12 @@ function ChangePassword() {
             </h2>
             <form className="passwordForm">
               <div>
-                <label
+                <div
                   htmlFor="password"
                   className="labelPassword"
                 >
                   New Password
-                </label>
+                </div>
                 <input
                   type="password"
                   name="password"
@@ -58,12 +58,12 @@ function ChangePassword() {
                 ></input>
               </div>
               <div>
-                <label
+                <div
                   htmlFor="confirm-password"
                   className="labelPassword"
                 >
                   Confirm password
-                </label>
+                </div>
                 <input
                   type="password"
                   name="confirm-password"
@@ -85,7 +85,7 @@ function ChangePassword() {
                   ></input>
                 </div>
                 <div className="acceptance">
-                  <label
+                  <div
                     htmlFor="newsletter"
                     className="acceptanceText"
                   >
@@ -96,7 +96,7 @@ function ChangePassword() {
                     >
                       Terms and Conditions
                     </a>
-                  </label>
+                  </div>
                 </div>
               </div>
             </form>

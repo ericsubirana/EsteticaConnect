@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {AuthProvider} from '../context/AuthContext.js';
 import ProtectedRoute from '../ProtectedRoute.js';
+import ProtectedRouteAdmin from '../ProtectedRouteAdmin.js'
 
 import Home from '../pages/Home.js';
 import Login from '../pages/Login.js';
@@ -15,6 +16,7 @@ import Category from '../pages/Category.js';
 import OTPInput from '../components/forgotPassword/OTPInput.js';
 import ChangePassword from '../components/forgotPassword/ChangePassword.js';
 import Servei from '../components/services/service/Service.js'
+import Calendar from '../pages/CalendarEmployees.js';
 
 function Routers() {
   return (
@@ -42,6 +44,11 @@ function Routers() {
               <Route path='/profile' element={<Profile/>} />
               <Route path='/cart' element={<Cart/>} />
             </Route>
+
+            <Route element={<ProtectedRouteAdmin/>}>
+              <Route path='/calendar' element={<Calendar/>} />
+            </Route>
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>

@@ -1,5 +1,5 @@
 const express = require('express');
-const { login, register, logout, profile, verifyToken, forgotPassword, changePassword, changeImage, updateprofile } = require('../controllers/auth.controller.js');
+const { login, register, logout, profile, verifyToken, forgotPassword, changePassword, changeImage, updateprofile, isAdmin } = require('../controllers/auth.controller.js');
 const { authRequired } = require('../middlewares/validateToken.js');
 const { loginSchema, registerSchema } = require('../schemas/auth.schema.js');
 const { validateSchema } = require('../middlewares/validator.middleware.js');
@@ -39,6 +39,8 @@ const uplaod = multer({
 router.post('/changeImage', uplaod.single('file'), changeImage);
 
 router.post('/updateProfile', updateprofile);
+
+/*router.get('/isAdmin', isAdmin);*/
 
 
 

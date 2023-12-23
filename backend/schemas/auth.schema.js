@@ -23,6 +23,9 @@ const registerSchema = z.object({
     }).optional(),
     surname : z.string({
         message: 'Invalid surname'
+    }).optional(),
+    admin : z.string({
+        message: 'No admin'
     }).optional()
 })
 
