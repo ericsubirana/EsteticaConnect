@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Slider from "react-slick";
+import { useNavigate } from 'react-router-dom';
 
 import "./carrousel.css";
 import img1 from '../../../assets/annexos.png';
@@ -15,34 +16,41 @@ import "slick-carousel/slick/slick-theme.css";
 function Carrousel() {
 
   const [slidesToShow, setSlidesToShow] = useState(3);
+  const navigation = useNavigate();
 
   const info = [
     {
-      image: img6,
-      title: 'TRACTAMENT FACIAL'
+        title: 'TRATAMIENTOS CORPORALES',
+        nom: 'Tratamientos Corporales',
+        img: img5
     },
     {
-      image: img2,
-      title: 'APARATOLOGÍA'
+        title: 'DEPILACIONES',
+        nom: 'Depilaciones',
+        img: img3
     },
     {
-      image: img3,
-      title: 'DEPILACIONS'
+        title: 'TRATAMIENTOS FACIALES',
+        nom: 'Tratamientos Faciales',
+        img: img6
     },
     {
-      image: img5,
-      title: 'TRACTAMENT CORPORAL'
+        title: 'MANICURAS & PEDICURAS',
+        nom: 'Manicuras y Pedicuras',
+        img: img4
     },
     {
-      image: img4,
-      title: 'MANICURA'
+        title: 'SERVICIOS ANEXOS',
+        nom: 'Anexos',
+        img: img1
     },
     {
-      image: img1,
-      title: 'ANNEXOS'
-    },
-    
-  ];
+        title: 'APARATOLOGÍA',
+        nom: 'Aparatología',
+        img: img2
+    }
+  ]
+
 
   const settings = {
     dots: true,
@@ -71,6 +79,10 @@ function Carrousel() {
     };
   }, [window.innerWidth]);
 
+  const moveToService = (title) => {
+    navigation(`/serveis/${title}`);
+  }
+
   return (
     <div className='carrousel'>
       <h1>SERVEIS</h1>
@@ -78,7 +90,7 @@ function Carrousel() {
         <Slider {...settings}>
           {info.map((e, index) => (
             <div key={index} className='slider'>
-              <img src={e.image} className='imageSlider' />
+              <img src={e.img} className='imageSlider' onClick={() => moveToService(e.nom)}/>
               <p className='titleCarrousel'>{e.title}</p>
             </div>
           ))}

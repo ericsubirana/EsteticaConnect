@@ -78,21 +78,21 @@ export default function LoginForm(props) {
         <form onSubmit={handleSubmit(async (values) => {
           signin(values);
         })}>
-          <label className='userMail'>
+          <div className='userMail'>
             <div className='together'>
               <h3>CORREU</h3>
               {errors.email && <p>Email is required</p>}
             </div>
             <input type="text" {...register('email', { required: true })} onChange={(e) => setEmail(e.target.value)} />
-          </label>
-          <label className='userPassword'>
+          </div>
+          <div className='userPassword'>
             <div className='together'>
               <h3>CONTRASENYA</h3>
               {errors.password && <p>Password is required</p>}
             </div>
             <input type="password" {...register('password', { required: true })} />
 
-          </label>
+          </div>
           <div className='buttonAndPAss'>
             <Link className='link' onClick={() => nagigateToOtp()} >Has oblidat la contrasenya?</Link>
             <button type='submit' className='button-53' > Log In </button>

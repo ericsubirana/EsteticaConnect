@@ -47,7 +47,6 @@ function Services() {
     const navigation = useNavigate();
 
     const takeServices = async (title) => {
-        console.log(title);
         navigation(`/serveis/${title}`);
     }
 
