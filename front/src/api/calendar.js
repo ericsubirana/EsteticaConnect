@@ -6,6 +6,6 @@ export const getEvents = () => axios.get('/getEvents');
 
 export const getSpecificEvent = (id) => axios.get(`/getSpecificEvent/${id}`);
 
-export const updateEvent = ({id, values}) => axios.post('/getSpecificEvent', {id, values});
+export const updateEvent = ({id, values}) => axios.post('/updateEvent', {id, values});
 
-export const deleteEvent = id => axios.post('/getSpecificEvent', id);
+export const deleteEvent = (id) => axios.get(`/deleteEvent/${id}`);

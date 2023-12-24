@@ -12,9 +12,12 @@ import './calendarpopup.css';
 const localizer = momentLocalizer(moment);
 
 function CalendarPopUp(props) {
-  const { handleSubmit, control, setValue } = useForm();
+  const { handleSubmit, control, setValue, reset } = useForm();
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const state = {
+    button: 1
+  };
 
 
   const handleSelectSlot = (slotInfo) => {
@@ -28,10 +31,11 @@ function CalendarPopUp(props) {
 
   const closeEvent = async () => {
     setSelectedEvent(null);
+    setTimeout(() => reset(), 0);
   }
 
   const onSubmit = async (data, e) => {
-    if (data.startTime >= data.endTime) {
+    if (data.startHour >= data.endHour) {
       toast.error('El tiempo inicial no puede ser más grande que el final', { autoClose: 1000, closeOnClick: true });
       toast.clearWaitingQueue();
     }
@@ -39,15 +43,46 @@ function CalendarPopUp(props) {
       try {
         data.day = moment(selectedDate);
         await insertEvent(data);
-        setValue('clientName', '');
-        setValue('clientPhoneNumber', '');
-        setValue('description', '');
-        setValue('startHour', '');
-        setValue('endHour', '');
+        reset();
         setSelectedDate(null);
         props.takeAllEvents();//actualitzem el calendari amb el nou event
       } catch (error) {
         toast.error('Error insertando evento', { autoClose: 1000, closeOnClick: true });
+        toast.clearWaitingQueue();
+      }
+    }
+  };
+
+  const onUpdateOrDelete = async (data, e) => {
+    if (data.startHour >= data.endHour) {
+      toast.error('El tiempo inicial no puede ser más grande que el final', { autoClose: 1000, closeOnClick: true });
+      toast.clearWaitingQueue();
+    }
+    else {
+      try { 
+        if (state.button === 1) {
+          const id = selectedEvent[0]._id;
+          data.day = selectedEvent[0].day;
+          const response = await updateEvent({ id, values: data});
+          reset();
+          setSelectedDate(null);
+          setSelectedEvent(null);
+          props.takeAllEvents();//actualitzem el calendari segons faci falta
+          toast.success(response.data.message, { autoClose: 1000, closeOnClick: true });
+          toast.clearWaitingQueue();
+        }
+        else {
+          const id = selectedEvent[0]._id;
+          const response = await deleteEvent(id);
+          reset();
+          setSelectedDate(null);
+          setSelectedEvent(null);
+          props.takeAllEvents();
+          toast.success(response.data.message, { autoClose: 1000, closeOnClick: true });
+          toast.clearWaitingQueue();
+        }
+      } catch (error) {
+        toast.error('Error actualizando/borrando evento', { autoClose: 1000, closeOnClick: true });
         toast.clearWaitingQueue();
       }
     }
@@ -97,7 +132,11 @@ function CalendarPopUp(props) {
                 defaultValue=""
                 control={control}
                 render={({ field }) => (
-                  <input {...field} type="time" onChange={(e) => setValue('startHour', e.target.value)} required />
+                  <input 
+                    {...field} 
+                    type="time" 
+                    onChange={(e) => setValue('startHour', e.target.value)} 
+                    required />
                 )}
               />
               <p>Hora que acaba</p>
@@ -106,7 +145,10 @@ function CalendarPopUp(props) {
                 defaultValue=""
                 control={control}
                 render={({ field }) => (
-                  <input {...field} type="time" onChange={(e) => setValue('endHour', e.target.value)} required />
+                  <input 
+                    {...field} 
+                    type="time" 
+                    onChange={(e) => setValue('endHour', e.target.value)} required />
                 )}
               />
               <button type="submit">Guardar</button>
@@ -115,16 +157,65 @@ function CalendarPopUp(props) {
           </div>
         </div>
       )}
-      {console.log(selectedEvent)}
       {selectedEvent && (
         <div className='popupCalendar'>
           <div className='centerPopUp'>
-            {selectedEvent[0].clientName}
-            {selectedEvent[0].clientPhoneNumber}
-            {selectedEvent[0].description}
-            {selectedEvent[0].startHour}
-            {selectedEvent[0].endHour}
-            <button type='button' onClick={closeEvent}>Cerrar</button>
+            <form onSubmit={handleSubmit(onUpdateOrDelete)}>
+              <p>Nombre cliente</p>
+              {setValue('clientName', selectedEvent[0].clientName)}
+              <Controller
+                name="clientName"
+                control={control}
+                render={({ field }) => <input {...field} type="text" required />}
+              />
+              <p>IMPORTANTE! Si quieres que un día antes se avise al cliente: </p>
+              {setValue('clientPhoneNumber', selectedEvent[0].clientPhoneNumber)}
+              <Controller
+                name="clientPhoneNumber"
+                control={control}
+                render={({ field }) => <input {...field} type="number" />}
+              />
+              <p>Descripción :</p>
+              {setValue('description', selectedEvent[0].description)}
+              <Controller
+                name="description"
+                control={control}
+                render={({ field }) => <input {...field} type="text" />}
+              />
+              <p>Hora que empieza</p>
+              {setValue('startHour', selectedEvent[0].startHour)}
+              <Controller
+                name="startHour"
+                control={control}
+                defaultValue={selectedEvent[0].startHour}
+                render={({ field }) => (
+                  <input
+                    {...field}
+                    type="time"
+                    onChange={(e) => setValue('startHour', e.target.value)}
+                    required
+                  />
+                )}
+              />
+              <p>Hora que acaba</p>
+              {setValue('endHour', selectedEvent[0].endHour)}
+              <Controller
+                name="endHour"
+                control={control}
+                defaultValue={selectedEvent[0].endHour}
+                render={({ field }) => (
+                  <input 
+                    {...field} 
+                    type="time" 
+                    onChange={(e) => setValue('endHour', e.target.value)}
+                    required />
+                )}
+              />
+              <button type='button' onClick={closeEvent}>Cerrar</button>
+              <button type="submit" name='btn1' onClick={() => (state.button = 1)}>Actualizar</button>
+              <button type='submit' name='btn2' onClick={() => (state.button = 2)}>Delete</button>
+            </form>
+
           </div>
         </div>
       )}

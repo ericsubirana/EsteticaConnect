@@ -14,7 +14,6 @@ const insertEvent = async (req, res) => {
 const takeEvents = async (req,res) => {
     try {
         const events = await Calendar.find();
-        console.log(events)
         res.status(200).json(events);
     } catch (error) {
         console.error(error);
@@ -32,4 +31,25 @@ const takeSpecificEvent = async (req, res) => {
     }
 }
 
-module.exports = { insertEvent, takeEvents, takeSpecificEvent }
+const updateEvent = async (req, res) => {
+    try {
+        const { id, values } = req.body;
+        await Calendar.updateOne({_id : id}, {$set: values});
+        res.status(200).json({message: 'Evento editado'});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+const deleteEvent = async (req, res) => {
+    try {
+        await Calendar.deleteOne({ _id: req.params.id });
+        res.status(200).json({message: 'Evento eliminado'});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Evento no encontrado' });
+    }
+}
+
+module.exports = { insertEvent, takeEvents, takeSpecificEvent, updateEvent, deleteEvent }

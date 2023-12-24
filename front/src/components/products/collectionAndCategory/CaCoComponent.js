@@ -137,7 +137,7 @@ function CollectionComponent(props) {
                             ) : (
                                 <div className='collectionProductWrap'>
                                     {products.map((product, index) => (
-                                        <div onClick={() => popUp(product)}>
+                                        <div className='sameWitdhProducts' onClick={() => popUp(product)}>
                                             <motion.div className='collectionProduct' key={index} whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: "spring" } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                                 <img src={product['img-src']} alt="" height={280} width={280} />
                                                 <h3>{product.title}</h3>
