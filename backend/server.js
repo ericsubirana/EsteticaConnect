@@ -11,6 +11,9 @@ const productsRoutes = require('./routes/products.routes.js');
 const cartRoutes = require('./routes/cart.routes.js');
 const serviceRoutes = require('./routes/service.routes.js');
 const calendarRoutes = require('./routes/calendar.routes.js');
+const linksRoutes = require('./routes/links.routes.js')
+
+const {whatsapp} = require('./libs/whatsapp.js');
 
 app.use(express.json()); //per poder llegir el body de les peticions
 app.use(express.urlencoded({ limit: "25mb" }));
@@ -32,10 +35,9 @@ app.use('/api', productsRoutes);
 app.use('/api', cartRoutes);
 app.use('/api', serviceRoutes);
 app.use('/api', calendarRoutes);
+app.use('/api', linksRoutes);
 
-
-
-
+whatsapp.initialize();
 connectDB();
 
 app.listen(5000, () => console.log("server started on port 5000"));

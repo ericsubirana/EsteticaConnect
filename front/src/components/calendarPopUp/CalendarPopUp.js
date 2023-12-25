@@ -1,7 +1,7 @@
 import React from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useForm, Controller } from 'react-hook-form';
@@ -41,7 +41,9 @@ function CalendarPopUp(props) {
     }
     else {
       try {
+        moment.tz.setDefault('UTC');
         data.day = moment(selectedDate);
+        console.log(data.day)
         await insertEvent(data);
         reset();
         setSelectedDate(null);

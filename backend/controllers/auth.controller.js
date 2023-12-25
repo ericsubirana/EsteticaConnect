@@ -108,6 +108,7 @@ const forgotPassword = async (req, res) => {
 }
 
 function sendEmail({ recipient_email, OTP }) {
+    console.log(recipient_email, OTP)
     return new Promise((resolve, reject) => {
         var transporter = nodemailer.createTransport({
             service: "gmail",
@@ -155,7 +156,7 @@ function sendEmail({ recipient_email, OTP }) {
   </body>
   </html>`,
         };
-
+        console.log('epa')
         transporter.sendMail(mail_configs, function (error, info) {
             if (error) {
                 console.log('ep3')
