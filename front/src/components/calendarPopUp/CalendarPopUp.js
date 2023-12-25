@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { useForm, Controller } from 'react-hook-form';
 import { insertEvent, getSpecificEvent, updateEvent, deleteEvent } from '../../api/calendar';
+import { IoMdClose } from "react-icons/io";
 
 import './calendarpopup.css';
 
@@ -61,11 +62,11 @@ function CalendarPopUp(props) {
       toast.clearWaitingQueue();
     }
     else {
-      try { 
+      try {
         if (state.button === 1) {
           const id = selectedEvent[0]._id;
           data.day = selectedEvent[0].day;
-          const response = await updateEvent({ id, values: data});
+          const response = await updateEvent({ id, values: data });
           reset();
           setSelectedDate(null);
           setSelectedEvent(null);
@@ -107,55 +108,73 @@ function CalendarPopUp(props) {
       {selectedDate && (
         <div className="popupCalendar">
           <div className="centerPopUp">
-            <h2>Ingrese detalles</h2>
-            <p>Fecha seleccionada: {moment(selectedDate).format('MMMM Do YYYY')}</p>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <p>Nombre cliente</p>
-              <Controller
-                name="clientName"
-                control={control}
-                render={({ field }) => <input {...field} type="text" placeholder="Nombre cliente" required />}
-              />
-              <p>IMPORTANTE! Si quieres que un día antes se avise al cliente: </p>
-              <Controller
-                name="clientPhoneNumber"
-                control={control}
-                render={({ field }) => <input {...field} type="number" placeholder="Número teléfono cliente" />}
-              />
-              <p>Descripción :</p>
-              <Controller
-                name="description"
-                control={control}
-                render={({ field }) => <input {...field} type="text" placeholder="Descripción tratamiento" />}
-              />
-              <p>Hora que empieza</p>
-              <Controller
-                name="startHour"
-                defaultValue=""
-                control={control}
-                render={({ field }) => (
-                  <input 
-                    {...field} 
-                    type="time" 
-                    onChange={(e) => setValue('startHour', e.target.value)} 
-                    required />
-                )}
-              />
-              <p>Hora que acaba</p>
-              <Controller
-                name="endHour"
-                defaultValue=""
-                control={control}
-                render={({ field }) => (
-                  <input 
-                    {...field} 
-                    type="time" 
-                    onChange={(e) => setValue('endHour', e.target.value)} required />
-                )}
-              />
-              <button type="submit">Guardar</button>
-              <button onClick={() => setSelectedDate(null)}>Cerrar</button>
-            </form>
+            <div className='maginstPopUp'>
+              <h2>Ingrese detalles</h2>
+              <p>Fecha seleccionada : {moment(selectedDate).format('MMMM Do YYYY')}</p>
+              <form className='widthFormPopUp' onSubmit={handleSubmit(onSubmit)}>
+                <div className='namePhone'>
+                  <div className='clientNamePopUp'>
+                    <p>Nombre cliente :</p>
+                    <Controller
+                      name="clientName"
+                      control={control}
+                      render={({ field }) => <input {...field} type="text" placeholder="Nombre cliente" required />}
+                    />
+                  </div>
+                  <div>
+                    <p>Teléfono : </p>
+                    <Controller
+                      name="clientPhoneNumber"
+                      control={control}
+                      render={({ field }) => <input {...field} type="number" placeholder="Número teléfono cliente" />}
+                    />
+                  </div>
+                </div>
+                <div className='descCalendar'>
+                  <p>Descripción :</p>
+                  <Controller
+                    name="description"
+                    control={control}
+                    render={({ field }) => <input {...field} type="text" placeholder="Descripción tratamiento" />}
+                  />
+                </div>
+                <div className='horasPopUp'>
+                  <div className='calendarStartHour'>
+                    <p>Hora inicio :</p>
+                    <Controller
+                      name="startHour"
+                      defaultValue=""
+                      control={control}
+                      render={({ field }) => (
+                        <input
+                          {...field}
+                          type="time"
+                          onChange={(e) => setValue('startHour', e.target.value)}
+                          required />
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <p>Hora final :</p>
+                    <Controller
+                      name="endHour"
+                      defaultValue=""
+                      control={control}
+                      render={({ field }) => (
+                        <input
+                          {...field}
+                          type="time"
+                          onChange={(e) => setValue('endHour', e.target.value)} required />
+                      )}
+                    />
+                  </div>
+                </div>
+                 <div className='centerbuttonSave'>
+                 <button className='saveEvent' type="submit">Guardar</button>
+                 </div>
+                  <button className='closeEvent' onClick={() => setSelectedDate(null)}><IoMdClose size={20}/></button> 
+              </form>
+            </div>
           </div>
         </div>
       )}
@@ -206,14 +225,14 @@ function CalendarPopUp(props) {
                 control={control}
                 defaultValue={selectedEvent[0].endHour}
                 render={({ field }) => (
-                  <input 
-                    {...field} 
-                    type="time" 
+                  <input
+                    {...field}
+                    type="time"
                     onChange={(e) => setValue('endHour', e.target.value)}
                     required />
                 )}
               />
-              <button type='button' onClick={closeEvent}>Cerrar</button>
+              <button className='closeEvent' type='button' onClick={closeEvent}><IoMdClose size={20}/></button>
               <button type="submit" name='btn1' onClick={() => (state.button = 1)}>Actualizar</button>
               <button type='submit' name='btn2' onClick={() => (state.button = 2)}>Delete</button>
             </form>
