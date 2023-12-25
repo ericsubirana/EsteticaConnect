@@ -149,6 +149,43 @@
     text-decoration: none;
     transition-duration: 0.2s;
   }
+
+  .saveEventUpdate{
+    padding: 10px;
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 200px;
+    appearance: none;
+    background-color: #ffffff;
+    border: 2px solid rgb(250, 227, 250);
+    border-radius: 5px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 10px 16px;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+  }
+  
+  .saveEventUpdate:hover{
+    cursor: pointer;
+    background-color: rgb(255, 248, 255);
+    text-decoration: none;
+    transition-duration: 0.2s;
+  }
   
   .centerbuttonSave{
     display: flex;
@@ -177,3 +214,117 @@
   .widthFormPopUp p{
     margin-bottom: 5px;
   }
+
+  .allCalendarStyle{
+    margin: 100px;
+    margin-top: 180px
+  }
+  
+  @media(max-width: 890px){
+    .allCalendarStyle{
+      margin-top: 80px;
+    }
+    .rbc-toolbar{
+      flex-direction: column;
+    }
+    .rbc-btn-group{
+      margin-bottom: 15px;
+    }
+    .rbc-toolbar-label{
+      margin-bottom: 15px;
+    }
+  }
+
+  @media(max-width: 710px){
+    .allCalendarStyle{
+      margin: 10px;
+      margin-top: 80px;
+    }
+  }
+
+  @media(max-width: 650px){
+    .rbc-agenda-table{
+      font-size: small;
+      font-weight: 200;
+    }
+    .rbc-agenda-view{
+      font-size: small;
+      font-weight: 200;
+    }
+  }
+
+  @media(max-width: 550px){
+    .centerPopUp{
+      background-color: white;
+      border-radius: 10px;
+      width: 400px;
+      height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: -250px;
+    }
+    .maginstPopUp{
+      width: 350px;
+    }
+    .widthFormPopUp {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 350px;
+  }
+  .updateDeleteButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .saveEventUpdate{
+    margin-right: 0px;
+  }
+}
+
+@media(max-width: 420px){
+  .centerPopUp{
+    width: 350px;
+    height: 560px;
+    margin-top: -80px;
+    justify-content: flex-start;
+  }
+  .maginstPopUp{
+    width: 300px;
+    height: 550px;
+    margin-top: 50px;
+    justify-content: flex-start;
+  }
+  .maginstPopUp h2{
+    margin: 1px;
+  }
+  .maginstPopUp p{
+    margin-top: 15px;
+    margin-bottom: 2px;
+  }
+  .widthFormPopUp p{
+    margin-top: 10px;
+  }
+  .widthFormPopUp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+}
+.namePhone{
+  flex-direction: column;
+  align-items: center;
+}
+.clientNamePopUp{
+  margin-right: 0px;
+}
+.descCalendar input{
+  width: 250px;
+}
+.closeEvent{
+  margin-top: -15px;
+}
+}

@@ -93,7 +93,7 @@ function CalendarPopUp(props) {
 
   return (
     <div>
-      <div style={{ margin: '100px', marginTop: '180px' }}>
+      <div className='allCalendarStyle'>
         <Calendar
           localizer={localizer}
           events={props.events || []}
@@ -250,8 +250,8 @@ function CalendarPopUp(props) {
                   </div>
                 </div>
                 <button className='closeEvent' type='button' onClick={closeEvent}><IoMdClose size={20} /></button>
-                <div>
-                  <button style={{marginRight:'25px'}} className='saveEvent' type="submit" name='btn1' onClick={() => (state.button = 1)}>Actualizar</button>
+                <div className='updateDeleteButtons'>
+                  <button  className='saveEventUpdate' type="submit" name='btn1' onClick={() => (state.button = 1)}>Actualizar</button>
                   <button className='saveEvent' type='submit' name='btn2' onClick={() => (state.button = 2)}>Borrar</button>
                 </div>
               </form>
