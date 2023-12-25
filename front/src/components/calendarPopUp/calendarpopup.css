@@ -1,179 +1,179 @@
 .popupCalendar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  margin-top: 70px;
-  background-color: rgba(0, 0, 0, 0.2);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 200;
-  cursor: auto;
-}
-
-.centerPopUp {
-  background-color: white;
-  border-radius: 10px;
-  width: 500px;
-  height: 520px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: -250px;
-}
-
-.maginstPopUp {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  width: 450px;
-  position: relative;
-}
-
-.popupCalendar input {
-  position: relative;
-  border: none;
-  height: 35px;
-  border-bottom: 2px solid #fad7fa;
-  background-color: transparent;
-}
-
-.popupCalendar input:focus {
-  position: relative;
-  outline: none;
-  background-color: #fad7fa;
-  border-radius: 8px;
-}
-
-.namePhone{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
-}
-
-.namePhone input{
-  display: flex;
-  text-align: center;
-  justify-content: center;
-}
-
-.clientNamePopUp{
-  text-align: center;
-  margin-right: 20px;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.descCalendar{
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.descCalendar input{
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  width: 370px;
-  align-items: center;
-}
-
-.horasPopUp{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.widthFormPopUp{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 450px;
-}
-.calendarStartHour{
-  margin-right: 40px;
-}
-
-.formCalendarButtons{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.saveEvent{
-  padding: 10px;
-  margin-top: 20px;
-  width: 200px;
-  appearance: none;
-  background-color: #ffffff;
-  border: 2px solid rgb(250, 227, 250);
-  border-radius: 5px;
-  box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
-  box-sizing: border-box;
-  color: #24292E;
-  cursor: pointer;
-  display: inline-block;
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  list-style: none;
-  padding: 10px 16px;
-  position: relative;
-  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
-  white-space: nowrap;
-  word-wrap: break-word;
-}
-
-.saveEvent:hover{
-  cursor: pointer;
-  background-color: rgb(255, 248, 255);
-  text-decoration: none;
-  transition-duration: 0.2s;
-}
-
-.centerbuttonSave{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.closeEvent{
-  background-color: transparent;
-  border: none;
-  margin: 0;
-  padding: 0;
-  text-align: inherit;
-  font: inherit;
-  border-radius: 0;
-  appearance: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.closeEvent:hover{
-  cursor: pointer;
-}
-
-.widthFormPopUp p{
-  margin-bottom: 5px;
-}
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    margin-top: 70px;
+    background-color: rgba(0, 0, 0, 0.2);
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    cursor: auto;
+  }
+  
+  .centerPopUp {
+    background-color: white;
+    border-radius: 10px;
+    width: 500px;
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: -250px;
+  }
+  
+  .maginstPopUp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 450px;
+    position: relative;
+  }
+  
+  .popupCalendar input {
+    position: relative;
+    border: none;
+    height: 35px;
+    border-bottom: 2px solid #fad7fa;
+    background-color: transparent;
+  }
+  
+  .popupCalendar input:focus {
+    position: relative;
+    outline: none;
+    background-color: #fad7fa;
+    border-radius: 8px;
+  }
+  
+  .namePhone{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .namePhone input{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .clientNamePopUp{
+    text-align: center;
+    margin-right: 20px;
+  }
+  
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  .descCalendar{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .descCalendar input{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 370px;
+    align-items: center;
+  }
+  
+  .horasPopUp{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .widthFormPopUp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 450px;
+  }
+  .calendarStartHour{
+    margin-right: 40px;
+  }
+  
+  .formCalendarButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .saveEvent{
+    padding: 10px;
+    margin-top: 20px;
+    width: 200px;
+    appearance: none;
+    background-color: #ffffff;
+    border: 2px solid rgb(250, 227, 250);
+    border-radius: 5px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+    box-sizing: border-box;
+    color: #24292E;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 10px 16px;
+    position: relative;
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: break-word;
+  }
+  
+  .saveEvent:hover{
+    cursor: pointer;
+    background-color: rgb(255, 248, 255);
+    text-decoration: none;
+    transition-duration: 0.2s;
+  }
+  
+  .centerbuttonSave{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .closeEvent{
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
+    font: inherit;
+    border-radius: 0;
+    appearance: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  
+  .closeEvent:hover{
+    cursor: pointer;
+  }
+  
+  .widthFormPopUp p{
+    margin-bottom: 5px;
+  }
