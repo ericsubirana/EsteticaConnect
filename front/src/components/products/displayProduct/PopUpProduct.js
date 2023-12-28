@@ -11,6 +11,7 @@ import { PiShoppingCart } from "react-icons/pi";
 import { IoClose } from 'react-icons/io5';
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
+import imgCasmara from '../../../assets/casmara.jpg'
 
 function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el producte no surti afegir producte sino la quantitat que ja te al carret
   //L'ELEMNT CLAU PER FER EL QUE ESTA COMENTAT HA SIGUT LA VARIABLE TRIGGER
@@ -84,6 +85,7 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
   return props.trigger ? (
     <div className='popup'>
       <div className='popup-inner'>
+        <img src={imgCasmara} className='imgCasamara' height={80} width={80} />
         <h1>{result.title}</h1>
         <div className='product-info'>
           <div className='product-description'>

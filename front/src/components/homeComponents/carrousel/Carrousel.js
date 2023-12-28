@@ -89,8 +89,8 @@ function Carrousel() {
       <div className='allImages'>
         <Slider {...settings}>
           {info.map((e, index) => (
-            <div key={index} className='slider'>
-              <img src={e.img} className='imageSlider' onClick={() => moveToService(e.nom)}/>
+            <div key={index} className='slider'  onClick={() => moveToService(e.nom)}>
+              <img src={e.img} className='imageSlider'/>
               <p className='titleCarrousel'>{e.title}</p>
             </div>
           ))}
