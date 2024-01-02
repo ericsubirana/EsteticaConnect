@@ -1,29 +1,32 @@
 import React from 'react'
 
 import './cabines.css'
-import img1 from '../../../assets/cabina.jpg'
+import img1 from '../../../assets/cabina1.jpeg'
+import img2 from '../../../assets/cabina2.jpeg'
+import img3 from '../../../assets/cabina3.jpeg'
+
 
 function Cabines() {
 
     const info = [
         {
             image: img1,
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing, elit sociis quis auctor tempus, in lobortis sollicitudin  primis accumsan.",
+            description: "En la cabina 1 ofrecemos todo tipo de depilaciones, depilación con cera fría o caliente, depilación eléctrica y depilación láser.",
         },
         {
-            image: img1,
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing, elit sociis quis auctor tempus, in lobortis sollicitudin  primis accumsan.",
+            image: img2,
+            description: "En la cabina 2 ofrecemos todo tipo de tratamientos faciales y tratamientos corporalesmasajes personalizados.",
         },
         {
-            image: img1,
-            description: "Lorem ipsum dolor sit amet consectetur adipiscing, elit sociis quis auctor tempus, in lobortis sollicitudin  primis accumsan.",
+            image: img3,
+            description: "En la cabina 3 ofrecemos diferentes servicios como pedicura, manicura, esmalte permanente, uñas acríclicas y más.",
         }
     ];
 
     return (
         <div className='cabines'>
             <div className='titleCabines'>
-                <h1>LES NOSTRES CABINES</h1>
+                <h1>NUESTRAS CABINAS</h1>
             </div>
             <div className='centerCabines'>
                 {info.map((e, index) => (

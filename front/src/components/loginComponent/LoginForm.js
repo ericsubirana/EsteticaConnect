@@ -73,31 +73,31 @@ export default function LoginForm(props) {
         </div>
         <ToastContainer position="top-center" limit={1}/>
         <img src={logo} alt="logo" className='logoLogin' height={80} onClick={home} />
-        <h4>Benvingut/da de nou!</h4>
-        <h1>Inici de Sessió</h1>
+        <h4>Bienvenido/a de nuevo!</h4>
+        <h1>Inicio de Sessión</h1>
         <form onSubmit={handleSubmit(async (values) => {
           signin(values);
         })}>
           <div className='userMail'>
             <div className='together'>
-              <h3>CORREU</h3>
+              <h3>CORREO</h3>
               {errors.email && <p>Email is required</p>}
             </div>
             <input type="text" {...register('email', { required: true })} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className='userPassword'>
             <div className='together'>
-              <h3>CONTRASENYA</h3>
+              <h3>CONTRSEÑA</h3>
               {errors.password && <p>Password is required</p>}
             </div>
             <input type="password" {...register('password', { required: true })} />
 
           </div>
           <div className='buttonAndPAss'>
-            <Link className='link' onClick={() => nagigateToOtp()} >Has oblidat la contrasenya?</Link>
+            <Link className='link' onClick={() => nagigateToOtp()} >Has olvidado la contraseña?</Link>
             <button type='submit' className='button-53' > Log In </button>
           </div>
-          <p>Encara no estàs registrat? <Link to="/register">Registra't!</Link> </p>
+          <p>Aún no estás registrado? <Link to="/register">Regístrate!</Link> </p>
         </form>
       </div>
       <div>

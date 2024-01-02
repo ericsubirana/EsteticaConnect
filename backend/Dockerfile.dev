@@ -1,0 +1,20 @@
+FROM node:18.15.0-alpine
+WORKDIR /app
+COPY ./package.json ./
+
+RUN apk add --no-cache \
+  chromium \
+  nss \
+  freetype \
+  freetype-dev \
+  harfbuzz \
+  ca-certificates \
+  ttf-freefont \
+  bash \
+  && npm i \
+  && npm cache clean --force
+
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+COPY . .
+CMD ["npm", "run", "dev"]

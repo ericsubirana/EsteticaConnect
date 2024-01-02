@@ -16,8 +16,8 @@ function LogInLogOut(props) {
                 <>
                     <div className='leftside'>
                         <Link className={page === 'home' ? 'homeNow' : 'home'} to={"/home"}>Home</Link>
-                        <Link className={page === 'products' ? 'productesNow' : 'productes'} to={"/productes"}>Productes</Link>
-                        <Link className={page === 'services' ? 'servicesNow' : 'services'} to={"/serveis"}>Serveis</Link>
+                        <Link className={page === 'products' ? 'productesNow' : 'productes'} to={"/productes"}>Productos</Link>
+                        <Link className={page === 'services' ? 'servicesNow' : 'services'} to={"/serveis"}>Servicios</Link>
                     </div>
                     <div className="line"></div>
                     <div className='rightside'>
@@ -30,10 +30,10 @@ function LogInLogOut(props) {
                 <>
                     <div className='leftsideLoggedIn'>
                         <Link className={page === 'home' ? 'homeNow' : 'home'} to={"/home"}>Home</Link>
-                        <Link className={page === 'products' ? 'productesNow' : 'productes'} to={"/productes"}>Productes</Link>
-                        <Link className={page === 'services' ? 'servicesNow' : 'services'} to={"/serveis"}>Serveis</Link>
+                        <Link className={page === 'products' ? 'productesNow' : 'productes'} to={"/productes"}>Productos</Link>
+                        <Link className={page === 'services' ? 'servicesNow' : 'services'} to={"/serveis"}>Servicios</Link>
                         <Link className={page === 'profile' ? 'profileNow' : 'profile'} to={"/profile"}>Perfil</Link>
-                        <Link className={page === 'cart' ? 'carretNow' : 'carret'} to={"/cart"}>Carret</Link>
+                        <Link className={page === 'cart' ? 'carretNow' : 'carret'} to={"/cart"}>Carrito</Link>
                         {user.admin && (
                             <Link className={page === 'calendar' ? 'calendarNow' : 'calendar'} to={"/calendar"}>Calendario</Link>
                         )}

@@ -27,8 +27,10 @@
     "nodemailer": "^6.9.7",
     "path": "^0.12.7",
     "puppeteer": "^21.6.1",
+    "puppeteer-core": "^21.6.1",
     "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "^1.23.0",
+    "ws": "^8.16.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

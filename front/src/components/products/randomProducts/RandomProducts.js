@@ -38,9 +38,9 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
       <div className='titleProducts'>
         <div className='centerTitleProducts'>
           <div className='titleProductsText'>
-            <h1>PRODUCTES</h1>
+            <h1>PRODUCTOS</h1>
             <div className='lineProducts'></div>
-            <h3>Coneix els productes que oferim</h3>
+            <h3>Conoce los productos que ofrecemos</h3>
           </div>
         </div>
 

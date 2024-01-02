@@ -1,26 +1,27 @@
-.profileUserMenu{
+.profileUserMenu {
     display: flex;
     width: 100%;
     justify-content: center;
     background-color: #FFF2FF;
     z-index: -2;
 }
-.slideProfile{
+
+.slideProfile {
     margin-top: 250px;
     margin-bottom: 200px;
 }
 
 .inputfile {
-	display: none;
+    display: none;
 }
 
-.inputfile + label {
+.inputfile+label {
     font-size: 16px;
     font-weight: 200;
     color: black;
     background-color: white;
     display: inline-block;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 label {
@@ -31,12 +32,12 @@ label {
     border-radius: 8px;
 }
 
-.inputfile:focus + label,
-.inputfile + label:hover {
+.inputfile:focus+label,
+.inputfile+label:hover {
     background-color: #FFF2FF;
 }
 
-.aboluteProfile{
+.aboluteProfile {
     display: flex;
     position: absolute;
     margin-left: 0px;
@@ -45,7 +46,7 @@ label {
     color: #868686;
 }
 
-.SquareBack{
+.SquareBack {
     position: absolute;
     width: 900px;
     margin-top: 170px;
@@ -57,16 +58,16 @@ label {
     box-shadow: 0 0.2rem 0.4rem 0 rgba(50, 50, 51, 0.3)
 }
 
-.profileUserMenu:hover{
+.profileUserMenu:hover {
     cursor: auto;
 }
 
-.imgSizeProfile{
+.imgSizeProfile {
     border-radius: 50%;
     width: 250px;
 }
 
-.imgProfile{
+.imgProfile {
     width: 250px;
     height: 250px;
     object-fit: cover;
@@ -74,7 +75,7 @@ label {
     border: 1px solid rgb(187, 187, 187);
 }
 
-.slideProfile{
+.slideProfile {
     width: 700px;
     display: flex;
     flex-wrap: row;
@@ -82,55 +83,62 @@ label {
     z-index: 1;
 }
 
-.profileForm{
+.profileForm {
     display: flex;
     flex-direction: row;
     margin-top: 25px;
 }
 
-.buttonProfile{
+.buttonProfile {
     margin-top: 250px;
     margin-left: 100px;
     margin-bottom: 20px;
     position: absolute;
 }
 
-.fileInput{
+.fileInput {}
 
-}
-
-.profileUserMenu form input{
+.profileUserMenu form input {
     position: relative;
     border: none;
     height: 35px;
     border-bottom: 2px solid #fad7fa;
     background-color: transparent;
 }
-.profileUserMenu form input:focus{
+
+.profileUserMenu form input:focus {
     position: relative;
     outline: none;
     background-color: #fad7fa;
     border-radius: 8px;
 }
 
-.nameSurnameProfiile{
+.nameSurnameProfiile {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.nameSurnameProfiile h3{
+.nameSurnameProfiile h3 {
     margin-left: 5px;
 }
 
-.profileFormDivide{
+.profileFormDivide {
     display: flex;
     flex-direction: column;
     margin-right: 20px;
 }
 
-@media(max-width:930px){
-    .slideProfile{
+label {
+    margin-left: 45px;
+    margin-top: 20px;
+    padding: 12px;
+    border: 1px solid rgb(226, 169, 228);
+    border-radius: 8px;
+}
+
+@media(max-width:930px) {
+    .slideProfile {
         justify-content: center;
         flex-direction: column;
         align-items: center;
@@ -152,7 +160,7 @@ label {
         border-radius: 8px;
     }
 
-    .SquareBack{
+    .SquareBack {
         position: absolute;
         width: 450px;
         margin-top: 160px;
@@ -165,40 +173,45 @@ label {
     }
 }
 
-@media(max-width: 490px){
-    .SquareBack{
+@media(max-width: 490px) {
+    .SquareBack {
         width: 390px;
         margin-top: 130px;
     }
 
-    .slideProfile{
+    .slideProfile {
         margin-top: 180px;
     }
 
-    .profileForm{
+    .profileForm {
         margin-left: 30px;
     }
-    .buttonProfile{
+
+    .buttonProfile {
         margin-left: 70px;
     }
+
     .profileUserMenu form input {
         width: 80%;
     }
 }
 
-@media(max-width: 410px){
-    .SquareBack{
+@media(max-width: 410px) {
+    .SquareBack {
         width: 350px;
         margin-top: 130px;
     }
-    .profileForm{
+
+    .profileForm {
         padding-left: 60px;
     }
-    .profileFormDivide{
+
+    .profileFormDivide {
         width: 150px;
         margin-right: 10px;
     }
-    .profileForm{
+
+    .profileForm {
         margin-left: 0px;
     }
 }

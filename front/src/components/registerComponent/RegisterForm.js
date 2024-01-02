@@ -46,14 +46,14 @@ function RegisterForm() {
             <ToastContainer position='top-center' />
             <div className='register'>
                 <img className="imgForm" src={logo} alt="logoLogin" height={80} onClick={home} />
-                <h1>Registra't!</h1>
+                <h1>Regístrate!</h1>
                 <form onSubmit={handleSubmit(async (values) => {
                     signup(values);
                 })}>
                     <div className='firstline'>
                         <div className='userName'>
                             <div>
-                                <h3>NOM D'USUARI/A</h3>
+                                <h3>NOMBRE USUARIO/A</h3>
                                 {errors.username && <p>Username is required</p>}
                             </div>
                             <input type="text" {...register('username', { required: true })} />
@@ -61,7 +61,7 @@ function RegisterForm() {
                         </div>
                         <div>
                             <div>
-                                <h3>CONTRSENYA</h3>
+                                <h3>CONTRSEÑA</h3>
                                 {errors.password && <p>Password is required</p>}
                             </div>
                             <input type="password" {...register('password', { required: true })} />
@@ -70,7 +70,7 @@ function RegisterForm() {
                     </div>
                     <div className='userMail'>
                         <div className='mailError'>
-                            <h3>CORREU</h3>
+                            <h3>CORREO</h3>
                             {errors.email && <p>Email is required</p>}
                         </div>
                         <input type="email" {...register('email', { required: true })} />
@@ -80,7 +80,7 @@ function RegisterForm() {
                         Sign Up
                     </button>
                 </form>
-                <p className='alreadyHasAccount'>Ja tens un compte? <Link to='/login'>Inicia Sessió</Link></p>
+                <p className='alreadyHasAccount'>Ya tienes una cuenta? <Link to='/login'>Inicia Sessión</Link></p>
             </div>
             <div className='imageRegister'>
                 <img src={registerPhoto} alt='registerPhoto' height={500} />

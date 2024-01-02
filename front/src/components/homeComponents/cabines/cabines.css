@@ -47,6 +47,11 @@
     flex: 0.7; 
 }
 
+.imageCabina{
+    width: 250px;
+    height: 350px;
+}
+
 .odd {
     display: flex;
     flex-direction: row;

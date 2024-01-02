@@ -49,7 +49,7 @@ function ProfileUser() {
                 <div className='imageBehindSideBar'>
                     {image && (
                         <div className='imgSizeProfile'>
-                            <img className='imgProfile' src={`http://localhost:5000/images/${image}`} alt='' />
+                            <img className='imgProfile' src={`http://localhost:3050/images/${image}`} alt='' />
                         </div>
                     )}
                     <input type="file" name="file" id="file" class="inputfile" onChange={e => setFile(e.target.files[0])} />
