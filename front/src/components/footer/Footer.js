@@ -29,8 +29,8 @@ function Footer() {
             </div>
             <div className='followUs'>
               <h1>SIGUENOS!</h1>
-              <CiFacebook size={25} className="icon" />
-              <FiInstagram size={25} className="icon" />
+              <a href="https://www.facebook.com/esteticafinagarcia"><CiFacebook size={25} className="icon"/></a>
+              <a href="https://www.instagram.com/estetica_fina_garcia/"><FiInstagram size={25} className="icon" /> </a>
               <AiFillLinkedin size={25} className="icon" />
             </div>
           </div>

@@ -57,7 +57,7 @@ const deleteEvent = async (req, res) => {
     }
 }
 
-cron.schedule('0 8 * * *', async () => { //0 8 * * *     */15 * * * * *
+cron.schedule('0 8 * * * ', async () => { //0 8 * * *     */15 * * * * *
     moment.tz.setDefault('UTC');
     const tomorrowStart = moment().add(1, 'day').startOf('day').toISOString();
     const tomorrowEnd = moment().add(1, 'day').endOf('day').toISOString();
@@ -71,7 +71,7 @@ cron.schedule('0 8 * * *', async () => { //0 8 * * *     */15 * * * * *
             try {
                 const tel = event.clientPhoneNumber;
                 const chatId = await whatsapp.getNumberId(tel);
-                const mensaje = `Hola ${event.clientName} dema tens hora per ${event.description}`;
+                const mensaje = `Hola ${event.clientName} dema tens hora a les ${event.startHour} per ${event.description}`;
                 await whatsapp.sendMessage(chatId._serialized, mensaje);
                 console.log('Mensaje enviado:', mensaje);
             } catch (error) {
@@ -94,7 +94,7 @@ cron.schedule('0 8 * * 6', async () => { //dissabte avisa a totes les persones d
             day: { $gte: tomorrowStart, $lt: tomorrowEnd }
         });
         console.log('Eventos de esta setmana:', tomorrowEvents);
-        /*for (const event of tomorrowEvents) {
+        for (const event of tomorrowEvents) {
             try {
                 const tel = event.clientPhoneNumber;
                 const chatId = await whatsapp.getNumberId(tel);
@@ -104,7 +104,7 @@ cron.schedule('0 8 * * 6', async () => { //dissabte avisa a totes les persones d
             } catch (error) {
                 console.error('Error al enviar mensaje:', error);
             }
-        }*/
+        }
 
     } catch (error) {
         console.error('Error al realizar la consulta:', error.message);

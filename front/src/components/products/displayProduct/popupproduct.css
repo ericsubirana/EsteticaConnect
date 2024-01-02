@@ -192,3 +192,10 @@
         order: 0;
     }
 }
+
+.imgCasmaraWhenLooged{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 175px;
+}

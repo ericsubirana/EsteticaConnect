@@ -12,7 +12,7 @@ function Home() {
       <div className='homePage'>
         <Header page="home" />
         <div className='text'>
-          <p className='paragraph'>Más de 25 años cuidándote y asesorándote, con una gran familia que ha ido creciendo año tras año. Siempre con la intención de crecer tanto profesional como personalmente, y con la misma ilusión del primer día.</p>
+          <p className='paragraph'>Más de 25 años cuidándote y asesorándote. Una gran familia que ha ido creciendo año tras año, siempre con la intención de crecer tanto profesional como personalmente, y con la misma ilusión del primer día.</p>
           <div className='titleHome'>
             <h2>Centre d'Estètica</h2>
             <h1>Fina García</h1>

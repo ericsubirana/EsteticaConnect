@@ -85,7 +85,7 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
   return props.trigger ? (
     <div className='popup'>
       <div className='popup-inner'>
-        <img src={imgCasmara} className='imgCasamara' height={80} width={80} />
+        <img src={imgCasmara} className={isAuthenticated ? 'imgCasmaraWhenLooged' : 'imgCasamara'} height={80} width={80} />
         <h1>{result.title}</h1>
         <div className='product-info'>
           <div className='product-description'>

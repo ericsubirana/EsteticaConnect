@@ -15,7 +15,7 @@ function Cabines() {
         },
         {
             image: img2,
-            description: "En la cabina 2 ofrecemos todo tipo de tratamientos faciales y tratamientos corporalesmasajes personalizados.",
+            description: "En la cabina 2 ofrecemos todo tipo de tratamientos faciales y tratamientos corporales personalizados.",
         },
         {
             image: img3,
