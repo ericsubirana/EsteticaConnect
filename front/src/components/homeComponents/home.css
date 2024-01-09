@@ -60,15 +60,18 @@
     .homePage{
         height: 850px;
     }
+    .text{
+        margin-top: 150px;
+    }
     .paragraph{
-        font-size: 1.5em;
+        font-size: 1em;
         width: 300px;
     }
     .titleHome h2{
-        font-size: 3em;
+        font-size: 2em;
     }
     .titleHome h1{
-        font-size: 6em;
+        font-size: 5em;
         margin-top: -30px;
         margin-bottom: -20px;
         line-height: 1;

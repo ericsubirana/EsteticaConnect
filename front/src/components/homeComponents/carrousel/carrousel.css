@@ -49,3 +49,9 @@
     object-fit: cover;
     filter: brightness(90%);
 }
+
+@media(max-width:804px){
+    .carrousel h1{
+        font-size: 3em;
+    }
+}

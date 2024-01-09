@@ -85,6 +85,20 @@
 }
 
 @media(max-width:804px){
+
+    .cabines h1{
+        font-size: 1.5em;
+    }
+
+    .imageCabina{
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .imageCabina img{
+        height: 418px;
+    }
+
     .even{
         flex-direction: column;
         margin-bottom: 20px;
