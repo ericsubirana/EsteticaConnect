@@ -1,4 +1,4 @@
-<h1 align="center">EstèticaExpress</h1>
+<h1 align="center">EstèticaConnect</h1>
 
 <p align="center">Una aplicació web dissenyada específicament per un centre d'estètica.</p>
 
