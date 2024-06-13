@@ -3,9 +3,7 @@ import React from 'react'
 import img1 from '../../assets/f.png'
 import { LuMail } from 'react-icons/lu'
 import { BsTelephone } from 'react-icons/bs'
-import { CiFacebook } from 'react-icons/ci'
-import { FiInstagram } from 'react-icons/fi'
-import { AiFillLinkedin } from 'react-icons/ai'
+import { PiInstagramLogoLight, PiFacebookLogo  } from "react-icons/pi";
 
 
 import './footer.css'
@@ -29,9 +27,10 @@ function Footer() {
             </div>
             <div className='followUs'>
               <h1>SIGUENOS!</h1>
-              <a href="https://www.facebook.com/esteticafinagarcia"><CiFacebook size={25} className="icon"/></a>
-              <a href="https://www.instagram.com/estetica_fina_garcia/"><FiInstagram size={25} className="icon" /> </a>
-              <AiFillLinkedin size={25} className="icon" />
+              <div className='linksFooter'>
+                <a href="https://www.facebook.com/esteticafinagarcia"><PiFacebookLogo size={25} className="icon"/></a>
+                <a href="https://www.instagram.com/estetica_fina_garcia/"><PiInstagramLogoLight  size={25} className="icon" /> </a>
+              </div>
             </div>
           </div>
 

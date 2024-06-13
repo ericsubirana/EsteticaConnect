@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import axios from 'axios'
 import { debounce } from 'lodash';
 
 import './choosecolandcat.css'
+import { set } from 'react-hook-form';
 
 
 function ChooseColAndCat(props) {
@@ -13,6 +14,8 @@ function ChooseColAndCat(props) {
   const [clickCat, setClickCat] = useState(false);
   const [iconCol, setIconCol] = useState(<IoIosArrowDown />);
   const [iconCat, setIconCat] = useState(<IoIosArrowDown />);
+  const menuRef = useRef(null);
+  const [hemPassat, setHemPassat] = useState(false);
 
   const CollectionsList = ['Shine Stop', 'Antioxidant', 'Pure Oxygen', 'Sensations',
     'Q10 Rescue', 'Hydra Lifting', 'RGnerin', 'Infinity', 'Urban Project',
@@ -25,28 +28,55 @@ function ChooseColAndCat(props) {
 
   const navigation = useNavigate();
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setHemPassat(true);
+        setClickCol(false);
+        setClickCat(false);
+        setIconCol(<IoIosArrowDown />);
+        setIconCat(<IoIosArrowDown />);
+      }
+      else{
+        setHemPassat(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuRef]);
+
   const clicked = (m) => {
     if (m === "col") {
-      if (!clickCol) {
-        setIconCol(<IoIosArrowUp />);
-        setClickCol(true);
-        setClickCat(false);
+      if (!hemPassat){
+        if (!clickCol) {
+          setIconCol(<IoIosArrowUp />);
+          setClickCol(true);
+          setClickCat(false);
+        }
+        else {
+          setIconCol(<IoIosArrowDown />);
+          setClickCol(false);
+        }
       }
-      else {
-        setIconCol(<IoIosArrowDown />);
-        setClickCol(false);
-      }
+      setHemPassat(false);
     }
     else {
-      if (!clickCat) {
-        setIconCat(<IoIosArrowUp />);
-        setClickCat(true);
-        setClickCol(false);
+      if(!hemPassat){
+        if (!clickCat) {
+          setIconCat(<IoIosArrowUp />);
+          setClickCat(true);
+          setClickCol(false);
+        }
+        else {
+          setIconCat(<IoIosArrowDown />);
+          setClickCat(false);
+        }
       }
-      else {
-        setIconCat(<IoIosArrowDown />);
-        setClickCat(false);
-      }
+      setHemPassat(false);
     }
   }
 
@@ -95,9 +125,9 @@ function ChooseColAndCat(props) {
       <div className='prodcutsC'>
         <div className='coAndca'>
           <div className='colections'>
-            <h2 onClick={() => clicked("col")}>COL.LECCIONS {iconCol} </h2>
+            <h2 onClick={() => clicked("col")}>COLECCIONES {iconCol} </h2>
             {clickCol && (
-              <div className='margins'>
+              <div className='margins' ref={menuRef}>
                 <div className='colectionsOpened'>
                   {CollectionsList.map((collection, index) => (
                     <div key={collection}>
@@ -111,9 +141,9 @@ function ChooseColAndCat(props) {
             )}
           </div>
           <div className='categories'>
-            <h2 onClick={() => clicked("cat")}>CATEGORIES {iconCat} </h2>
+            <h2 onClick={() => clicked("cat")}>CATEGORIAS {iconCat} </h2>
             {clickCat && (
-              <div className='margins'>
+              <div className='margins' ref={menuRef}>
                 <div className='colectionsOpened'>
                   {CategoryList.map((category, index) => (
                     <div key={category}>

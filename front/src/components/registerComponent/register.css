@@ -78,7 +78,7 @@ margin-top: 30px;
   margin-top: 20px;
 }
 
-.userMail input{
+.userMailRegister input{
   width: 346px;
 }
 
@@ -97,7 +97,7 @@ touch-action: manipulation;
 margin-top: 30px;
 }
 
-.button-52:after {
+/*.button-52:after {
 content: "";
 background-color:  #fad7fa;
 width: 100%;
@@ -108,11 +108,10 @@ height: 100%;
 top: 7px;
 left: 7px;
 transition: 0.2s;
-}
+}*/
 
-.button-52:hover:after {
-top: 0px;
-left: 0px;
+.button-52:hover {
+  background-color:  #fad7fa;
 }
 
 @media (min-width: 10px) {
@@ -168,5 +167,33 @@ left: 0px;
   }
   .register{
     margin-left: 20px;
+  }
+  .register h1{
+    font-size: 2rem;
+  }
+  .firstline h3{
+    font-size: 1rem;
+  }
+  .userMailRegister h3{
+    font-size: 1rem;
+  }
+  .userMailRegister input{
+    width: 250px;
+    margin-top: -20px;
+  }
+  .firstline input{
+    width: 250px;
+    margin-top: -20px;
+  }
+  .firstline{
+    display: flex;
+    flex-direction: column;
+  }
+  .registerButton{
+    display: flex;
+    justify-content: center;
+  }
+  .registerFormImage p{
+    margin-top: 25px;
   }
 }

@@ -38,11 +38,11 @@ function Sidebar(props) {
         <nav ref={backgraundRef} className={`Cabecera-nav ${open ? 'isActive' : ''}`}>
           {!user && (
             <ul className='Cabecera-ul'>
-              <li><Link className='Cabecera-li' to='/home'>Home</Link> < LiaHomeSolid className='lia' /> </li>
-              <li><Link className='Cabecera-li' to='/productes'>Productos</Link> <PiPackageThin  size={20} className='lia' /></li>
-              <li><Link className='Cabecera-li' to='/serveis'>Servicios</Link><TbMassage  size={20} className='lia' /></li>
-              <li><Link className='Cabecera-li' to='/login'>LOG IN</Link> <IoLogOutOutline size={20} className='lia' /> </li>
-              <li><Link className='Cabecera-li' to='/register'>SIGN UP</Link> <IoPersonAddOutline  size={20} className='lia' /> </li>
+              <Link className='Cabecera-li' to='/home'> <li>Home < LiaHomeSolid className='lia' /> </li> </Link>
+              <Link className='Cabecera-li' to='/productes'> <li>Productos <PiPackageThin  size={20} className='lia' /></li></Link>
+              <Link className='Cabecera-li' to='/serveis'> <li>Servicios<TbMassage  size={20} className='lia' /></li></Link>
+              <Link className='Cabecera-li' to='/login'> <li>LOG IN<IoLogOutOutline size={20} className='lia' /> </li></Link>
+              <Link className='Cabecera-li' to='/register'> <li>SIGN UP <IoPersonAddOutline  size={20} className='lia' /> </li></Link>
 
             </ul>
 
@@ -50,15 +50,15 @@ function Sidebar(props) {
 
           {user && (
             <ul className='Cabecera-ul'>
-              <li><Link className='Cabecera-li' to='/home'>Home</Link> <LiaHomeSolid size={20} className='lia' /> </li>
-              <li><Link className='Cabecera-li' to='/productes'>Productos</Link> <PiPackageThin  size={20} className='lia' /></li>
-              <li><Link className='Cabecera-li' to='/serveis'>Servicios</Link><TbMassage  size={20} className='lia' /> </li>
-              <li><Link className='Cabecera-li' to='/profile'>Perfil</Link> <LiaUserSolid size={20} className='lia' /> </li>
-              <li><Link className='Cabecera-li' to='/cart'>Carrete</Link> <LiaShoppingCartSolid  size={20} className='lia' /> </li>
+              <Link className='Cabecera-li' to='/home'> <li>Home <LiaHomeSolid size={20} className='lia' /> </li></Link>
+              <Link className='Cabecera-li' to='/productes'>  <li> Productos<PiPackageThin  size={20} className='lia' /></li></Link>
+              <Link className='Cabecera-li' to='/serveis'> <li>Servicios<TbMassage  size={20} className='lia' /> </li></Link>
+              <Link className='Cabecera-li' to='/profile'> <li>Perfil <LiaUserSolid size={20} className='lia' /> </li></Link>
+              <Link className='Cabecera-li' to='/cart'> <li>Carrete<LiaShoppingCartSolid  size={20} className='lia' /> </li></Link>
               {user.admin && (
-                <li><Link className='Cabecera-li' to='/calendar'>Calendario</Link> <CiCalendar  size={20} className='lia' /> </li>
+                <Link className='Cabecera-li' to='/calendar'><li>Calendario <CiCalendar  size={20} className='lia' /> </li></Link>
               )}
-              <li><Link className='logout' onClick={logoutPage} to={"/home"}>LOG OUT</Link> <IoLogOutOutline  size={20} className='lia' /></li>
+              <Link className='logout' onClick={logoutPage} to={"/home"}><li>LOG OUT <IoLogOutOutline  size={20} className='lia' /></li></Link>
             </ul>
           )}
 

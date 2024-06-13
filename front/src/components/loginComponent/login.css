@@ -112,7 +112,7 @@
     touch-action: manipulation;
 }
 
-.button-53:after {
+/*.button-53:after {
     content: "";
     background-color:  #fad7fa;
     width: 100%;
@@ -124,11 +124,10 @@
     left: 7px;
     transition: 0.2s;
     content: "";
-}
+}*/
 
-.button-53:hover:after {
-    top: 0px;
-    left: 0px;
+.button-53:hover {
+    background-color:  #fad7fa;
 }
 
 @media (min-width: 10px) {
@@ -177,5 +176,45 @@
 @media (max-width: 500px) {
     .sqaure2{
         width: auto;
+    }
+    .formLogin h4{
+        font-size:0.8rem;
+    }
+    .formLogin h1{
+        font-size: 2rem;
+    }
+    .together h3{
+        font-size: 1rem;
+    }
+    .userMail input{
+        margin-top: -20px;
+        width: 250px;
+    }
+    .userPassword input{
+        width: 250px;
+    }
+    .buttonAndPAss{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .buttonAndPAss button{
+        display: flex;
+        width: 120px;
+        justify-content: center;
+    }
+    .buttonAndPAss a{
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+    .formLogin p{
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+    .centerButton{
+        display: flex;
+        justify-content: center;
     }
 }
