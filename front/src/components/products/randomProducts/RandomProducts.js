@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { useAuth } from '../../../context/AuthContext'
 
 import './randomproducts.css'
 import axios from '../../../api/axios';
@@ -11,6 +12,7 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
   const [randomProductes, setRandomProductes] = useState('');
   const [searchResults, setSearchResults] = useState(''); // aquesta varaible s'ompla quan fem búsqueda
   const [selectedResult, setSelectedResult] = useState(null);
+  const {user, isAuthenticated, loading} = useAuth();
 
   useEffect(() => {
     const takeRandomProducts = async () => {
@@ -31,6 +33,10 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
     if (selectedResult !== result) {
       setSelectedResult(result);
     }
+  }
+
+  const afegirProductes = () => {
+    console.log('epa')
   }
 
   return (
@@ -89,7 +95,11 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
 
         </div>
       </div>
-
+      {user?.admin ? (
+        <div className='addProductButtonDiv'> 
+          <button onClick={afegirProductes} className='addProductButton'>+</button>
+        </div>
+      ) : (<div></div>)}
     </div>
   )
 }

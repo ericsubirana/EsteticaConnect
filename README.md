@@ -1,10 +1,9 @@
-<h1 align="center">EstèticaExpress</h1>
+<h1 align="center">EstèticaConnect</h1>
 
 <p align="center">Una aplicació web dissenyada específicament per un centre d'estètica.</p>
 
 <p align="center">
-  "EstèticaExpress" és un projecte innovador que connecta usuaris amb el centre d'estètica,
-  facilitant la reserva de serveis i millorant la interacció amb els establiments.
+  "EstèticaConnect" representa una iniciativa innovadora que facilita la vinculació entre els usuaris i els centres d'estètica, simplificant el procés de reserva de serveis i enriquint la interacció amb l'establiment. A més, el sistema incorpora un calendari interactiu destinat als professionals del centre, optimitzant la gestió del seu temps i activitats laborals.
 </p>
 
 ## Tecnologies Destacades
