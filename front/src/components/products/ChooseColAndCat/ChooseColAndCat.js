@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import axios from '../../../api/axios'
 import { debounce } from 'lodash';
+import { useAuth } from '../../../context/AuthContext'
 
 import './choosecolandcat.css'
 
@@ -15,6 +16,7 @@ function ChooseColAndCat(props) {
   const [iconCat, setIconCat] = useState(<IoIosArrowDown />);
   const menuRef = useRef(null);
   const [hemPassat, setHemPassat] = useState(false);
+  const {user, isAuthenticated, loading} = useAuth();
 
   const CollectionsList = ['Shine Stop', 'Antioxidant', 'Pure Oxygen', 'Sensations',
     'Q10 Rescue', 'Hydra Lifting', 'RGnerin', 'Infinity', 'Urban Project',
@@ -77,6 +79,10 @@ function ChooseColAndCat(props) {
       }
       setHemPassat(false);
     }
+  }
+
+  const afegirProductes = () => {
+    props.onAddProduct(true)
   }
 
   const moveToCollection = async (col) => {  
@@ -160,6 +166,11 @@ function ChooseColAndCat(props) {
           <input type="text" placeholder='BUSCAR PRODUCTE' className='inputC' onChange={(e) => debouncedSearch(e)} />
         </div>
       </div>
+      {user?.admin ? (
+        <div className='addProductButtonDiv'> 
+          <button onClick={afegirProductes} className='button-53'>+</button>
+        </div>
+      ) : (<div></div>)}
     </div>
   )
 }

@@ -76,6 +76,10 @@ function CollectionComponent(props) {
         }
     }
 
+    const popUpAddProduct = (e) => {
+        console.log('target')
+      }
+
     return (
         <div className='collectionComponent'>
             <div className='imgCollection' style={{ backgroundImage }} />
@@ -116,7 +120,7 @@ function CollectionComponent(props) {
                                 )}
                             </div>
                             <div className='moveForCoandCA'>
-                                <ChooseColAndCat onSearchResults={handleSearchResults} />
+                                <ChooseColAndCat onSearchResults={handleSearchResults} onAddProduct={popUpAddProduct} />
                             </div>
                             {searchResults ? (
                                 searchResults === 'NO PRODUCTS FOUND' ? (

@@ -1,9 +1,9 @@
-.productMid{
+.productMid {
     display: flex;
     justify-content: center;
 }
 
-.inputC{
+.inputC {
     position: relative;
     border: none;
     height: 35px;
@@ -12,13 +12,13 @@
     background-color: transparent;
 }
 
-.inputHalf{
+.inputHalf {
     margin-top: 10px;
     margin-left: 40px;
     flex: 1;
 }
 
-.inputC:focus{
+.inputC:focus {
     position: relative;
     outline: none;
     background-color: #fad7fa;
@@ -26,44 +26,44 @@
 }
 
 
-.prodcutsC{
+.prodcutsC {
     margin-top: 100px;
     display: flex;
     flex-direction: row;
     width: 100%;
 }
 
-.prodcutsC h2{
+.prodcutsC h2 {
     margin-right: 70px;
     display: flex;
 }
 
-.prodcutsC h2:hover{
+.prodcutsC h2:hover {
     cursor: pointer;
 }
 
-.coAndca{
+.coAndca {
     display: flex;
     flex-direction: row;
     flex: 1;
 }
 
-.colections{
+.colections {
     display: flex;
     flex-direction: column;
 }
 
-.categories{
+.categories {
     display: flex;
     flex-direction: column;
 }
 
-.colections h2{
+.colections h2 {
     display: flex;
     flex-direction: row;
 }
 
-.margins{
+.margins {
     position: absolute;
     width: 220px;
     height: 300px;
@@ -74,7 +74,7 @@
     z-index: 3;
 }
 
-.colectionsOpened{
+.colectionsOpened {
     position: absolute;
     width: 210px;
     height: 300px;
@@ -85,21 +85,21 @@
 
 .colectionsOpened::-webkit-scrollbar {
     display: block;
-    width: 2px;           
+    width: 2px;
 }
-  
+
 .colectionsOpened::-webkit-scrollbar-track {
-    background: transparent;    
+    background: transparent;
 }
 
 .colectionsOpened::-webkit-scrollbar-thumb {
-    background-color: grey;    
-    border-radius: 20px;     
+    background-color: grey;
+    border-radius: 20px;
 }
 
 .colectionsOpened::-webkit-scrollbar-track-piece:end {
     background: transparent;
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
 }
 
 .colectionsOpened::-webkit-scrollbar-track-piece:start {
@@ -107,14 +107,14 @@
     margin-top: 15px;
 }
 
-.colectionsOpened p{
+.colectionsOpened p {
     display: flex;
     flex-direction: column;
     margin-left: 15px;
-   
+
 }
 
-.lineColections{
+.lineColections {
     display: flex;
     width: 80%;
     height: 1px;
@@ -123,26 +123,33 @@
     margin-top: 15px;
 }
 
-.singleCollection{
+.singleCollection {
     margin-left: 15px;
     margin-top: 15px;
 }
 
-.singleCollection:hover{
+.addProductButtonDiv {
+    position: absolute;
+    right: 4%;
+    margin-top: 100px;
+}
+
+.singleCollection:hover {
     cursor: pointer;
 }
 
-.margin{
+.margin {
     margin-bottom: 20px;
 }
 
-@media(max-width: 1050px){
+@media(max-width: 1050px) {
     .prodcutsC {
         margin-top: 50px;
         display: flex;
         flex-direction: column;
         width: 100%;
     }
+
     .inputHalf {
         margin-left: 0px;
         width: 100%;
@@ -152,17 +159,40 @@
     }
 }
 
-@media(max-width:570px){
+@media(max-width:570px) {
     .widthProductes {
-        width: 90%;
+        width: 70%;
     }
+
+    .addProductButtonDiv{
+        position: absolute;
+        right: 8%;
+        margin-top: 100px;
+    }
+    
     .prodcutsC {
         margin-top: 15px;
     }
 }
 
-@media(max-width:515px){
+@media(max-width:630px) {
+    .categories{
+        margin-left: -50px;
+    }
+}
+
+@media(max-width:515px) {
     .coAndca {
         flex-direction: column;
+    }
+
+    .categories{
+        margin-left: 0px;
+    }
+
+    .addProductButtonDiv {
+        position: absolute;
+        right: 20%;
+        margin-top: 60px;
     }
 }
