@@ -8,8 +8,6 @@ function ProtectedRoute() {
 
     if(loading) return <h1>Loading...</h1>
 
-    console.log(user.admin)
-
     if(!loading && !isAuthenticated || !loading && !user.admin) { //si s'ha carregat la pàgina i el user no es admin redirigim cap el login
         return <Navigate to='/login' replace/>
     }

@@ -119,9 +119,20 @@
     .coandfo{
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         width: 80%;
     }
+    .contact{
+        margin-right: 100px;
+        width: 255px;
+        margin-left: 0px;
+    }
+    .followUs{
+        margin-right: 0px;
+        width: 255px;
+        margin-left: 0px;
+    }
+
 
     .followUs{
         margin-top: 0px;
@@ -130,16 +141,15 @@
     .responsivefoot{
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         width: 80%;
     }
-
     .imageFooter{
         display: flex;
         flex-direction: column;
-        margin-left: -35px;
-        margin-right: 0px;
-        margin-top: 20px;
+        margin-right: 100px;
+        margin-top: 0px;
+        margin-left: 0px;
     }
 }
 
@@ -166,37 +176,94 @@
 }
 
 @media(max-width:610px){
-    
+
+    .footer{
+        display: flex;
+        justify-content: center;
+    }
+
+    .widthFooter{
+        align-items: center;
+        justify-content: center;
+    }
+
     .coandfo{
         display: flex;
         flex-direction: column;
-        width: 80%;
-        margin-bottom: 30px;
-        align-items: center;
+        width: 255px;
+        margin-bottom: 2%;
     }
 
     .contact{
+        width: 255px;
         margin-bottom: 30px;
-        align-items: self-start;
+        margin-left: 0px;
+        margin-right: 0px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .contact h1{
+        display: flex;
+        justify-content: center;
+    }
+
+    .contactEmail{
+        display: flex;
+        justify-content: center;
+    }
+
+    .contactTelephone{
+        display: flex;
+        justify-content: center;
     }
 
     .followUs{
         margin-top: 0px;
     }
 
+    .followUs h1{
+        display: flex;
+        justify-content: center;
+    }
+
+    .linksFooter {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
     .responsivefoot{
         display: flex;
         flex-direction: column;
-        width: 80%;
-        align-items: center;
+        width: 255px;
     }
 
     .ubication{
+        display: flex;
+        flex-direction: column;
         order: 0;
+        width: 255px;
     }
+
+    .ubication h1{
+        display: flex;
+        justify-content: center;
+    }
+
+    .ubication iframe{
+        display: flex;
+        margin-left: 20px;
+    }
+    
     
     .imageFooter{
         order: 1;
-       width: 280px;
+       width: 255px;
+       margin-right: 0px;
+    }
+
+    .linksFooter a{
+        all: unset;
     }
 }

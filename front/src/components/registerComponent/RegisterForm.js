@@ -61,24 +61,26 @@ function RegisterForm() {
                         </div>
                         <div>
                             <div>
-                                <h3>CONTRSEÑA</h3>
+                                <h3>CONTRASEÑA</h3>
                                 {errors.password && <p>Password is required</p>}
                             </div>
                             <input type="password" {...register('password', { required: true })} />
 
                         </div>
                     </div>
-                    <div className='userMail'>
+                    <div className='userMailRegister'>
                         <div className='mailError'>
-                            <h3>CORREO</h3>
+                            <h3>CORREO ELECTRÓNICO</h3>
                             {errors.email && <p>Email is required</p>}
                         </div>
                         <input type="email" {...register('email', { required: true })} />
 
                     </div>
+                    <div className='registerButton'>
                     <button type='submit' className='button-52'>
-                        Sign Up
+                        Registrarse
                     </button>
+                    </div>
                 </form>
                 <p className='alreadyHasAccount'>Ya tienes una cuenta? <Link to='/login'>Inicia Sessión</Link></p>
             </div>

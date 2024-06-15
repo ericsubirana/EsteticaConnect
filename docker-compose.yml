@@ -6,16 +6,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: subi
       MONGO_INITDB_ROOT_PASSWORD: example
-  nginx:
-    depends_on:
-      - api
-      - front
-    restart: always
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./nginx
-    ports:
-      - "3050:80"
   api: 
     build: 
       dockerfile: Dockerfile.dev
@@ -28,8 +18,20 @@ services:
     build:
       dockerfile: Dockerfile.dev
       context: ./front
+    ports:
+      - "3000:3000"
     volumes:
       - /app/node_modules
       - ./front:/app
+  nginx:
+    depends_on:
+      - api
+      - front
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - "80:80"
     #ports:
      # - '8080:8080'

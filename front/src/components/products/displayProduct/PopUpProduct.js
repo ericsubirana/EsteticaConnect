@@ -19,6 +19,7 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
   const result = props.result;
   const descriptionRef = useRef(null);
   const [quantitat, setQuantitat] = useState(0);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const func = () => {
@@ -53,6 +54,20 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
 
   }, [props.trigger]);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        props.setTrigger();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuRef]);
+
   const updateQuantity = async () => {
     const response = await hasProduct(user, result);
     setQuantitat(response.data.quantity);
@@ -84,7 +99,7 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
 
   return props.trigger ? (
     <div className='popup'>
-      <div className='popup-inner'>
+      <div className='popup-inner' ref={menuRef}>
         <img src={imgCasmara} className={isAuthenticated ? 'imgCasmaraWhenLooged' : 'imgCasamara'} height={80} width={80} />
         <h1>{result.title}</h1>
         <div className='product-info'>
@@ -124,3 +139,4 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
 }
 
 export default PopUpProduct;
+

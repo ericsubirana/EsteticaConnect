@@ -1,8 +1,10 @@
 const Service = require('../models/service.model.js');
 
 const getCategory = async (req, res) => {
+    console.log('categoria')
     try {
         const service = req.body.category;
+        console.log(service)
         const categoryService = await Service.find({ category : service });
         if (!categoryService.length) {
             return res.status(404).json({ message: 'Category not found' });

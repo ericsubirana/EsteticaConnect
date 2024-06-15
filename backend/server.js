@@ -18,8 +18,10 @@ const linksRoutes = require('./routes/links.routes.js')
 const { whatsapp } = require('./libs/whatsapp.js');
 
 const initializeApp = async () => {
+  
   await whatsapp.initialize();
 
+  app.use(express.static('public')); //per poder entrar en la carpeta de les imatges
   app.use(express.json()); //per poder llegir el body de les peticions
   app.use(express.urlencoded({ limit: "25mb" }));
   app.use(morgan('dev')); //anar imprimint els resultats
@@ -28,7 +30,7 @@ const initializeApp = async () => {
     next();
   });
   app.use(cors({
-    origin: 'http://localhost:3000', //frontend
+    origin: 'http://localhost:3000', //frontend server https://cefina.es
     credentials: true,
   })); // Enable CORS for all routes
   app.use(cookieParser()); //per poder llegir les cookies

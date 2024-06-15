@@ -40,7 +40,54 @@
     font-size: 4em;
 }
 
-@media(max-width:700px){
+@media(max-height:930px){
+    .text{
+        margin-top: 90px;
+    }
+}
+
+@media(max-height:765px){
+    .titleHome h2{
+        margin-top: -10px;
+    }
+    .titleHome h1{
+        margin-top: -50px;
+    }
+}
+
+@media(max-height:625px){
+    .titleHome h1{
+        margin-top: -70px;
+    }
+}
+
+@media(max-height: 700px) and (max-width: 2000px){
+    .text{
+        margin-top: 50px;
+    }
+    .titleHome h1{
+        margin-top: -70px;
+    }
+}
+
+
+@media(max-width:1300px){
+    .paragraph{
+        font-size: 2em;
+        width: 450px;
+    }
+    .titleHome h2{
+        font-size: 3.5em;
+    }
+    .titleHome h1{
+        font-size: 6.5em;
+        margin-top: -30px;
+        margin-bottom: -20px;
+        line-height: 1;
+    }
+}
+
+@media(max-width:850px){
     .paragraph{
         font-size: 1.5em;
         width: 350px;
@@ -60,17 +107,69 @@
     .homePage{
         height: 850px;
     }
+    .text{
+        margin-top: 130px;
+    }
     .paragraph{
-        font-size: 1.5em;
-        width: 300px;
+        font-size: 1em;
+        width: 250px;
     }
     .titleHome h2{
-        font-size: 3em;
+        margin-top: 50px;
+        font-size: 2em;
     }
     .titleHome h1{
-        font-size: 6em;
+        font-size: 5em;
         margin-top: -30px;
         margin-bottom: -20px;
         line-height: 1;
+    }
+}
+
+@media(max-height: 640px) and (max-width: 2000px){
+    .text{
+        margin-top: 50px;
+    }
+    .titleHome h2{
+        margin-top: -30px;
+    }
+    .titleHome h1{
+        margin-top: -60px;
+    }
+}
+
+@media(max-height: 376px) and (max-width: 2000px){
+    .text{
+        margin-top: 50px;
+    }
+    .titleHome h2{
+        margin-top: -30px;
+    }
+    .titleHome h1{
+        margin-top: -60px;
+    }
+}
+
+@media (max-width: 376px){
+    .titleHome h1 {
+        margin-top: -30px;
+    }
+}
+
+@media (max-height: 1024px) and (max-width: 780px){
+    .text{
+        margin-top: 250px;
+    }
+}
+
+@media (max-height: 830px) and (max-width: 780px){
+    .text{
+        margin-top: 90px;
+    }
+}
+
+@media (max-height: 1024px) and (max-width:650px){
+    .text{
+        margin-top: 130px;
     }
 }

@@ -178,6 +178,17 @@
         margin-top: 0px;
     }
 }
+.imgCasamara{
+    position: absolute;
+    bottom:-15px;
+        right: 45%;
+  }
+  .imgCasmaraWhenLooged{
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 175px;
+}
 
 @media(max-width: 415px){
     .product-info {
@@ -191,11 +202,13 @@
     .product-info img{
         order: 0;
     }
-}
-
-.imgCasmaraWhenLooged{
-    position: absolute;
-    right: 0;
-    top: 0;
-    margin-right: 175px;
+    .imgCasamara{
+        bottom:-15px;
+        right: 40%;
+    }
+    .imgCasmaraWhenLooged{
+        bottom:0;
+        top: 50px;
+        margin-right: 30px;
+    }
 }

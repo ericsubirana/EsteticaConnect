@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 import './randomproducts.css'
-import axios from 'axios';
+import axios from '../../../api/axios';
 import ChooseColAndCat from '../ChooseColAndCat/ChooseColAndCat'
 import PopUpProduct from '../displayProduct/PopUpProduct'
 
@@ -14,7 +14,7 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
 
   useEffect(() => {
     const takeRandomProducts = async () => {
-      const response = await axios.get('/api/randomProducts');
+      const response = await axios.get('/api/randomProducts'); //aqui al server va /api/randomProducts
       const products = response.data;
       if (products) {
         setRandomProductes(products)

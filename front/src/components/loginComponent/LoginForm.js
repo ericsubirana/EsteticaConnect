@@ -80,14 +80,14 @@ export default function LoginForm(props) {
         })}>
           <div className='userMail'>
             <div className='together'>
-              <h3>CORREO</h3>
+              <h3>CORREO ELECTRÓNICO</h3>
               {errors.email && <p>Email is required</p>}
             </div>
             <input type="text" {...register('email', { required: true })} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className='userPassword'>
             <div className='together'>
-              <h3>CONTRSEÑA</h3>
+              <h3>CONTRASEÑA</h3>
               {errors.password && <p>Password is required</p>}
             </div>
             <input type="password" {...register('password', { required: true })} />
@@ -95,7 +95,7 @@ export default function LoginForm(props) {
           </div>
           <div className='buttonAndPAss'>
             <Link className='link' onClick={() => nagigateToOtp()} >Has olvidado la contraseña?</Link>
-            <button type='submit' className='button-53' > Log In </button>
+            <div className='centerButton'> <button type='submit' className='button-53' > Iniciar Sessión </button></div>
           </div>
           <p>Aún no estás registrado? <Link to="/register">Regístrate!</Link> </p>
         </form>
