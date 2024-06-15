@@ -16,7 +16,7 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
 
   useEffect(() => {
     const takeRandomProducts = async () => {
-      const response = await axios.get('/api/randomProducts'); //aqui al server va /api/randomProducts
+      const response = await axios.get('/randomProducts'); //aqui al server va /api/randomProducts
       const products = response.data;
       if (products) {
         setRandomProductes(products)

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import Categories from '../components/products/collectionAndCategory/CaCoComponent';
-import axios from 'axios';
+import axios from '../api/axios';
 
 function Category() {
 
@@ -14,7 +14,7 @@ function Category() {
     useEffect(() => {
         const takeProductsFromCollection = async (category) => {
             try {
-                const response = await axios.post('/api/category', { category }); //fer crida a la carpeta api
+                const response = await axios.post('/category', { category }); //fer crida a la carpeta api
                 const fetchedProducts = response.data;
                 setProducts(fetchedProducts);
               } catch (error) {

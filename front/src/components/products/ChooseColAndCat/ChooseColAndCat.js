@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
-import axios from 'axios'
+import axios from '../../../api/axios'
 import { debounce } from 'lodash';
 
 import './choosecolandcat.css'
-import { set } from 'react-hook-form';
 
 
 function ChooseColAndCat(props) {
@@ -100,7 +99,7 @@ function ChooseColAndCat(props) {
     else 
     {
       try {
-        const res = await axios.post('/api/searchProducts', {
+        const res = await axios.post('/searchProducts', {
           name: productName,
         });
         if(res.data.length === 0){
