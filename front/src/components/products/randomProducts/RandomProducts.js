@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
+import { useAuth } from '../../../context/AuthContext';
 import './randomproducts.css'
 import axios from '../../../api/axios';
 import ChooseColAndCat from '../ChooseColAndCat/ChooseColAndCat'
@@ -13,6 +14,7 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
   const [searchResults, setSearchResults] = useState(''); // aquesta varaible s'ompla quan fem búsqueda
   const [selectedResult, setSelectedResult] = useState(null);
   const [operationResult, setOperationResult] = useState(null);
+  const {user, isAuthenticated, loading} = useAuth();
 
   useEffect(() => {
     const takeRandomProducts = async () => {
@@ -94,7 +96,9 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
                           <PopUpProduct trigger={selectedResult === randomProduct} operationResult={operationResult} result={randomProduct} setTrigger={() => setSelectedResult(null)} />
                         </div>
                         {/*basicament quan clickem alguna opcio de la toolbar posem un selectedresult i afegim quina opracio volem i fem que el popup product de dalt es cridi */}
-                        <ProductToolBar triggerPopUp={triggerPopUpEditRemove} idProducte={randomProduct} /> 
+                        { user?.admin ? (
+                          <ProductToolBar triggerPopUp={triggerPopUpEditRemove} idProducte={randomProduct} />
+                        ) : null} 
                       </div>
                     ))}
                   </div>

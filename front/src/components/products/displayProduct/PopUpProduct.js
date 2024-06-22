@@ -21,6 +21,10 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
   const [quantitat, setQuantitat] = useState(0);
   const menuRef = useRef(null);
   const [operationResult, setOperationResult] = useState(null);
+  //CAS EDIT 
+  const [title, setTitle] = useState(result.title);
+  const [description, setDescription] = useState(result.description);
+  const [price, setPrice] = useState(result.price);
 
   useEffect(() => {
     const func = () => {
@@ -107,76 +111,101 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
     //async () => { await addProductToCart(); await updateQuantity() }
   }
 
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
+  const handlePriceChange = (event) => {
+    setPrice(event.target.value);
+  };
+
+  const editProduct = () => {
+    //async () => { await addProductToCart(); await updateQuantity() }
+    props.setTrigger()
+  }
+
   return props.trigger ? (
     <div className='popup'>
       {operationResult == 'EDITAR' ? (
         <div>
           <div className='popup-inner' ref={menuRef}>
-            <img src={imgCasmara} className={isAuthenticated ? 'imgCasmaraWhenLooged' : 'imgCasamara'} height={80} width={80} />
-            <input value={result.title}></input>
-            <div className='product-info'>
-              <div className='product-description'>
-                <div ref={descriptionRef} className='scroll-product'>
-                  <input value={result.description.replace(/\n/g, '<br>')}></input>
+            <div className='product-image-info-row'>
+              <div className='product-info'>
+                <textarea onChange={handleTitleChange} className='textAreaTitle' style={{ marginBottom: '15px' }} value={title}></textarea >
+                <div className='product-description'>
+                  <div ref={descriptionRef} className='scroll-product'>
+                    <textarea className='textAreaDesc' onChange={handleDescriptionChange} value={description.replace(/\n/g, '<br>')}></textarea>
+                  </div>
+                  <h4>Precio: <input onChange={handlePriceChange} value={price}></input></h4>
                 </div>
-                <h4>Precio: <input value={result.price}></input></h4>
               </div>
-              <img className='hoverImg' src={result['img-src']} alt='' height={300} width={300} />
+              <div style={{ justifyContent: 'center', display: 'flex', width: '100%' }}>
+              <img className='hoverImg' style={{ marginTop: '-30px' }} src={result['img-src']} alt='' height={300} width={300} />
             </div>
-            <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
-            <button className='addCart' style={{ paddingTop: '15px', paddingBottom: '15px' }}>{operationResult}</button>
+          </div>
+          <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
+          <button onClick={editProduct} className='addCart' style={{ paddingTop: '15px', paddingBottom: '15px' }}>{operationResult}</button>
+        </div>
+        </div>
+  ) : (
+    <div>
+      <div className='popup-inner' ref={menuRef}>
+        <img src={imgCasmara} className={isAuthenticated ? 'imgCasmaraWhenLooged' : 'imgCasamara'} height={80} width={80} />
+        <div className='product-image-info-row'>
+          <div className='product-info'>
+            <div><h1>{result.title}</h1></div>
+            <div className='product-description'>
+              <div ref={descriptionRef} className='scroll-product'>
+                <p dangerouslySetInnerHTML={{ __html: result.description.replace(/\n/g, '<br>') }}></p>
+              </div>
+              {result.price && <h4>Precio: {result.price}</h4>}
+            </div>
+          </div>
+          <div style={{ alignContent: 'center' }}>
+            <img src={result['img-src']} alt='' height={300} width={300} />
           </div>
         </div>
-      ) : (
-        <div>
-          <div className='popup-inner' ref={menuRef}>
-            <img src={imgCasmara} className={isAuthenticated ? 'imgCasmaraWhenLooged' : 'imgCasamara'} height={80} width={80} />
-            <h1>{result.title}</h1>
-            <div className='product-info'>
-              <div className='product-description'>
-                <div ref={descriptionRef} className='scroll-product'>
-                  <p dangerouslySetInnerHTML={{ __html: result.description.replace(/\n/g, '<br>') }}></p>
-                </div>
-                {result.price && <h4>Precio: {result.price}</h4>}
-              </div>
-              <img src={result['img-src']} alt='' height={300} width={300} />
-            </div>
-            {operationResult == 'BORRAR' ? (
-              <div>
-                 <button className='addCart' onClick={borrarProducte}>
-                    <p>BORRAR</p>
-                  </button>
-              </div>
-            ) : (
-              <div>
-                {isAuthenticated && result.price && quantitat === 0 && (
-                  <button className='addCart' onClick={async () => { await addProductToCart(); await updateQuantity() }}>
-                    <p>Añadir al carrito</p>
-                    <PiShoppingCart size={30} />
-                  </button>
-                )}
-                {isAuthenticated && result.price && quantitat > 0 && (
-                  <div className='moveToCenter'>
-                    <div className='addOrRemove'>
-                      <div className='quantityArrows'>
-                        {quantitat}
-                        <div className='arrows'>
-                          <IoIosArrowUp className='up' onClick={async () => { await addProductToCart(); await updateQuantity() }} />
-                          <IoIosArrowDown onClick={async () => { await RemoveProductToCart(); await updateQuantity() }} />
-                        </div>
-                      </div>
-                      <PiShoppingCart size={30} className='shoppingCart' />
+        {operationResult == 'BORRAR' ? (
+          <div>
+            <button className='addCart' onClick={borrarProducte}>
+              <p>BORRAR</p>
+            </button>
+          </div>
+        ) : (
+          <div>
+            {isAuthenticated && result.price && quantitat === 0 && (
+              <button className='addCart' onClick={async () => { await addProductToCart(); await updateQuantity() }}>
+                <p>Añadir al carrito</p>
+                <PiShoppingCart size={30} />
+              </button>
+            )}
+            {isAuthenticated && result.price && quantitat > 0 && (
+              <div className='moveToCenter'>
+                <div className='addOrRemove'>
+                  <div className='quantityArrows'>
+                    {quantitat}
+                    <div className='arrows'>
+                      <IoIosArrowUp className='up' onClick={async () => { await addProductToCart(); await updateQuantity() }} />
+                      <IoIosArrowDown onClick={async () => { await RemoveProductToCart(); await updateQuantity() }} />
                     </div>
                   </div>
-                )}
+                  <PiShoppingCart size={30} className='shoppingCart' />
+                </div>
               </div>
             )}
-            <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
           </div>
-          <ToastContainer position="top-center" limit={1} />
-        </div>
-      )}
+        )}
+        <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
+      </div>
+      <ToastContainer position="top-center" limit={1} />
     </div>
+  )
+}
+    </div >
   ) : null;
 }
 

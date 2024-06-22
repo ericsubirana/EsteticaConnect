@@ -23,7 +23,6 @@
 
 .popup-inner h1{
     display: inline-block;
-    width: 60%;
 }
 
 .popup-inner .close-btn{
@@ -35,7 +34,7 @@
 
 .product-info{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .product-info img{
@@ -217,4 +216,19 @@
 .hoverImg:hover{
     cursor: pointer;
     filter: brightness(0.7);
+}
+
+.textAreaDesc{
+    width: 318px;
+    height: 121px;
+}
+
+.textAreaTitle{
+    height: 21px;
+    width: 318px;
+}
+
+.product-image-info-row{
+    display: flex;
+    flex-direction: row;
 }
