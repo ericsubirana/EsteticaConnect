@@ -1,7 +1,6 @@
 const Product = require('../models/product.model.js')
 
 const randomProducts = async (req, res) => {
-    console.log('epa')
     try {
         const randomProducts = await Product.aggregate([
             { $sample: { size: 6 } }

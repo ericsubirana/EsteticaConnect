@@ -5,12 +5,14 @@ import './randomproducts.css'
 import axios from '../../../api/axios';
 import ChooseColAndCat from '../ChooseColAndCat/ChooseColAndCat'
 import PopUpProduct from '../displayProduct/PopUpProduct'
+import ProductToolBar from '../productToolBar/ProductToolBar'
 
 function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busqueda
 
   const [randomProductes, setRandomProductes] = useState('');
   const [searchResults, setSearchResults] = useState(''); // aquesta varaible s'ompla quan fem búsqueda
   const [selectedResult, setSelectedResult] = useState(null);
+  const [operationResult, setOperationResult] = useState(null);
 
   useEffect(() => {
     const takeRandomProducts = async () => {
@@ -30,12 +32,20 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
   const popUp = (result) => {
     if (selectedResult !== result) {
       setSelectedResult(result);
+      setOperationResult(null);
     }
   }
 
   const popUpAddProduct = (e) => {
     console.log(e)
   }
+
+  const triggerPopUpEditRemove = (action, product) => {
+    if (selectedResult !== product) {
+      setSelectedResult(product.idProducte);
+      setOperationResult(action);
+    }
+  } 
 
   return (
     <div>
@@ -65,7 +75,7 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
                         <img src={result['img-src']} alt='' height={200} width={200} />
                         <h3>{result.title}</h3>
                       </motion.div>
-                      <PopUpProduct trigger={selectedResult === result} result={result} setTrigger={() => setSelectedResult(null)}/>
+                      <PopUpProduct trigger={selectedResult === result} result={result} setTrigger={() => setSelectedResult(null)} />
                     </div>
                   ))}
                 </div>
@@ -75,12 +85,16 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
                 {randomProductes ? (
                   <div className='sixProductes'>
                     {randomProductes.map((randomProduct) => (
-                      <div key={randomProduct._id} className='producte' onClick={() => popUp(randomProduct)}>
-                        <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: 'spring' } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                          <img src={randomProduct['img-src']} alt='' height={200} width={200} />
-                          <h3>{randomProduct.title}</h3>
-                        </motion.div>
-                        <PopUpProduct trigger={selectedResult === randomProduct} result={randomProduct} setTrigger={() => setSelectedResult(null)}/>
+                      <div key={randomProduct._id} className='producte'>
+                        <div onClick={() => popUp(randomProduct)}>
+                          <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: 'spring' } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                            <img src={randomProduct['img-src']} alt='' height={200} width={200} />
+                            <h3>{randomProduct.title}</h3>
+                          </motion.div>
+                          <PopUpProduct trigger={selectedResult === randomProduct} operationResult={operationResult} result={randomProduct} setTrigger={() => setSelectedResult(null)} />
+                        </div>
+                        {/*basicament quan clickem alguna opcio de la toolbar posem un selectedresult i afegim quina opracio volem i fem que el popup product de dalt es cridi */}
+                        <ProductToolBar triggerPopUp={triggerPopUpEditRemove} idProducte={randomProduct} /> 
                       </div>
                     ))}
                   </div>

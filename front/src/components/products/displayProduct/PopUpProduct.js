@@ -20,6 +20,7 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
   const descriptionRef = useRef(null);
   const [quantitat, setQuantitat] = useState(0);
   const menuRef = useRef(null);
+  const [operationResult, setOperationResult] = useState(null);
 
   useEffect(() => {
     const func = () => {
@@ -40,9 +41,13 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
   });
 
   useEffect(() => {
+    setOperationResult(props.operationResult)
+  }, [props.trigger])
+
+  useEffect(() => {
     const hasAlreadyProduct = async () => {
       console.log(user)
-      if(user){
+      if (user) {
         const response = await hasProduct(user, result);
         setQuantitat(response.data.quantity);
       }
@@ -97,43 +102,80 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
     }
   }
 
+  const borrarProducte = () => {
+    console.log('borrar')
+    //async () => { await addProductToCart(); await updateQuantity() }
+  }
+
   return props.trigger ? (
     <div className='popup'>
-      <div className='popup-inner' ref={menuRef}>
-        <img src={imgCasmara} className={isAuthenticated ? 'imgCasmaraWhenLooged' : 'imgCasamara'} height={80} width={80} />
-        <h1>{result.title}</h1>
-        <div className='product-info'>
-          <div className='product-description'>
-            <div ref={descriptionRef} className='scroll-product'>
-              <p dangerouslySetInnerHTML={{ __html: result.description.replace(/\n/g, '<br>') }}></p>
-            </div>
-            {result.price && <h4>Precio: {result.price}</h4>}
-          </div>
-          <img src={result['img-src']} alt='' height={300} width={300} />
-        </div>
-        {isAuthenticated && result.price && quantitat === 0 && (
-          <button className='addCart' onClick={async () => { await addProductToCart(); await updateQuantity() }}>
-            <p>Añadir al carrito</p>
-            <PiShoppingCart size={30} />
-          </button>
-        )}
-        {isAuthenticated && result.price && quantitat > 0 && (
-          <div className='moveToCenter'>
-            <div className='addOrRemove'>
-              <div className='quantityArrows'>
-                {quantitat}
-                <div className='arrows'>
-                  <IoIosArrowUp className='up' onClick={async () => { await addProductToCart(); await updateQuantity() }} />
-                  <IoIosArrowDown onClick={async () => { await RemoveProductToCart(); await updateQuantity() }} />
+      {operationResult == 'EDITAR' ? (
+        <div>
+          <div className='popup-inner' ref={menuRef}>
+            <img src={imgCasmara} className={isAuthenticated ? 'imgCasmaraWhenLooged' : 'imgCasamara'} height={80} width={80} />
+            <input value={result.title}></input>
+            <div className='product-info'>
+              <div className='product-description'>
+                <div ref={descriptionRef} className='scroll-product'>
+                  <input value={result.description.replace(/\n/g, '<br>')}></input>
                 </div>
+                <h4>Precio: <input value={result.price}></input></h4>
               </div>
-              <PiShoppingCart size={30} className='shoppingCart' />
+              <img className='hoverImg' src={result['img-src']} alt='' height={300} width={300} />
             </div>
+            <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
+            <button className='addCart' style={{ paddingTop: '15px', paddingBottom: '15px' }}>{operationResult}</button>
           </div>
-        )}
-        <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
-      </div>
-      <ToastContainer position="top-center" limit={1}/>
+        </div>
+      ) : (
+        <div>
+          <div className='popup-inner' ref={menuRef}>
+            <img src={imgCasmara} className={isAuthenticated ? 'imgCasmaraWhenLooged' : 'imgCasamara'} height={80} width={80} />
+            <h1>{result.title}</h1>
+            <div className='product-info'>
+              <div className='product-description'>
+                <div ref={descriptionRef} className='scroll-product'>
+                  <p dangerouslySetInnerHTML={{ __html: result.description.replace(/\n/g, '<br>') }}></p>
+                </div>
+                {result.price && <h4>Precio: {result.price}</h4>}
+              </div>
+              <img src={result['img-src']} alt='' height={300} width={300} />
+            </div>
+            {operationResult == 'BORRAR' ? (
+              <div>
+                 <button className='addCart' onClick={borrarProducte}>
+                    <p>BORRAR</p>
+                  </button>
+              </div>
+            ) : (
+              <div>
+                {isAuthenticated && result.price && quantitat === 0 && (
+                  <button className='addCart' onClick={async () => { await addProductToCart(); await updateQuantity() }}>
+                    <p>Añadir al carrito</p>
+                    <PiShoppingCart size={30} />
+                  </button>
+                )}
+                {isAuthenticated && result.price && quantitat > 0 && (
+                  <div className='moveToCenter'>
+                    <div className='addOrRemove'>
+                      <div className='quantityArrows'>
+                        {quantitat}
+                        <div className='arrows'>
+                          <IoIosArrowUp className='up' onClick={async () => { await addProductToCart(); await updateQuantity() }} />
+                          <IoIosArrowDown onClick={async () => { await RemoveProductToCart(); await updateQuantity() }} />
+                        </div>
+                      </div>
+                      <PiShoppingCart size={30} className='shoppingCart' />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+            <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
+          </div>
+          <ToastContainer position="top-center" limit={1} />
+        </div>
+      )}
     </div>
   ) : null;
 }

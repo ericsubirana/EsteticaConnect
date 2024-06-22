@@ -212,3 +212,9 @@
         margin-right: 30px;
     }
 }
+
+
+.hoverImg:hover{
+    cursor: pointer;
+    filter: brightness(0.7);
+}
