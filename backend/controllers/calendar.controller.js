@@ -39,6 +39,7 @@ const takeSpecificEvent = async (req, res) => {
 const updateEvent = async (req, res) => {
     try {
         const { id, values } = req.body;
+        console.log(values)
         await Calendar.updateOne({ _id: id }, { $set: values });
         res.status(200).json({ message: 'Evento editado' });
     } catch (error) {

@@ -44,4 +44,49 @@ const searchProducts = async (req, res) => {
  
 }
 
-module.exports = { randomProducts, findCollections, findCategory, searchProducts }
+const editProduct = async (req, res) => {
+    const product = req.body.product;
+    try{
+        const editSnapshot = await Product.updateOne(
+            {_id: product.productId},
+            {
+                $set: {
+                    title:product.productTitle,
+                    description:product.productDescription,
+                    "img-src":product.productImage,
+                    price:product.productPrice,
+                    category:product.productCategory,
+                    collection:product.productCollecion
+                }
+            }
+        );
+        if (editSnapshot) {
+            res.status(200).json({ message: 'Product updated successfully' });
+        } else {
+            res.status(404).json({ error: 'Product not found' });
+        }
+    } catch (error) {
+        console.error('Error retrieving data from MongoDB:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    } 
+}
+
+const deleteProduct = async (req, res) => {
+    console.log(req.body)
+    const idProduct = req.body.productId;
+    try{
+        const deleteSnapshot = await Product.deleteOne(
+            {_id: idProduct},
+        );
+        if (deleteSnapshot) {
+            res.status(200).json({ message: 'Product removed successfully' });
+        } else {
+            res.status(404).json({ error: 'Product not found' });
+        }
+    } catch (error) {
+        console.error('Error retrieving data from MongoDB:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    } 
+}
+
+module.exports = { randomProducts, findCollections, findCategory, searchProducts, editProduct, deleteProduct }

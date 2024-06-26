@@ -3,6 +3,9 @@ import './popupproduct.css';
 import { useAuth } from '../../../context/AuthContext.js'
 import { addProductToCart as apiAddProductToCart } from '../../../api/cart.js'
 import { RemoveProductToCart as apiRemoveProductToCart } from '../../../api/cart.js'
+import { editProduct as apiEditProduct } from '../../../api/products.js'; 
+import { deleteProduct as apiDeleteProduct } from '../../../api/products.js';
+import MultiplesImages from '../../saveImages/MultiplesImages.js';
 
 import { ToastContainer, toast } from 'react-toastify';
 import { hasProduct } from '../../../api/cart.js';
@@ -24,7 +27,11 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
   //CAS EDIT 
   const [title, setTitle] = useState(result.title);
   const [description, setDescription] = useState(result.description);
-  const [price, setPrice] = useState(result.price);
+  const [price, setPrice] = useState(result.price? result.price : '');
+  const [image, setImage] = useState(result['img-src']);
+  const [category, setCategory] = useState(result.category ?? '');
+  const [collection, setCollection] = useState(result.collection ?? '');
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const func = () => {
@@ -50,7 +57,6 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
 
   useEffect(() => {
     const hasAlreadyProduct = async () => {
-      console.log(user)
       if (user) {
         const response = await hasProduct(user, result);
         setQuantitat(response.data.quantity);
@@ -106,26 +112,49 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
     }
   }
 
-  const borrarProducte = () => {
-    console.log('borrar')
-    //async () => { await addProductToCart(); await updateQuantity() }
-  }
-
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
-
+  
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
-
+  
   const handlePriceChange = (event) => {
     setPrice(event.target.value);
   };
-
-  const editProduct = () => {
-    //async () => { await addProductToCart(); await updateQuantity() }
+  
+  const editProduct = async () => {
+    //console.log(title, description, price, image)
+    const id = result._id;
+    const product = {productId: id, productTitle: title, productDescription: description, productPrice: price, productImage: image, productCategory: category, productCollecion: collection}
+    const response = await apiEditProduct(product);
+    if (response.data = 'Product edited successfully', { autoClose: 1500, closeOnClick: true }) {
+      toast.success('Product edited successfully', { autoClose: 1500, closeOnClick: true });
+      toast.clearWaitingQueue();
+    }
+    else {
+      toast.error('An error ocurred while trying to edit Product');
+      toast.clearWaitingQueue();
+    }
     props.setTrigger()
+  }
+ 
+  const borrarProducte = async () => {
+    const response = await apiDeleteProduct(result._id);
+    if (response.data = 'Product removed successfully', { autoClose: 1500, closeOnClick: true }) {
+      toast.success('Product removed successfully', { autoClose: 1500, closeOnClick: true });
+      toast.clearWaitingQueue();
+    }
+    else {
+      toast.error('An error ocurred while trying to edit Product');
+      toast.clearWaitingQueue();
+    }
+  }
+  
+  const changeImage = (file) => {
+    setImage(file);
+    result['img-src'] = file;
   }
 
   return props.trigger ? (
@@ -144,67 +173,79 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
                 </div>
               </div>
               <div style={{ justifyContent: 'center', display: 'flex', width: '100%' }}>
-              <img className='hoverImg' style={{ marginTop: '-30px' }} src={result['img-src']} alt='' height={300} width={300} />
-            </div>
-          </div>
-          <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
-          <button onClick={editProduct} className='addCart' style={{ paddingTop: '15px', paddingBottom: '15px' }}>{operationResult}</button>
-        </div>
-        </div>
-  ) : (
-    <div>
-      <div className='popup-inner' ref={menuRef}>
-        <img src={imgCasmara} className={isAuthenticated ? 'imgCasmaraWhenLooged' : 'imgCasamara'} height={80} width={80} />
-        <div className='product-image-info-row'>
-          <div className='product-info'>
-            <div><h1>{result.title}</h1></div>
-            <div className='product-description'>
-              <div ref={descriptionRef} className='scroll-product'>
-                <p dangerouslySetInnerHTML={{ __html: result.description.replace(/\n/g, '<br>') }}></p>
-              </div>
-              {result.price && <h4>Precio: {result.price}</h4>}
-            </div>
-          </div>
-          <div style={{ alignContent: 'center' }}>
-            <img src={result['img-src']} alt='' height={300} width={300} />
-          </div>
-        </div>
-        {operationResult == 'BORRAR' ? (
-          <div>
-            <button className='addCart' onClick={borrarProducte}>
-              <p>BORRAR</p>
-            </button>
-          </div>
-        ) : (
-          <div>
-            {isAuthenticated && result.price && quantitat === 0 && (
-              <button className='addCart' onClick={async () => { await addProductToCart(); await updateQuantity() }}>
-                <p>Añadir al carrito</p>
-                <PiShoppingCart size={30} />
-              </button>
+              {isHovered && (
+                <div
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                    style={{height: '300px',
+                      width: '300px', cursor:'pointer', top:'0', position: 'absolute', zIndex: 20, background: 'rgba(128, 128, 128, 0.3)' }}
+                >
+                    <MultiplesImages changeImage={changeImage} />
+                </div>
             )}
-            {isAuthenticated && result.price && quantitat > 0 && (
-              <div className='moveToCenter'>
-                <div className='addOrRemove'>
-                  <div className='quantityArrows'>
-                    {quantitat}
-                    <div className='arrows'>
-                      <IoIosArrowUp className='up' onClick={async () => { await addProductToCart(); await updateQuantity() }} />
-                      <IoIosArrowDown onClick={async () => { await RemoveProductToCart(); await updateQuantity() }} />
-                    </div>
+                <img className='hoverImg' style={{ marginTop: '-30px' }} src={result['img-src']} alt='' height={300} width={300}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)} />
+              </div>
+            </div>
+            <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
+            <button onClick={editProduct} className='addCart' style={{ paddingTop: '15px', paddingBottom: '15px' }}>{operationResult}</button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div className='popup-inner' ref={menuRef}>
+            <img src={imgCasmara} className={isAuthenticated ? 'imgCasmaraWhenLooged' : 'imgCasamara'} height={80} width={80} />
+            <div className='product-image-info-row'>
+              <div className='product-info'>
+                <div><h1>{result.title}</h1></div>
+                <div className='product-description'>
+                  <div ref={descriptionRef} className='scroll-product'>
+                    <p dangerouslySetInnerHTML={{ __html: result.description.replace(/\n/g, '<br>') }}></p>
                   </div>
-                  <PiShoppingCart size={30} className='shoppingCart' />
+                  {result.price && <h4>Precio: {result.price}</h4>}
                 </div>
               </div>
+              <div style={{ alignContent: 'center' }}>
+                <img src={result['img-src']} alt='' height={300} width={300} />
+              </div>
+            </div>
+            {operationResult == 'BORRAR' ? (
+              <div>
+                <button className='addCart' onClick={borrarProducte}>
+                  <p>BORRAR</p>
+                </button>
+              </div>
+            ) : (
+              <div>
+                {isAuthenticated && result.price && quantitat === 0 && (
+                  <button className='addCart' onClick={async () => { await addProductToCart(); await updateQuantity() }}>
+                    <p>Añadir al carrito</p>
+                    <PiShoppingCart size={30} />
+                  </button>
+                )}
+                {isAuthenticated && result.price && quantitat > 0 && (
+                  <div className='moveToCenter'>
+                    <div className='addOrRemove'>
+                      <div className='quantityArrows'>
+                        {quantitat}
+                        <div className='arrows'>
+                          <IoIosArrowUp className='up' onClick={async () => { await addProductToCart(); await updateQuantity() }} />
+                          <IoIosArrowDown onClick={async () => { await RemoveProductToCart(); await updateQuantity() }} />
+                        </div>
+                      </div>
+                      <PiShoppingCart size={30} className='shoppingCart' />
+                    </div>
+                  </div>
+                )}
+              </div>
             )}
+            <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
           </div>
-        )}
-        <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
-      </div>
-      <ToastContainer position="top-center" limit={1} />
-    </div>
-  )
-}
+          <ToastContainer position="top-center" limit={1} />
+        </div>
+      )
+      }
     </div >
   ) : null;
 }
