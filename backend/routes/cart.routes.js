@@ -3,7 +3,7 @@ const { adddProduct, hasProduct, removeProduct, getProducts } = require('../cont
 
 const router = express.Router()
 
-router.post('/addProduct', adddProduct);
+router.post('/addProductCart', adddProduct);
 
 router.post('/hasProduct', hasProduct);
 

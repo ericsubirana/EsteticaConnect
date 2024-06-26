@@ -3,8 +3,9 @@ import './popupproduct.css';
 import { useAuth } from '../../../context/AuthContext.js'
 import { addProductToCart as apiAddProductToCart } from '../../../api/cart.js'
 import { RemoveProductToCart as apiRemoveProductToCart } from '../../../api/cart.js'
-import { editProduct as apiEditProduct } from '../../../api/products.js'; 
+import { editProduct as apiEditProduct } from '../../../api/products.js';
 import { deleteProduct as apiDeleteProduct } from '../../../api/products.js';
+import { addProduct as apiAddProduct } from '../../../api/products.js';
 import MultiplesImages from '../../saveImages/MultiplesImages.js';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -23,15 +24,17 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
   const descriptionRef = useRef(null);
   const [quantitat, setQuantitat] = useState(0);
   const menuRef = useRef(null);
-  const [operationResult, setOperationResult] = useState(null);
+  const [operationResult, setOperationResult] = useState(props.operationResult);
+
   //CAS EDIT 
-  const [title, setTitle] = useState(result.title);
-  const [description, setDescription] = useState(result.description);
-  const [price, setPrice] = useState(result.price? result.price : '');
-  const [image, setImage] = useState(result['img-src']);
-  const [category, setCategory] = useState(result.category ?? '');
-  const [collection, setCollection] = useState(result.collection ?? '');
+  const [title, setTitle] = useState(result?.title ?? '');
+  const [description, setDescription] = useState(result?.description ?? '');
+  const [price, setPrice] = useState(result?.price ? result.price : '');
+  const [image, setImage] = useState(result?.['img-src'] ?? '');
+  const [category, setCategory] = useState(result?.category ?? []);
+  const [collection, setCollection] = useState(result?.collection ?? '');
   const [isHovered, setIsHovered] = useState(false);
+
 
   useEffect(() => {
     const func = () => {
@@ -57,7 +60,7 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
 
   useEffect(() => {
     const hasAlreadyProduct = async () => {
-      if (user) {
+      if (user && result) {
         const response = await hasProduct(user, result);
         setQuantitat(response.data.quantity);
       }
@@ -115,19 +118,32 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
-  
+
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
-  
+
   const handlePriceChange = (event) => {
     setPrice(event.target.value);
   };
-  
+
+  const addProduct = async () => {
+    const product = { title: title, description: description, price: price, "img-src": image, category: category, collection: collection }
+    const response = await apiAddProduct(product);
+    if (response.data = 'Product added successfully', { autoClose: 1500, closeOnClick: true }) {
+      toast.success('Product added successfully', { autoClose: 1500, closeOnClick: true });
+      toast.clearWaitingQueue();
+    }
+    else {
+      toast.error('An error ocurred while trying to remove Product');
+      toast.clearWaitingQueue();
+    }
+  }
+
   const editProduct = async () => {
     //console.log(title, description, price, image)
     const id = result._id;
-    const product = {productId: id, productTitle: title, productDescription: description, productPrice: price, productImage: image, productCategory: category, productCollecion: collection}
+    const product = { productId: id, productTitle: title, productDescription: description, productPrice: price, productImage: image, productCategory: category, productCollecion: collection }
     const response = await apiEditProduct(product);
     if (response.data = 'Product edited successfully', { autoClose: 1500, closeOnClick: true }) {
       toast.success('Product edited successfully', { autoClose: 1500, closeOnClick: true });
@@ -139,7 +155,7 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
     }
     props.setTrigger()
   }
- 
+
   const borrarProducte = async () => {
     const response = await apiDeleteProduct(result._id);
     if (response.data = 'Product removed successfully', { autoClose: 1500, closeOnClick: true }) {
@@ -151,10 +167,9 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
       toast.clearWaitingQueue();
     }
   }
-  
+
   const changeImage = (file) => {
     setImage(file);
-    result['img-src'] = file;
   }
 
   return props.trigger ? (
@@ -173,16 +188,18 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
                 </div>
               </div>
               <div style={{ justifyContent: 'center', display: 'flex', width: '100%' }}>
-              {isHovered && (
-                <div
+                {isHovered && (
+                  <div
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
-                    style={{height: '300px',
-                      width: '300px', cursor:'pointer', top:'0', position: 'absolute', zIndex: 20, background: 'rgba(128, 128, 128, 0.3)' }}
-                >
+                    style={{
+                      height: '300px',
+                      width: '300px', cursor: 'pointer', top: '0', position: 'absolute', zIndex: 20, background: 'rgba(128, 128, 128, 0.3)'
+                    }}
+                  >
                     <MultiplesImages changeImage={changeImage} />
-                </div>
-            )}
+                  </div>
+                )}
                 <img className='hoverImg' style={{ marginTop: '-30px' }} src={result['img-src']} alt='' height={300} width={300}
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)} />
@@ -191,9 +208,44 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
             <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
             <button onClick={editProduct} className='addCart' style={{ paddingTop: '15px', paddingBottom: '15px' }}>{operationResult}</button>
           </div>
+          <ToastContainer position="top-center" limit={1} />
         </div>
       ) : (
         <div>
+          {operationResult == 'ADD' ? (
+            <div className='popup-inner' ref={menuRef}>
+            <div className='product-image-info-row'>
+              <div className='product-info'>
+                <textarea onChange={handleTitleChange} className='textAreaTitle' style={{ marginBottom: '15px' }} value={title}></textarea >
+                <div className='product-description'>
+                  <div ref={descriptionRef} className='scroll-product'>
+                    <textarea className='textAreaDesc' onChange={handleDescriptionChange} value={description.replace(/\n/g, '<br>')}></textarea>
+                  </div>
+                  <h4>Precio: <input onChange={handlePriceChange} value={price}></input></h4>
+                </div>
+              </div>
+              <div style={{ justifyContent: 'center', display: 'flex', width: '100%' }}>
+                {isHovered && (
+                  <div
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                    style={{
+                      height: '300px',
+                      width: '300px', cursor: 'pointer', top: '0', position: 'absolute', zIndex: 20, background: 'rgba(128, 128, 128, 0.3)'
+                    }}
+                  >
+                    <MultiplesImages changeImage={changeImage} />
+                  </div>
+                )}
+                <img className='hoverImg' style={{ marginTop: '-30px' }} src={image} alt='' height={300} width={300}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)} />
+              </div>
+            </div>
+            <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
+            <button onClick={addProduct} className='addCart' style={{ paddingTop: '15px', paddingBottom: '15px' }}>{operationResult}</button>
+          </div>
+          ) : (
           <div className='popup-inner' ref={menuRef}>
             <img src={imgCasmara} className={isAuthenticated ? 'imgCasmaraWhenLooged' : 'imgCasamara'} height={80} width={80} />
             <div className='product-image-info-row'>
@@ -242,6 +294,8 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
             )}
             <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
           </div>
+          )}
+
           <ToastContainer position="top-center" limit={1} />
         </div>
       )

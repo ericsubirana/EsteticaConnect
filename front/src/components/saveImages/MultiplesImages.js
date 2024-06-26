@@ -16,7 +16,7 @@ const MultiplesImages = (props) => {
             formData.append("file", file);
             formData.append("tags", `codeinfuse, medium, gist`);
             formData.append("upload_preset", "EsteticaConnect");
-            formData.append("api_key", "944593122717572");
+            formData.append("api_key", process.env.API_IMAGE_KEY);
             formData.append("timesamp", (Date.now()/1000) | 0);
             setLoading("true")
             //canviar peticio!!

@@ -39,7 +39,8 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
   }
 
   const popUpAddProduct = (e) => {
-    console.log(e)
+    setSelectedResult(0);
+    setOperationResult('ADD');
   }
 
   const triggerPopUpEditRemove = (action, product) => {
@@ -65,6 +66,11 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
       <div className='centerProductes'>
         <div className='widthProductes'>
           <ChooseColAndCat onSearchResults={handleSearchResults} onAddProduct={popUpAddProduct} />
+          {operationResult == 'ADD' && ( //cas clica addButton
+            <div>
+              <PopUpProduct trigger={selectedResult === 0} operationResult={operationResult} setTrigger={() => setSelectedResult(null)} />
+            </div>
+          ) }
           <div className='totalWidth'>
             {searchResults ? (
               searchResults === 'NO PRODUCTS FOUND' ? (
@@ -72,12 +78,17 @@ function RandomProducts() { //pasem desde ChooseColAndCat si estem fent una busq
               ) : (
                 <div className='sixProductes'>
                   {searchResults.map((result) => (
-                    <div key={result._id} className='producte' onClick={() => popUp(result)}>
+                    <div className='producte'>
+                      <div key={result._id}  onClick={() => popUp(result)}>
                       <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: 'spring' } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <img src={result['img-src']} alt='' height={200} width={200} />
                         <h3>{result.title}</h3>
                       </motion.div>
-                      <PopUpProduct trigger={selectedResult === result} result={result} setTrigger={() => setSelectedResult(null)} />
+                      <PopUpProduct trigger={selectedResult === result} operationResult={operationResult} result={result} setTrigger={() => setSelectedResult(null)} />
+                    </div>
+                     { user?.admin ? (
+                      <ProductToolBar triggerPopUp={triggerPopUpEditRemove} idProducte={result} />
+                    ) : null} 
                     </div>
                   ))}
                 </div>

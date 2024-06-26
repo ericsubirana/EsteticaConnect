@@ -72,7 +72,6 @@ const editProduct = async (req, res) => {
 }
 
 const deleteProduct = async (req, res) => {
-    console.log(req.body)
     const idProduct = req.body.productId;
     try{
         const deleteSnapshot = await Product.deleteOne(
@@ -89,4 +88,58 @@ const deleteProduct = async (req, res) => {
     } 
 }
 
-module.exports = { randomProducts, findCollections, findCategory, searchProducts, editProduct, deleteProduct }
+const addProduct = async (req, res) => {
+    let {product} = req.body;
+    console.log(product)
+    // Validation and transformation
+    const validationErrors = [];
+
+    if (!product.title || typeof product.title !== 'string') {
+        validationErrors.push('Title is required and must be a string.');
+    }
+
+    if (!product.description || typeof product.description !== 'string') {
+        validationErrors.push('Description is required and must be a string.');
+    }
+
+    if (!product.price || typeof product.price !== 'string') {
+        validationErrors.push('Price is required and must be a string.');
+    }
+
+    if (!product['img-src'] || typeof product['img-src'] !== 'string') {
+        validationErrors.push('Image URL is required and must be a string.');
+    }
+
+    if (!product.category || !Array.isArray(product.category)) {
+        product.category = []; // Ensure it's an array even if empty
+    }
+
+    if (!product.collections || typeof product.collections !== 'string') {
+        product.collections = ''; // Ensure it's a string even if empty
+    }
+
+    if (validationErrors.length > 0) {
+        return res.status(400).json({ error: validationErrors });
+    }
+
+    // Create the product object matching the schema
+    const newProduct = {
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        'img-src': product['img-src'],
+        category: product.category,
+        collections: product.collections
+    };
+
+    try {
+        const addSnapshot = await Product.create(newProduct);
+        res.status(200).json({ message: 'Product added successfully', product: addSnapshot });
+    } catch (error) {
+        console.error('Error adding product to MongoDB:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+    
+
+module.exports = { randomProducts, findCollections, findCategory, searchProducts, editProduct, deleteProduct, addProduct }

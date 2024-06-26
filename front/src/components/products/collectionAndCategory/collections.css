@@ -55,7 +55,6 @@
     align-items: center;
     flex-direction: column;
     box-sizing: border-box;
-    margin-bottom: 50px;
     height: 300px;
     width: 300px;
 }

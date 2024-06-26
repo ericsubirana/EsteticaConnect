@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion'
+import { useAuth } from '../../../context/AuthContext';
 
 import './collections.css';
 import pink from '../../../assets/collectionBack.jpg'
@@ -12,7 +13,8 @@ import orange from '../../../assets/collectionBackOrange.jpg'
 import purple from '../../../assets/collectionBackPurple.png'
 
 import ChooseColAndCat from '../ChooseColAndCat/ChooseColAndCat';
-import PopUpProduct from '../displayProduct/PopUpProduct'
+import PopUpProduct from '../displayProduct/PopUpProduct';
+import ProductToolBar from '../productToolBar/ProductToolBar'
 
 function CollectionComponent(props) {
 
@@ -20,6 +22,8 @@ function CollectionComponent(props) {
     const [backgroundImage, setBackgroundImage] = useState(`url(${pink})`);
     const [searchResults, setSearchResults] = useState(''); // aquesta varaible s'ompla quan fem búsqueda
     const [selectedResult, setSelectedResult] = useState(null);
+    const [operationResult, setOperationResult] = useState(null);
+    const { user, isAuthenticated, loading } = useAuth();
 
     useEffect(() => {
         const changeBackground = () => {
@@ -78,7 +82,15 @@ function CollectionComponent(props) {
 
     const popUpAddProduct = (e) => {
         console.log('target')
-      }
+    }
+
+    const triggerPopUpEditRemove = (action, product) => {
+        if (selectedResult !== product) {
+            console.log(product, action)
+            setSelectedResult(product.idProducte);
+            setOperationResult(action);
+        }
+    }
 
     return (
         <div className='collectionComponent'>
@@ -91,7 +103,7 @@ function CollectionComponent(props) {
                         ) : (
                             <div className='sixProductes' >
                                 {searchResults.map((result) => (
-                                    <div key={result._id} className='producte' onClick={()=> popUp(result)}>
+                                    <div key={result._id} className='producte' onClick={() => popUp(result)}>
                                         <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: 'spring' } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                             <img src={result['img-src']} alt='' height={200} width={200} />
                                             <h3>{result.title}</h3>
@@ -128,12 +140,17 @@ function CollectionComponent(props) {
                                 ) : (
                                     <div className='sixProductes'>
                                         {searchResults.map((result) => (
-                                            <div key={result._id} className='producte' onClick={() => popUp(result)}>
-                                                <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: 'spring' } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                                    <img src={result['img-src']} alt='' height={200} width={200} />
-                                                    <h3>{result.title}</h3>
-                                                </motion.div>
-                                                <PopUpProduct trigger={selectedResult === result} result={result} setTrigger={() => setSelectedResult(null)} />
+                                            <div className='producte'>
+                                                <div key={result._id} onClick={() => popUp(result)}>
+                                                    <motion.div whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: 'spring' } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                                        <img src={result['img-src']} alt='' height={200} width={200} />
+                                                        <h3>{result.title}</h3>
+                                                    </motion.div>
+                                                    <PopUpProduct trigger={selectedResult === result} operationResult={operationResult} result={result} setTrigger={() => setSelectedResult(null)} />
+                                                </div>
+                                                {user?.admin ? (
+                                                    <ProductToolBar triggerPopUp={triggerPopUpEditRemove} idProducte={result} />
+                                                ) : null}
                                             </div>
                                         ))}
                                     </div>
@@ -141,12 +158,17 @@ function CollectionComponent(props) {
                             ) : (
                                 <div className='collectionProductWrap'>
                                     {products.map((product, index) => (
-                                        <div className='sameWitdhProducts' onClick={() => popUp(product)}>
-                                            <motion.div className='collectionProduct' key={index} whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: "spring" } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                                                <img src={product['img-src']} alt="" height={280} width={280} />
-                                                <h3>{product.title}</h3>
-                                            </motion.div>
-                                            <PopUpProduct trigger={selectedResult === product} result={product} setTrigger={() => setSelectedResult(null)} />
+                                        <div className='producte'>
+                                            <div className='sameWitdhProducts' onClick={() => popUp(product)}>
+                                                <motion.div className='collectionProduct' key={index} whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: "spring" } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                                                    <img src={product['img-src']} alt="" height={280} width={280} />
+                                                    <h3>{product.title}</h3>
+                                                </motion.div>
+                                                <PopUpProduct trigger={selectedResult === product} operationResult={operationResult} result={product} setTrigger={() => setSelectedResult(null)} />
+                                            </div>
+                                            {user?.admin ? (
+                                                <ProductToolBar triggerPopUp={triggerPopUpEditRemove} idProducte={product} />
+                                            ) : null}
                                         </div>
                                     ))}
                                 </div>
