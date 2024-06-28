@@ -81,7 +81,8 @@ function CollectionComponent(props) {
     }
 
     const popUpAddProduct = (e) => {
-        console.log('target')
+        setSelectedResult(0);
+        setOperationResult('ADD');
     }
 
     const triggerPopUpEditRemove = (action, product) => {
@@ -133,6 +134,11 @@ function CollectionComponent(props) {
                             </div>
                             <div className='moveForCoandCA'>
                                 <ChooseColAndCat onSearchResults={handleSearchResults} onAddProduct={popUpAddProduct} />
+                                {operationResult == 'ADD' && ( //cas clica addButton
+                                    <div>
+                                        <PopUpProduct trigger={selectedResult === 0} operationResult={operationResult} setTrigger={() => setSelectedResult(null)} />
+                                    </div>
+                                )}
                             </div>
                             {searchResults ? (
                                 searchResults === 'NO PRODUCTS FOUND' ? (
@@ -158,7 +164,7 @@ function CollectionComponent(props) {
                             ) : (
                                 <div className='collectionProductWrap'>
                                     {products.map((product, index) => (
-                                        <div className='producte'>
+                                        <div className='producte' key={index}>
                                             <div className='sameWitdhProducts' onClick={() => popUp(product)}>
                                                 <motion.div className='collectionProduct' key={index} whileHover={{ scale: 1.1 }} transition={{ layout: { duration: 1, type: "spring" } }} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                                                     <img src={product['img-src']} alt="" height={280} width={280} />

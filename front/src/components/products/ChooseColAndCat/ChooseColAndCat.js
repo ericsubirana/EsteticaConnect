@@ -16,16 +16,14 @@ function ChooseColAndCat(props) {
   const [iconCat, setIconCat] = useState(<IoIosArrowDown />);
   const menuRef = useRef(null);
   const [hemPassat, setHemPassat] = useState(false);
-  const {user, isAuthenticated, loading} = useAuth();
-
-  const CollectionsList = ['Shine Stop', 'Antioxidant', 'Pure Oxygen', 'Sensations',
+  const { user, isAuthenticated, loading } = useAuth();
+  const [CollectionsList, setCollectionsList] = useState(['Shine Stop', 'Antioxidant', 'Pure Oxygen', 'Sensations',
     'Q10 Rescue', 'Hydra Lifting', 'RGnerin', 'Infinity', 'Urban Project',
-    'Age Defense', 'Lightening', 'Sheel Mask Collection', 'Mask Kits Collection'];
-
-  const CategoryList = ['Cuidado Solar', 'Limpiadores 3 en 1', 'Hidratantes',
+    'Age Defense', 'Lightening', 'Sheel Mask Collection', 'Mask Kits Collection']);
+  const [CategoryList, setCategoryList] = useState(['Cuidado Solar', 'Limpiadores 3 en 1', 'Hidratantes',
     'Nutritivas', 'Serum', 'Ampollas Flash', 'Contorno de ojos',
     'Superconcentrados', 'Cremas con color', 'Bálsamo reparador',
-    'Ácidos Cosméticos', 'Nutricosmética'];
+    'Ácidos Cosméticos', 'Nutricosmética'])
 
   const navigation = useNavigate();
 
@@ -38,7 +36,7 @@ function ChooseColAndCat(props) {
         setIconCol(<IoIosArrowDown />);
         setIconCat(<IoIosArrowDown />);
       }
-      else{
+      else {
         setHemPassat(false);
       }
     };
@@ -50,10 +48,27 @@ function ChooseColAndCat(props) {
     };
   }, [menuRef]);
 
-  const clicked = (m) => {
+  const getCatCols = async () => {
+    try {
+      const res = await axios.get('/productCatCol');
+      if (res.data.length === 0) {
+        console.log('NO CATEGORIES AND COLLECTIONS EXIST');
+      }
+      else {
+        setCollectionsList(res.data[0].collections);
+        setCategoryList(res.data[0].categories);
+      }
+    }
+    catch (error) {
+      console.error(error);
+    }
+  }
+
+  const clicked = async (m) => {
     if (m === "col") {
-      if (!hemPassat){
+      if (!hemPassat) {
         if (!clickCol) {
+          await getCatCols();
           setIconCol(<IoIosArrowUp />);
           setClickCol(true);
           setClickCat(false);
@@ -66,8 +81,9 @@ function ChooseColAndCat(props) {
       setHemPassat(false);
     }
     else {
-      if(!hemPassat){
+      if (!hemPassat) {
         if (!clickCat) {
+          await getCatCols();
           setIconCat(<IoIosArrowUp />);
           setClickCat(true);
           setClickCol(false);
@@ -85,10 +101,10 @@ function ChooseColAndCat(props) {
     props.onAddProduct(true)
   }
 
-  const moveToCollection = async (col) => {  
+  const moveToCollection = async (col) => {
     setClickCol(false);
     setClickCat(false);
-    navigation(`/collection/${col.collection}`); 
+    navigation(`/collection/${col.collection}`);
   }
 
   const moveToCategory = async (col) => {
@@ -98,20 +114,18 @@ function ChooseColAndCat(props) {
   }
 
   const handleChange = async (productName) => {
-    if (productName === '') 
-    {
+    if (productName === '') {
       props.onSearchResults(''); //IMPORTANTÍSSIM PER TORNAR ALS PRODUCTES ANTERIORS
-    } 
-    else 
-    {
+    }
+    else {
       try {
         const res = await axios.post('/searchProducts', {
           name: productName,
         });
-        if(res.data.length === 0){
-          props.onSearchResults('NO PRODUCTS FOUND'); 
+        if (res.data.length === 0) {
+          props.onSearchResults('NO PRODUCTS FOUND');
         }
-        else{
+        else {
           props.onSearchResults(res.data);
         }
       }
@@ -167,7 +181,7 @@ function ChooseColAndCat(props) {
         </div>
       </div>
       {user?.admin ? (
-        <div className='addProductButtonDiv'> 
+        <div className='addProductButtonDiv'>
           <button onClick={afegirProductes} className='button-53'>+</button>
         </div>
       ) : (<div></div>)}

@@ -13,7 +13,8 @@ const productsRoutes = require('./routes/products.routes.js');
 const cartRoutes = require('./routes/cart.routes.js');
 const serviceRoutes = require('./routes/service.routes.js');
 const calendarRoutes = require('./routes/calendar.routes.js');
-const linksRoutes = require('./routes/links.routes.js')
+const linksRoutes = require('./routes/links.routes.js');
+const productsCatColRoures = require('./routes/productsCatCol.routes.js');
 
 const { whatsapp } = require('./libs/whatsapp.js');
 
@@ -43,6 +44,7 @@ const initializeApp = async () => {
   app.use('/api', serviceRoutes);
   app.use('/api', calendarRoutes);
   app.use('/api', linksRoutes);
+  app.use('/api', productsCatColRoures);
 
   connectDB();
 

@@ -2,10 +2,6 @@ import { useState, useEffect } from "react"
 
 function ProductToolBar (props) {
 
-    useEffect( () => {
-        console.log(props)
-    },[])
-
     const editProduct = () => {
         props.triggerPopUp('EDITAR', props)
     }
