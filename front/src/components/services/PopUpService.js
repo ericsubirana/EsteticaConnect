@@ -33,8 +33,7 @@ function PopUpService(props) {
 
     const updateServei = async () => {
         const service = { name: title, description: description, image: image, category: category}
-        console.log('tetetetete')
-        const res = await updateServei(service);
+        const res = await updateService(service);
         if(res.status=='200')
             console.log('SERVICE UPDATED')
         else
@@ -85,7 +84,6 @@ function PopUpService(props) {
 
     return (
         <div className="popup">
-            {console.log(props.operationResult)}
             {props.operationResult == 'EDITAR' ? (
                 <div className="popup-inner">
                     <div >
@@ -110,7 +108,7 @@ function PopUpService(props) {
                                     onMouseEnter={() => setIsHovered(true)}
                                     onMouseLeave={() => setIsHovered(false)} />
                             </div>
-                            <button style={{ 'marginTop': '20px', 'height': '50px' }} className='addCart' type='submit'>EDITAR</button>
+                            <button onClick={updateServei} style={{ 'marginTop': '20px', 'height': '50px' }} className='addCart' type='submit'>EDITAR</button>
                         </form>
                     </div>
                     <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
@@ -186,30 +184,3 @@ function PopUpService(props) {
 }
 
 export default PopUpService;
-
-
-/*<textarea onChange={handleTitleChange} className='textAreaTitle' style={{ marginBottom: '15px' }} value={title}></textarea >
-                <div className='product-description'>
-                  <div ref={descriptionRef} className='scroll-product'>
-                    <textarea className='textAreaDesc' onChange={handleDescriptionChange} value={description.replace(/\n/g, '<br>')}></textarea>
-                  </div>
-                  <h4>Precio: <input onChange={handlePriceChange} value={price}></input></h4>
-                </div>
-              </div>
-              <div style={{ justifyContent: 'center', display: 'flex', width: '100%' }}>
-                {isHovered && (
-                  <div
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                    style={{
-                      height: '300px',
-                      width: '300px', cursor: 'pointer', top: '0', position: 'absolute', zIndex: 20, background: 'rgba(128, 128, 128, 0.3)'
-                    }}
-                  >
-                    <MultiplesImages changeImage={changeImage} />
-                  </div>
-                )}
-                <img className='hoverImg' style={{ marginTop: '-30px' }} src={result['img-src']} alt='' height={300} width={300}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)} />
-              </div>*/

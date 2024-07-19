@@ -97,7 +97,6 @@ function Service() {
 
     return (
         <div>
-            {console.log(selectedResult)}
             <Header page={'services'} />
             <div className='serviceMain' style={{ backgroundImage: backgroundImage }}>
                 <div className='centerTitleProducts'>
