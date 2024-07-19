@@ -37,17 +37,17 @@ const MultiplesImages = (props) => {
     }
 
     return (
-        <div className="multipleImagesAbs">
-            <Container className="multipleImagesAbs">
+        <div className={props.type == 'service' ? "multipleImagesAbsService" : "multipleImagesAbs"}>
+            <Container className={props.type == 'service' ? "multipleImagesAbsService" : "multipleImagesAbs"}>
                 <DropZone 
-                    classname="dropzone"
+                    classname={props.type == 'service' ? "dropzoneService" : "dropzone"}
                     onDrop = {handleDrop}
                     onChange={(e) => { setImage(e.target.value) }}
                     value={image}
                 >
                     {({getRootProps, getInputProps}) => (
                         <section>
-                            <div {...getRootProps({className:"dropzone"})}>
+                            <div {...getRootProps({className:props.type == 'service' ? "dropzoneService" : "dropzone"})}>
                                 <input {...getInputProps()}/>
                                 <p>Elige tu imagen aquí</p>
                             </div>

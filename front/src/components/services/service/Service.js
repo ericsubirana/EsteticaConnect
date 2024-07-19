@@ -11,7 +11,10 @@ import ManicuraPedicura from '../../../assets/manicura2.jpg'
 import Anexos from '../../../assets/maquillaje.jpg'
 import Aparatología from '../../../assets/aparatologia.jpg'
 
+import ProductToolBar from '../../products/productToolBar/ProductToolBar.js';
+import { useAuth } from '../../../context/AuthContext';
 import './service.css'
+import PopUpService from '../PopUpService.js';
 
 function Service() {
 
@@ -21,7 +24,10 @@ function Service() {
     const [backgroundImage, setBackgroundImage] = useState(`url(${TrataminetosCorporales})`);
     const height = useRef(null);
     const [descriptionHeight, setDescriptionHeight] = useState(450);
-    
+    const { user, isAuthenticated, loading } = useAuth();
+    const [selectedResult, setSelectedResult] = useState(null);
+    const [operationResult, setOperationResult] = useState(null);
+
     useEffect(() => {
         const subServices = async () => {
             const result = await getServices(servei);
@@ -75,8 +81,23 @@ function Service() {
         setServicedClicked(service);
     }
 
+    const triggerPopUpEditRemove = (action, service) => {
+        console.log(action, service)
+        if (selectedResult !== service) {
+            setSelectedResult(service.serviceId._id);
+            setOperationResult(action);
+        }
+    }
+
+    const setTrigger = () =>
+    {
+        setSelectedResult("");
+        setOperationResult("");
+    }
+
     return (
         <div>
+            {console.log(selectedResult)}
             <Header page={'services'} />
             <div className='serviceMain' style={{ backgroundImage: backgroundImage }}>
                 <div className='centerTitleProducts'>
@@ -88,7 +109,7 @@ function Service() {
             <div className='serviceShow'>
                 <div className='widthService'>
                     <div className='serviceMapWidth'>
-                        <div className='serviceMap' ref={height} style={{height:descriptionHeight}}>
+                        <div className='serviceMap' ref={height} style={{ height: descriptionHeight }}>
                             {services.map((service, idx) => (
                                 <div key={idx} onClick={() => changeService(service)} className={`titleService ${serviceClicked && serviceClicked.id === service.id ? 'selected' : ''}`}>
                                     {service.name}
@@ -98,11 +119,26 @@ function Service() {
                     </div>
                     <div>
                         {serviceClicked && (
-                            <div className='infoService'>
-                                <div className='serviceDesc'>
-                                    {serviceClicked.description}
+                            <div>
+                                <div className='infoService'>
+                                    <div className='serviceDesc'>
+                                        {serviceClicked.description}
+                                    </div>
+                                    <img className='photoService' src={serviceClicked.image} />
                                 </div>
-                                <img className='photoService' src={serviceClicked.image} />
+                                <div className='serviceToolBar' >
+                                    {user?.admin ? (
+                                        <div className='serviceToolBar-inner'>
+                                            <ProductToolBar triggerPopUp={triggerPopUpEditRemove} serviceId={serviceClicked} />
+                                            {console.log(selectedResult)}
+                                            {selectedResult && (
+                                                <div>
+                                                    <PopUpService operationResult={operationResult} setTrigger={setTrigger} serviceClicked={serviceClicked}/>
+                                                </div>
+                                            )}
+                                        </div>
+                                    ) : null}
+                                </div>
                             </div>
                         )}
                     </div>

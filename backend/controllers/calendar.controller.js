@@ -10,10 +10,38 @@ const insertEvent = async (req, res) => {
         console.log(req.body)
         const event = new Calendar(req.body);
         await event.save();
+        //ara enviem missatge al client
+        try {
+            const tel = event.clientPhoneNumber;
+            const chatId = await whatsapp.getNumberId(tel);
+            const mensaje = `Hola ${event.clientName} dema tens hora a les ${event.startHour} per ${event.description}`;
+            await whatsapp.sendMessage(chatId._serialized, mensaje);
+            console.log('Mensaje enviado:', mensaje);
+        } catch (error) {
+            console.error('Error al enviar mensaje:', error);
+        }
         res.status(200).json({ message: 'Evento creado correctamente' })
     } catch (error) {
         res.status(400).json({ message: 'error creando el evento' })
     }
+}
+
+const getAllContacts = async (client) => {
+    let contacts = await client.getContacts();
+    return contacts;
+}
+
+const takeContacts = async (req, res) => {
+    let clientPhones = {};
+    let contacts = await getAllContacts(whatsapp);
+    contacts = contacts.filter(contact => !contact.isGroup && contact.isMyContact && contact.id.user.startsWith('34'));
+    contacts.forEach(contact => {
+        const phoneNumber = contact.id.user;
+        const clientName = contact.name;
+        clientPhones[clientName] = phoneNumber;
+    });
+    console.log(clientPhones)
+    res.status(200).json(clientPhones);
 }
 
 const takeEvents = async (req, res) => {
@@ -41,6 +69,15 @@ const updateEvent = async (req, res) => {
         const { id, values } = req.body;
         console.log(values)
         await Calendar.updateOne({ _id: id }, { $set: values });
+        try {
+            const tel = values.clientPhoneNumber;
+            const chatId = await whatsapp.getNumberId(tel);
+            const mensaje = `Hola ${values.clientName} s'ha actualitzat el teu esdeveniment i demà tens hora a les ${values.startHour} per ${values.description}`;
+            await whatsapp.sendMessage(chatId._serialized, mensaje);
+            console.log('Mensaje enviado:', mensaje);
+        } catch (error) {
+            console.error('Error al enviar mensaje:', error);
+        }
         res.status(200).json({ message: 'Evento editado' });
     } catch (error) {
         console.error(error);
@@ -113,4 +150,4 @@ cron.schedule('0 8 * * 6', async () => { //dissabte avisa a totes les persones d
 });
 
 
-module.exports = { insertEvent, takeEvents, takeSpecificEvent, updateEvent, deleteEvent }
+module.exports = { insertEvent, takeEvents, takeSpecificEvent, updateEvent, deleteEvent, takeContacts }

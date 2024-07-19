@@ -346,3 +346,54 @@ input[type=number]::-webkit-outer-spin-button {
     margin-top: -15px;
   }
 }
+
+.suggestions{
+  position: absolute;
+  z-index: 15;
+  list-style-type: none; 
+  padding: 0; 
+  margin: 0; 
+  margin-top: 5px;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  max-height: 200px; 
+  width: 170px; 
+  overflow-y: auto;
+  background-color:#f4fbff;
+  border-radius: 10px;
+  scroll-behavior: smooth;
+}
+
+.suggestions::-webkit-scrollbar {
+  width: 10px;               /* width of the entire scrollbar */
+}
+
+.suggestions::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0);        /* color of the tracking area */
+}
+
+.suggestions::-webkit-scrollbar-thumb {
+  background-color: rgb(0, 0, 0);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid rgb(228, 228, 228);  /* creates padding around scroll thumb */
+}
+
+.suggestions:hover{
+  cursor: pointer;
+}
+
+.suggest {
+  padding-left: 15px;
+  display: flex;
+  align-items: center; /* Asegura que los items se alineen al centro verticalmente */
+  justify-content: center; /* Asegura la alineación a la izquierda */
+  padding-bottom: 4px;
+  padding-top: 4px;
+  border-radius: 5px;
+
+}
+
+.suggest:hover{
+  background-color:#c7e2fd;
+}

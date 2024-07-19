@@ -48,6 +48,10 @@
     flex-basis: 50%;
 }
 
+.onSelect:hover
+{
+    cursor: pointer;
+}
 
 .product-description p{
     color: #acacac;

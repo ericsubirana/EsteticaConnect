@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../components/header/Header'
 import CalendarPopUp from '../components/calendarPopUp/CalendarPopUp'
-import { getEvents } from '../api/calendar';
+import { getEvents, getContacts } from '../api/calendar';
 import moment from 'moment';
 
 function CalendarEmployees() {
 
     const [events, setEvents] = useState(null);
+    const [contacts, setContacts] = useState(null);
 
     useEffect(()=>{
         takeAllEvents();
+        takeAllContacts();
     }, [])
 
     const takeAllEvents = async () => {
         const response = await getEvents();
         const formattedEvents = response.data.map((event) => convertirEvento(event));
         setEvents(formattedEvents);
+    }
+
+    const takeAllContacts = async () => 
+    {
+        const response = await getContacts();
+        setContacts(response)
     }
 
     const convertirEvento = (eventFromApi) => {
@@ -35,7 +43,7 @@ function CalendarEmployees() {
     return (
         <div>
             <Header page='calendar' />
-            <CalendarPopUp events={events} setEvents={setEvents} takeAllEvents={takeAllEvents} />
+            <CalendarPopUp events={events} contacts={contacts} setEvents={setEvents} takeAllEvents={takeAllEvents} />
         </div>
     )
 }

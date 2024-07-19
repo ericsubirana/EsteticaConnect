@@ -266,9 +266,9 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
                     <h4>Precio: <input onChange={handlePriceChange} value={price}></input></h4>
                     <h4>Colección: <input onChange={handleCollectionChange} value={collection}></input></h4>
                     {/*Poso if(!clickCol) ja que caniem la variable a true després per tant en cas de que sigui fals es quan ha de fer la petició*/}
-                    <h4 onClick={async () => {if(!clickCol) await getCatCols(); setClickCol(!clickCol); setClickCat(false) }}>Sel. colección existente <IoIosArrowDown /> </h4>
+                    <h4 className='onSelect' onClick={async () => {if(!clickCol) await getCatCols(); setClickCol(!clickCol); setClickCat(false) }}>Sel. colección existente <IoIosArrowDown /> </h4>
                     {clickCol && (
-                      <div className='margins'>
+                      <div className='margins' style={{'marginTop':'0px'}}>
                         <div className='colectionsOpened'>
                           {CollectionsList.map((collection, index) => (
                             <div key={collection}>
@@ -281,9 +281,9 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
                       </div>
                     )}
                     <h4>Categorias: <input onChange={handleCategoryChange} value={category}></input></h4>
-                    <h4 onClick={async () => {if(!clickCat) await getCatCols(); setClickCat(!clickCat); setClickCol(false) }}> Sel. categoria extistente:  <IoIosArrowDown /></h4>
+                    <h4 className='onSelect' onClick={async () => {if(!clickCat) await getCatCols(); setClickCat(!clickCat); setClickCol(false) }}> Sel. categoria extistente:  <IoIosArrowDown /></h4>
                     {clickCat && (
-                      <div className='margins'>
+                      <div className='margins' style={{'marginTop':'0px'}}>
                         <div className='colectionsOpened'>
                           {CategoryList.map((category, index) => (
                             <div key={category}>

@@ -5,10 +5,31 @@
     top:0%
 }
 
+.multipleImagesAbsService{
+    width: 500px;
+    height: 300px;
+    filter: brightness(0.7);
+    top:0%
+}
+
 .dropzone{
     width: 300px;
     height: 300px;
     filter: brightness(0.7);
+}
+
+.dropzoneService{
+    width: 500px;
+    height: 300px;
+    filter: brightness(0.7);
+}
+
+.dropzoneService p{
+    display: flex;
+    position: static;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
 }
 
 .dropzone p{

@@ -92,7 +92,7 @@
 .producte{
     display: flex;
     flex-basis: 33.33%;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: column;
     box-sizing: border-box;

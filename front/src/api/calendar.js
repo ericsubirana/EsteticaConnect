@@ -9,3 +9,6 @@ export const getSpecificEvent = (id) => axios.get(`/getSpecificEvent/${id}`);
 export const updateEvent = ({id, values}) => axios.post('/updateEvent', {id, values});
 
 export const deleteEvent = (id) => axios.get(`/deleteEvent/${id}`);
+
+export const getContacts = (id) => axios.get(`/getContacts`);
+

@@ -1,0 +1,29 @@
+.editService{
+    display: flex;
+    flex-direction: column;
+    max-width: 90%;
+
+}
+
+.textAreaDescService{
+    height: 80px;
+    width: 475px;
+}
+
+.textAreaTitleService{
+    height: 21px;
+    width: 400px;
+}
+
+.descripcioServeri
+{
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.titolServei
+{
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+}

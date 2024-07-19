@@ -16,13 +16,23 @@ function CalendarPopUp(props) {
   const { handleSubmit, control, setValue, reset } = useForm();
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [inputValueName, setInputValueName] = useState('');
+  const [inputValuePhone, setInputValuePhone] = useState('');
+  const [filteredContacts, setFilteredContacts] = useState([]);
+
+  const [skipEffect, setSkipEffect] = useState(false);
+
   const state = {
     button: 1
   };
 
 
   const handleSelectSlot = (slotInfo) => {
-    setSelectedDate(slotInfo.start);
+    setInputValueName(""); //inicialitzem les variables internes
+    setInputValuePhone("");
+    reset();
+    const localStart = new Date(slotInfo.start.getTime() - (slotInfo.start.getTimezoneOffset() * 60000));
+    setSelectedDate(localStart);
   };
 
   const handleEventClick = async (event) => {
@@ -44,9 +54,10 @@ function CalendarPopUp(props) {
       try {
         moment.tz.setDefault('UTC');
         data.day = moment(selectedDate);
-        console.log(data.day)
         await insertEvent(data);
         reset();
+        setInputValueName("");
+        setInputValuePhone("");
         setSelectedDate(null);
         props.takeAllEvents();//actualitzem el calendari amb el nou event
       } catch (error) {
@@ -91,6 +102,27 @@ function CalendarPopUp(props) {
     }
   };
 
+  useEffect(() => {
+    if (inputValueName && !skipEffect) {
+      const filtered = Object.entries(props.contacts.data).filter(([name, phone]) =>
+        name.toLowerCase().includes(inputValueName.toLowerCase())
+      );
+      setFilteredContacts(filtered);
+    } else {
+      setFilteredContacts([]);
+      setSkipEffect(false);
+    }
+  }, [inputValueName, props.contacts]);
+
+  const handleContactSelect = (contact) => {
+    setValue('clientName', contact[0]);
+    setValue('clientPhoneNumber', contact[1].slice(2));
+    setInputValueName(contact[0]);
+    setInputValuePhone(contact[1].slice(2));
+    setFilteredContacts([]);
+    setSkipEffect(true)
+  };
+
   return (
     <div>
       <div className='allCalendarStyle'>
@@ -118,7 +150,34 @@ function CalendarPopUp(props) {
                     <Controller
                       name="clientName"
                       control={control}
-                      render={({ field }) => <input {...field} type="text" placeholder="Nombre cliente" required />}
+                      render={({ field }) => 
+                        <div>
+                          <input
+                            autocomplete="off"
+                            {...field} 
+                            type="text" 
+                            value={inputValueName} 
+                            placeholder="Nombre cliente" 
+                            onChange={(e) => {
+                              field.onChange(e);
+                              setInputValueName(e.target.value);
+                            }}
+                            required />
+                            {filteredContacts.length > 0 && (
+                            <ul className="suggestions">
+                              {filteredContacts.map((contact) => (
+                                <li 
+                                  className='suggest'
+                                  key={contact.id}
+                                  onClick={() => handleContactSelect(contact)}
+                                >
+                                  {contact[0]}
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                        }
                     />
                   </div>
                   <div>
@@ -126,7 +185,18 @@ function CalendarPopUp(props) {
                     <Controller
                       name="clientPhoneNumber"
                       control={control}
-                      render={({ field }) => <input {...field} type="number" placeholder="Número teléfono cliente" />}
+                      render={({ field }) => <input 
+                                              autocomplete="off"
+                                              value={inputValuePhone} 
+                                              {...field} 
+                                              onChange={(e) => {
+                                                field.onChange(e);
+                                                setInputValuePhone(e.target.value);
+                                              }}
+                                              type="number" 
+                                              placeholder="Número teléfono cliente" 
+                                              required/>
+                              }
                     />
                   </div>
                 </div>

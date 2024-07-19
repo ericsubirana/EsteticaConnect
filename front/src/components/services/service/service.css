@@ -6,7 +6,7 @@
     height: 400px;
 }
 
-.titleServiceText{
+.titleServiceText {
     display: flex;
     flex-direction: row;
     position: absolute;
@@ -15,14 +15,17 @@
     justify-content: left;
     color: white;
 }
-.titleServiceText h1{
+
+.titleServiceText h1 {
     font-size: 3rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-.titleServiceText h3{
+
+.titleServiceText h3 {
     font-size: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
+
 @media (max-width: 1930px) {
     .titleServiceText {
         width: 75%;
@@ -35,16 +38,23 @@
     }
 }
 
-@media(max-width:790px){
+@media(max-width:790px) {
     .titleServiceText {
         margin-top: 200px;
         display: flex;
         flex-direction: column;
     }
 
+    .serviceToolBar {
+        margin-top: 0px;
+    }
 }
 
-.serviceMapWidth{
+.serviceToolBar {
+    margin-top: 15px;
+}
+
+.serviceMapWidth {
     width: 100%;
     outline: none;
     overflow: hidden;
@@ -52,23 +62,23 @@
     border-right: 1px solid #7d7d7d44;
 }
 
-.serviceMap{
+.serviceMap {
     width: 80%;
     max-height: 450px;
 }
 
 .serviceMapWidth::-webkit-scrollbar {
     display: block;
-    width: 2px;           
+    width: 2px;
 }
-  
+
 .serviceMapWidth::-webkit-scrollbar-track {
-    background: transparent;    
+    background: transparent;
 }
 
 .serviceMapWidth::-webkit-scrollbar-thumb {
-    background-color: grey;    
-    border-radius: 20px;     
+    background-color: grey;
+    border-radius: 20px;
 }
 
 .serviceMapWidth::-webkit-scrollbar-track-piece:end {
@@ -80,7 +90,7 @@
 }
 
 
-.titleService{
+.titleService {
     display: flex;
     font-size: 20px;
     align-items: center;
@@ -93,25 +103,25 @@
     color: black;
 }
 
-.titleService:hover{
+.titleService:hover {
     cursor: pointer;
 }
 
-.serviceShow{
+.serviceShow {
     margin-top: 100px;
     display: flex;
     width: 100%;
     justify-content: center;
 }
 
-.widthService{
+.widthService {
     width: 90%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.photoService{
+.photoService {
     display: flex;
     width: 500px;
     height: 300px;
@@ -120,61 +130,80 @@
     justify-content: center;
 }
 
-.serviceDesc{
+.serviceDesc {
     width: 500px;
     margin-bottom: 20px;
     color: #7D7D7D;
     font-size: 20px;
 }
 
-.infoService{
+.infoService {
     margin-left: 80px;
 }
 
-@media(min-width:1450px){
+.serviceToolBar-inner {
+    margin-left: 80px;
+}
+
+@media(min-width:1450px) {
     .serviceMapWidth {
         width: 50%;
     }
+
     .widthService {
         width: 1265px;
     }
 }
 
-@media(max-width:1000px){
+@media(max-width:1000px) {
     .widthService {
         display: flex;
         flex-direction: column;
     }
-    .infoService{
+
+    .infoService {
         display: flex;
         flex-direction: column;
     }
-    .serviceDesc{
-        order:1;
+
+    .serviceDesc {
+        order: 1;
         width: 80%;
     }
-    .photoService{
-        order:0;
+
+    .photoService {
+        order: 0;
         width: 80%;
         height: 325px;
         margin-bottom: 50px;
     }
-    .serviceMapWidth{
+
+    .serviceMapWidth {
         margin-bottom: 70px;
+    }
+
+    .serviceToolBar-inner {
+        margin-left: 0px;
     }
 }
 
-@media(max-width:1000px){
-    .serviceMapWidth{
+@media(max-width:1000px) {
+    .serviceMapWidth {
         width: 90%;
         justify-content: center;
     }
-    .infoService{
+
+    .infoService {
         margin-left: 0px;
     }
+
     .photoService {
         width: 95%;
         height: 250px;
         margin-bottom: 50px;
+    }
+
+    .serviceToolBar {
+        margin-left: 0px;
     }
 }

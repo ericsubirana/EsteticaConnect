@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import './services.css'
@@ -8,6 +8,8 @@ import img3 from '../../assets/tractamentFacial.jpg'
 import img4 from '../../assets/manicura.jpg'
 import img5 from '../../assets/annexos.png'
 import img6 from '../../assets/aparotologia.webp'
+import { useAuth } from '../../context/AuthContext'
+import PopUpService from './PopUpService'
 
 function Services() {
 
@@ -43,11 +45,23 @@ function Services() {
             img: img6
         }
     ]
+    const {user} = useAuth();
+    const [operationResult, setOperationResult] = useState(null);
 
     const navigation = useNavigate();
 
     const takeServices = async (title) => {
         navigation(`/serveis/${title}`);
+    }
+
+    const setTrigger = () =>
+    {
+        setOperationResult("");
+    }
+
+    const afegirServei = () =>
+    {
+        setOperationResult("ADD");
     }
 
     return (
@@ -63,6 +77,18 @@ function Services() {
                     </div>
                 </div>
             </div>
+            {user?.admin ? (
+                   <div>
+                        <div className='addProductButtonDiv'>
+                            <button onClick={afegirServei} className='button-53'>+</button>
+                        </div>
+                        {operationResult && (
+                            <div>
+                                <PopUpService operationResult={"ADD"} setTrigger={setTrigger}/>
+                            </div>
+                        )}
+                    </div>
+                ) : (<div></div>)}
             <div className='servicesWidth'>
                 <div className='serviceComponents'>
                     {Components.map((component, idx) => (

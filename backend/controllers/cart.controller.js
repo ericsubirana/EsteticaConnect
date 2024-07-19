@@ -130,8 +130,6 @@ const removeProduct = async (req, res) => { //si fem un remove es perque el prod
             }
         }
     }
-
-    console.log(cartItem.products[0].product.quantity)
     res.status(200).json({ quantity: cartItem.products[0].product.quantity });
 }
 
@@ -141,7 +139,6 @@ const getProducts = async (req, res) => {
         const userCartExists = await Cart.findOne({ user_id: user.id });
         if (userCartExists) {
             const products = userCartExists.products;
-            console.log(products)
             res.status(200).json({ userCartExists: { products } });
         }
         else {
