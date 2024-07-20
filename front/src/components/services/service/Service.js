@@ -82,7 +82,6 @@ function Service() {
     }
 
     const triggerPopUpEditRemove = (action, service) => {
-        console.log(action, service)
         if (selectedResult !== service) {
             setSelectedResult(service.serviceId._id);
             setOperationResult(action);
@@ -129,7 +128,6 @@ function Service() {
                                     {user?.admin ? (
                                         <div className='serviceToolBar-inner'>
                                             <ProductToolBar triggerPopUp={triggerPopUpEditRemove} serviceId={serviceClicked} />
-                                            {console.log(selectedResult)}
                                             {selectedResult && (
                                                 <div>
                                                     <PopUpService operationResult={operationResult} setTrigger={setTrigger} serviceClicked={serviceClicked}/>

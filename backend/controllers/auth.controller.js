@@ -158,10 +158,8 @@ function sendEmail({ recipient_email, OTP }) {
   </body>
   </html>`,
         };
-        console.log('epa')
         transporter.sendMail(mail_configs, function (error, info) {
             if (error) {
-                console.log('ep3')
                 console.log(error);
                 return reject({ message: `An error has occured` });
             }

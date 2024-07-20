@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import "./PopUpService.css"
 import MultiplesImages from '../saveImages/MultiplesImages';
 import { IoIosArrowDown } from "react-icons/io";
-import {addService, updateService, removeService} from '../../api/services';
+import { addService, updateService, removeService } from '../../api/services';
 import axios from '../../api/axios';
 
 function PopUpService(props) {
@@ -16,10 +16,8 @@ function PopUpService(props) {
     const [clickCat, setClickCat] = useState(false);
     const [categoryList, setCategoryList] = useState("");
 
-    useEffect(() =>
-    {
-        const apiCalls = async () =>
-        {
+    useEffect(() => {
+        const apiCalls = async () => {
             await getServeiCategories();
         }
 
@@ -27,14 +25,18 @@ function PopUpService(props) {
     }, [])
 
     const borrarServei = async () => {
-        //falta borrar servei
+        const res = await removeService(props.serviceClicked?._id);
+        if (res.status == '200')
+            console.log('SERVICE UPDATED')
+        else
+            console.log('SERVICE ERROR AT UPDATEING')
         props.setTrigger();
     }
 
     const updateServei = async () => {
-        const service = { name: title, description: description, image: image, category: category}
+        const service = { id: props.serviceClicked?._id, name: title, description: description, image: image, category: category }
         const res = await updateService(service);
-        if(res.status=='200')
+        if (res.status == '200')
             console.log('SERVICE UPDATED')
         else
             console.log('SERVICE ERROR AT UPDATEING')
@@ -42,10 +44,9 @@ function PopUpService(props) {
     }
 
     const addServei = async () => {
-        console.log('tetetetete')
-        const service = { name: title, description: description, image: image, category: category}
+        const service = { name: title, description: description, image: image, category: category }
         const res = await addService(service);
-        if(res.status=='200')
+        if (res.status == '200')
             console.log('SERVICE INSERTED')
         else
             console.log('SERVICE ERROR AT INSERTING')
@@ -66,20 +67,19 @@ function PopUpService(props) {
         setImage(file);
     }
 
-    const getServeiCategories = async () =>
-    {
+    const getServeiCategories = async () => {
         try {
             const res = await axios.get('/allServeiCategories');
             if (res.data.length === 0) {
-              console.log('NO CATEGORIES FOUND');
+                console.log('NO CATEGORIES FOUND');
             }
             else {
-              setCategoryList(res.data);
+                setCategoryList(res.data);
             }
-          }
-          catch (error) {
+        }
+        catch (error) {
             console.error(error);
-          }
+        }
     }
 
     return (
@@ -128,7 +128,7 @@ function PopUpService(props) {
                                 </div>
                                 <div className='categoraServei'>
                                     <h2 style={{ 'margin': '0px' }}>Categoria: </h2>
-                                    <h4 className='onSelect' onClick={async () => { if (!clickCat); setClickCat(!clickCat)}}> Sel. categoria extistente:  <IoIosArrowDown /></h4>
+                                    <h4 className='onSelect' onClick={async () => { if (!clickCat); setClickCat(!clickCat) }}> Sel. categoria extistente:  <IoIosArrowDown /></h4>
                                     {clickCat && (
                                         <div className='margins' style={{ 'marginTop': '0px' }}>
                                             <div className='colectionsOpened'>
@@ -172,11 +172,13 @@ function PopUpService(props) {
 
             {props.operationResult == 'BORRAR' && (
                 <div className="popup-inner">
-                    <h2>Estas seguro/a que quieres borrar el servicio?</h2>
-                    <button style={{ 'margin-top': '20px' }} className='addCart' onClick={borrarServei}>
-                        <p>BORRAR</p>
-                    </button>
-                    <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
+                    <form onSubmit={borrarServei}>
+                        <h2>Estas seguro/a que quieres borrar el servicio?</h2>
+                        <button type='submit' style={{ 'margin-top': '20px' }} className='addCart'>
+                            <p>BORRAR</p>
+                        </button>
+                        <IoClose size={30} className='close-btn' onClick={props.setTrigger} />
+                    </form>
                 </div>
             )}
         </div>

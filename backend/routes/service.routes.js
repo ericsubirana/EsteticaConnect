@@ -8,6 +8,6 @@ router.post('/serveisCategoria', getCategory);
 router.get('/allServeiCategories', getCategories);
 router.post('/addService', addService);
 router.post('/updateService', updateService);
-router.get('/removeService', removeService);
+router.get('/removeService/:_id', removeService);
 
 module.exports = router;

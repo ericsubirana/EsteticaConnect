@@ -158,7 +158,6 @@ function PopUpProduct(props) { //fer que en cas de que l'usuari ja tingui el pro
   }
 
   const editProduct = async () => {
-    //console.log(title, description, price, image)
     const id = result._id;
     const product = { productId: id, productTitle: title, productDescription: description, productPrice: price, productImage: image, productCategory: category, productCollecion: collection }
     const response = await apiEditProduct(product);

@@ -7,7 +7,6 @@ const { whatsapp } = require('../libs/whatsapp.js')
 
 const insertEvent = async (req, res) => {
     try {
-        console.log(req.body)
         const event = new Calendar(req.body);
         await event.save();
         //ara enviem missatge al client
@@ -40,7 +39,6 @@ const takeContacts = async (req, res) => {
         const clientName = contact.name;
         clientPhones[clientName] = phoneNumber;
     });
-    console.log(clientPhones)
     res.status(200).json(clientPhones);
 }
 
@@ -67,7 +65,6 @@ const takeSpecificEvent = async (req, res) => {
 const updateEvent = async (req, res) => {
     try {
         const { id, values } = req.body;
-        console.log(values)
         await Calendar.updateOne({ _id: id }, { $set: values });
         try {
             const tel = values.clientPhoneNumber;

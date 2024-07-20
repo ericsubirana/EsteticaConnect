@@ -20,14 +20,12 @@ const MultiplesImages = (props) => {
             formData.append("timesamp", (Date.now()/1000) | 0);
             setLoading("true")
             //canviar peticio!!
-            console.log(formData)
             return axios.post("https://api.cloudinary.com/v1_1/dp95x4ep2/image/upload", formData, {
                 headers: {"X-Requested-With":"XMLHttpsRequest"},
             })
             .then((response)=> {
                 const data = response.data
                 const fileURL = data.secure_url;
-                console.log(fileURL)
                 props.changeImage(fileURL);
             })
         })

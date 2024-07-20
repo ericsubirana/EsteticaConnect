@@ -87,7 +87,6 @@ function CollectionComponent(props) {
 
     const triggerPopUpEditRemove = (action, product) => {
         if (selectedResult !== product) {
-            console.log(product, action)
             setSelectedResult(product.idProducte);
             setOperationResult(action);
         }

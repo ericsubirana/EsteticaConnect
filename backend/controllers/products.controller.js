@@ -90,7 +90,6 @@ const deleteProduct = async (req, res) => {
 
 const addProduct = async (req, res) => {
     let {product} = req.body;
-    console.log(product)
     // Validation and transformation
     const validationErrors = [];
 
