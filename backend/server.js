@@ -31,7 +31,7 @@ const initializeApp = async () => {
     next();
   });
   app.use(cors({
-    origin: 'http://localhost:3000', //frontend server https://cefina.es
+    origin: 'https://ce-fina.es', //frontend https://ce-fina.es  http://localhost:3000
     credentials: true,
   })); // Enable CORS for all routes
   app.use(cookieParser()); //per poder llegir les cookies
