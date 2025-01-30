@@ -150,23 +150,23 @@ function CalendarPopUp(props) {
                     <Controller
                       name="clientName"
                       control={control}
-                      render={({ field }) => 
+                      render={({ field }) =>
                         <div>
                           <input
-                            autocomplete="off"
-                            {...field} 
-                            type="text" 
-                            value={inputValueName} 
-                            placeholder="Nombre cliente" 
+                            autoComplete="off"
+                            {...field}
+                            type="text"
+                            value={inputValueName}
+                            placeholder="Nombre cliente"
                             onChange={(e) => {
                               field.onChange(e);
                               setInputValueName(e.target.value);
                             }}
                             required />
-                            {filteredContacts.length > 0 && (
+                          {filteredContacts.length > 0 && (
                             <ul className="suggestions">
                               {filteredContacts.map((contact) => (
-                                <li 
+                                <li
                                   className='suggest'
                                   key={contact.id}
                                   onClick={() => handleContactSelect(contact)}
@@ -177,7 +177,7 @@ function CalendarPopUp(props) {
                             </ul>
                           )}
                         </div>
-                        }
+                      }
                     />
                   </div>
                   <div>
@@ -185,18 +185,18 @@ function CalendarPopUp(props) {
                     <Controller
                       name="clientPhoneNumber"
                       control={control}
-                      render={({ field }) => <input 
-                                              autocomplete="off"
-                                              value={inputValuePhone} 
-                                              {...field} 
-                                              onChange={(e) => {
-                                                field.onChange(e);
-                                                setInputValuePhone(e.target.value);
-                                              }}
-                                              type="number" 
-                                              placeholder="Número teléfono cliente" 
-                                              required/>
-                              }
+                      render={({ field }) => <input
+                      autoComplete="off"
+                        value={inputValuePhone}
+                        {...field}
+                        onChange={(e) => {
+                          field.onChange(e);
+                          setInputValuePhone(e.target.value);
+                        }}
+                        type="number"
+                        placeholder="Número teléfono cliente"
+                        required />
+                      }
                     />
                   </div>
                 </div>
@@ -209,6 +209,21 @@ function CalendarPopUp(props) {
                   />
                 </div>
                 <div className='horasPopUp'>
+                  <div className='calendarStartHour'>
+                    <p>Enviar mensaje:</p>
+                    <Controller
+                      name="sendMessage"
+                      control={control}
+                      defaultValue={false}
+                      render={({ field }) => (
+                        <input
+                          {...field}
+                          type="checkbox"
+                          onChange={(e) => setValue('sendMessage', e.target.checked)}
+                        />
+                      )}
+                    />
+                  </div>
                   <div className='calendarStartHour'>
                     <p>Hora inicio :</p>
                     <Controller
@@ -321,7 +336,7 @@ function CalendarPopUp(props) {
                 </div>
                 <button className='closeEvent' type='button' onClick={closeEvent}><IoMdClose size={20} /></button>
                 <div className='updateDeleteButtons'>
-                  <button  className='saveEventUpdate' type="submit" name='btn1' onClick={() => (state.button = 1)}>Actualizar</button>
+                  <button className='saveEventUpdate' type="submit" name='btn1' onClick={() => (state.button = 1)}>Actualizar</button>
                   <button className='saveEvent' type='submit' name='btn2' onClick={() => (state.button = 2)}>Borrar</button>
                 </div>
               </form>

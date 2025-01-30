@@ -5,15 +5,15 @@ const cron = require('node-cron');
 const moment = require('moment-timezone');
 const { whatsapp } = require('../libs/whatsapp.js')
 require("dotenv").config();
+const axios = require('axios')
 
 
 const insertEvent = async (req, res) => {
     try {
-        const event = new Calendar(req.body.values);
+        const event = new Calendar(req.body);
         await event.save();
         if(req.body.sendMessage)
         {
-            //ara enviem missatge al client
             try {
                 const templateName = "ce_fina_alert";
                 const tel = event.clientPhoneNumber;
@@ -35,7 +35,7 @@ const insertEvent = async (req, res) => {
         }
         res.status(200).json({ message: 'Evento creado correctamente' })
     } catch (error) {
-        res.status(400).json({ message: 'error creando el evento' })
+        res.status(400).json({ message: 'error creando el evento' + error})
     }
 }
 
@@ -92,7 +92,7 @@ const updateEvent = async (req, res) => {
             const monthName = monthNames[monthNumber];
             //const mensaje = `Hola ${values.clientName} s'ha actualitzat el teu esdeveniment i tens hora a les ${values.startHour} per ${values.description} el dia ${day} de ${monthName}`;
             //await whatsapp.sendMessage(chatId._serialized, mensaje);
-            await sendTextMessage(tel, templateName, event.clientName, event.startHour, event.description, day, monthName);
+            await sendTextMessage(tel, templateName, values.clientName, values.startHour, values.description, day, monthName);
         } catch (error) {
             console.error('Error al enviar mensaje:', error);
         }
@@ -114,7 +114,7 @@ const deleteEvent = async (req, res) => {
 }
 
 async function sendTextMessageTomorrow(tel, nameParam, startHour, description) {
-    await axios({
+    const response = await axios({
         url: 'https://graph.facebook.com/v21.0/'+process.env.TEL_ID+'/messages',
         method: 'post',
         headers: {
@@ -153,6 +153,7 @@ async function sendTextMessageTomorrow(tel, nameParam, startHour, description) {
             }
         })
     })
+    return response
 }
 
 async function sendTextMessage(tel, templateName, nameParam, startHour, description, day, month) {
